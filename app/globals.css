@@ -2,29 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+ @layer components{
+  /*  dashboard start here */
+   .dashboard{
+    @apply flex flex-wrap 
+   }
+   .dashboardSidebar{
+     @apply  w-[250px] h-screen overflow-y-auto bg-gray-100 text-black 
+   }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+   .sidebarItem{
+     @apply capitalize my-3 py-3 px-3 flex items-center justify-start gap-2 hover:bg-purple-100 hover:text-purple-500 duration-300
+   }
+
+   .dashboardMain{
+    @apply flex-1 px-10 h-screen overflow-y-auto
+   }
+
+     /*  dashboard end here */
+ }
+ 
+ @layer base{
+   ::-webkit-scrollbar {
+    width: 8px;               
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
+  
+   ::-webkit-scrollbar-track {
+    background: gray;        
+  }
+  
+   ::-webkit-scrollbar-thumb {
+    background-color: rgb(194, 192, 192);   
+    border-radius: 20px;       
+  }
+ }
 
 @layer utilities {
   .text-balance {
