@@ -8,13 +8,15 @@
     @apply flex flex-wrap 
    }
    .dashboardSidebar{
-     @apply  w-[250px] h-screen overflow-y-auto bg-gray-100 text-black 
+     @apply  w-[300px] h-screen overflow-y-auto bg-gray-100 text-black 
    }
 
    .sidebarItem{
-     @apply capitalize my-3 py-3 px-3 flex items-center justify-start gap-2 hover:bg-purple-100 hover:text-purple-500 duration-300
+     @apply capitalize tracking-widest my-3 py-3 px-3 font-bold cursor-pointer  hover:bg-purple-100 hover:text-purple-500 duration-300
    }
-
+   .sidebarSubItem{
+    @apply my-3 hover:bg-purple-200 px-2 py-1 font-medium text-sm text-black hover:text-black
+   }
    .dashboardMain{
     @apply flex-1 px-10 h-screen overflow-y-auto
    }

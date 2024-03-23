@@ -5,10 +5,7 @@ export default function DashboardLayout({ children }) {
     return (
         <div className='dashboard'>
             <div className="dashboardSidebar"> 
-                <Sidebar/>
-                <div style={{height:"1000px"}}>
-
-                </div>
+                <Sidebar/> 
             </div>
             <div className='dashboardMain'>
                 {children}

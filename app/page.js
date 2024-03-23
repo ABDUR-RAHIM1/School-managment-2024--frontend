@@ -1,5 +1,5 @@
 
-import { getDummyPosts } from "@/app/fetchApi"
+import { getDummyPosts } from "@/fetchApi"
 
 export default async function HomePage() {
 
