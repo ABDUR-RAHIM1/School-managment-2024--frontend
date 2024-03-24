@@ -5,7 +5,7 @@ import { CiViewTimeline } from "react-icons/ci";
 import { MdMoreTime } from "react-icons/md";
 import { RiAccountBoxLine } from "react-icons/ri";
 import { PiNotificationThin } from "react-icons/pi";
-
+import { CiSettings } from "react-icons/ci";
 export const sidebarItems = [
     {
         icon: <MdDashboard />,
@@ -24,46 +24,6 @@ export const sidebarItems = [
                 link: "/dashboard/admin-list",
             },
             {
-                item: "student lists",
-                link: "/dashboard/student-lists",
-            },
-            {
-                item: "teacher lists",
-                link: "/dashboard/teacher-lists",
-            },
-            {
-                item: "Add result",
-                link: "/dashboard/add-results",
-            },
-            {
-                item: "Manage results",
-                link: "/dashboard/manage-results",
-            },
-            {
-                item: "Add Class routine",
-                link: "/dashboard/add-class-routine",
-            },
-            {
-                item: "Manage Class routine",
-                link: "/dashboard/manage-class-routine",
-            },
-            {
-                item: "Add exam routine",
-                link: "/dashboard/add-exam-routine",
-            },
-            {
-                item: "Manage exam routine",
-                link: "/dashboard/manage-exam-routine",
-            },
-            {
-                item: "add booklist",
-                link: "/dashboard/add-booklist",
-            },
-            {
-                item: "manage booklist",
-                link: "/dashboard/manage-booklist",
-            },
-            {
                 item: "add Staff",
                 link: "/dashboard/add-staff",
             },
@@ -72,21 +32,107 @@ export const sidebarItems = [
                 link: "/dashboard/manage-staff",
             },
             {
-                item: "add committee",
-                link: "/dashboard/add-committee",
+                item: "contact message",
+                link: "/dashboard/contact-message",
             },
             {
-                item: "manage committee",
-                link: "/dashboard/manage-committee",
+                item: "reviews",
+                link: "/dashboard/reviews",
+            },
+        ]
+    },
+    {
+        icon: <PiStudent />,
+        item: "students",
+        subItems: [
+            {
+                item: "access student",
+                link: "/dashboard/access-student",
             },
             {
-                item: "add fee's",
-                link: "/dashboard/add-fee",
+                item: "manage Student",
+                link: "/dashboard/manage-student",
+            },
+
+            {
+                item: "complains",
+                link: "/dashboard/complains",
+            },
+        ]
+    },
+    {
+        icon: <FaChalkboardTeacher />,
+        item: "teachers",
+        subItems: [
+            {
+                item: "access teacher",
+                link: "/dashboard/access-teacher",
             },
             {
-                item: "manage fee's",
-                link: "/dashboard/manage-fee",
+                item: "manage teacher",
+                link: "/dashboard/manage-teacher",
             },
+
+            {
+                item: "Gallary",
+                link: "/dashboard/teacher-gallary",
+            },
+        ]
+    },
+    {
+        icon: <CiViewTimeline />,
+        item: "class routine",
+        subItems: [
+            {
+                item: "Add Class routine",
+                link: "/dashboard/add-class-routine",
+            },
+            {
+                item: "Manage Class routine",
+                link: "/dashboard/manage-class-routine",
+            },
+        ]
+    },
+    {
+        icon: <MdMoreTime />,
+        item: "exam routine",
+        subItems: [
+            {
+                item: "Add exam routine",
+                link: "/dashboard/add-exam-routine",
+            },
+            {
+                item: "Manage exam routine",
+                link: "/dashboard/manage-exam-routine",
+            },
+        ]
+    },
+    {
+        icon: <RiAccountBoxLine />,
+        item: "attendance",
+        subItems: [
+            {
+                item: "add teacher",
+                link: "/dashboard/add-teacher-attendance",
+            },
+            {
+                item: "manage teacher",
+                link: "/dashboard/manage-teacher-attendance",
+            },
+            {
+                item: "add student",
+                link: "/dashboard/add-student-attendance",
+            },
+            {
+                item: "manage student",
+                link: "/dashboard/manage-student-attendance",
+            },
+        ]
+    },
+    {
+        icon: <PiNotificationThin />,
+        item: "notice",
+        subItems : [
             {
                 item: "upload notice",
                 link: "/dashboard/upload-notice",
@@ -98,44 +144,71 @@ export const sidebarItems = [
         ]
     },
     {
-        icon: <PiStudent />,
-        item: "students",
-        link: "/dashboard/students",
-        subItems: [
+        icon: <PiNotificationThin />,
+        item: "fee's",
+        subItems : [
+         
             {
-                item: "All Students",
-                link: "/students/all",
+                item: "add fee's",
+                link: "/dashboard/add-fee",
             },
             {
-                item: "Add Student",
-                link: "/students/add",
+                item: "manage fee's",
+                link: "/dashboard/manage-fee",
             },
         ]
     },
     {
-        icon: <FaChalkboardTeacher />,
-        item: "teachers",
-        link: "/dashboard/teachers"
-    },
-    {
-        icon: <CiViewTimeline />,
-        item: "class routine",
-        link: "/dashboard/class-routine"
-    },
-    {
-        icon: <MdMoreTime />,
-        item: "exam routine",
-        link: "/dashboard/exam-routine"
-    },
-    {
-        icon: <RiAccountBoxLine />,
-        item: "attendance",
-        link: "/dashboard/attendance"
+        icon: <PiNotificationThin />,
+        item: "book list",
+        subItems : [
+            {
+                item: "add booklist",
+                link: "/dashboard/add-booklist",
+            },
+            {
+                item: "manage booklist",
+                link: "/dashboard/manage-booklist",
+            },
+        ]
     },
     {
         icon: <PiNotificationThin />,
-        item: "notice",
-        link: "/dashboard/add-notice"
+        item: "results",
+        subItems : [
+            {
+                item: "upload result",
+                link: "/dashboard/add-results",
+            },
+            {
+                item: "Manage results",
+                link: "/dashboard/manage-results",
+            },
+        ]
+    },
+    {
+        icon: <PiNotificationThin />,
+        item: "commitee",
+        subItems : [
+            {
+                item: "add committee",
+                link: "/dashboard/add-committee",
+            },
+            {
+                item: "manage committee",
+                link: "/dashboard/manage-committee",
+            },
+        ]
+    },
+    {
+        icon: <CiSettings />,
+        item: "settings",
+        subItems: [
+            {
+                item: "manage content",
+                link: "/dashboard/manage-content",
+            },
+        ]
     },
 
 ];

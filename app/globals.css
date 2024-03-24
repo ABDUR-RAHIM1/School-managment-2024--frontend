@@ -5,10 +5,10 @@
  @layer components{
   /*  dashboard start here */
    .dashboard{
-    @apply flex flex-wrap 
+    @apply flex flex-wrap  bg-gray-200
    }
    .dashboardSidebar{
-     @apply  w-[300px] h-screen overflow-y-auto bg-gray-100 text-black 
+     @apply  w-[300px] h-screen overflow-y-auto bg-gray-50 text-black 
    }
 
    .sidebarItem{
