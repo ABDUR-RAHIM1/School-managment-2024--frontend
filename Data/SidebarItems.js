@@ -1,11 +1,14 @@
-import { MdDashboard } from "react-icons/md"
+import { MdDashboard , MdDynamicFeed } from "react-icons/md"
 import { PiStudent } from "react-icons/pi";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { CiViewTimeline } from "react-icons/ci";
 import { MdMoreTime } from "react-icons/md";
 import { RiAccountBoxLine } from "react-icons/ri";
 import { PiNotificationThin } from "react-icons/pi";
-import { CiSettings } from "react-icons/ci";
+import { CiSettings } from "react-icons/ci"; 
+import { IoIosBook  } from "react-icons/io"; 
+import { GiProgression } from "react-icons/gi";
+import { FcBusinessman } from "react-icons/fc";
 export const sidebarItems = [
     {
         icon: <MdDashboard />,
@@ -144,7 +147,7 @@ export const sidebarItems = [
         ]
     },
     {
-        icon: <PiNotificationThin />,
+        icon: <MdDynamicFeed />,
         item: "fee's",
         subItems : [
          
@@ -159,7 +162,7 @@ export const sidebarItems = [
         ]
     },
     {
-        icon: <PiNotificationThin />,
+        icon: <IoIosBook  />,
         item: "book list",
         subItems : [
             {
@@ -173,7 +176,7 @@ export const sidebarItems = [
         ]
     },
     {
-        icon: <PiNotificationThin />,
+        icon: <GiProgression />,
         item: "results",
         subItems : [
             {
@@ -187,7 +190,7 @@ export const sidebarItems = [
         ]
     },
     {
-        icon: <PiNotificationThin />,
+        icon: <FcBusinessman />,
         item: "commitee",
         subItems : [
             {

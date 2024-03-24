@@ -21,6 +21,34 @@
     @apply flex-1 px-10 h-screen overflow-y-auto
    }
 
+   .adminLoginPage{
+    @apply bg-gray-100 w-full h-screen flex items-center justify-center
+   }
+   .adminLogin{
+    @apply w-[90%] py-20 bg-white shadow-md shadow-gray-200 flex items-center justify-between flex-wrap
+   }
+    .adminLogin div{
+      @apply w-[48%]
+    }
+    .adminLogin form{
+      @apply px-10
+    }
+.input{
+  @apply w-full py-2 px-3 my-3 focus:outline-0 bg-gray-100 border 
+}
+.formBtn{
+  @apply py-3 px-4 text-center font-medium w-full capitalize my-5 bg-blue-500 hover:bg-blue-600 text-white rounded-3xl duration-200
+}
+
+.addAdminPage{
+  @apply w-full h-screen flex items-center justify-center
+}
+.addAdminPage form{
+   @apply w-full md:w-[75%] m-auto bg-white px-5 py-20
+}
+.addAdminPage form input{
+  @apply input
+}
      /*  dashboard end here */
  }
  
