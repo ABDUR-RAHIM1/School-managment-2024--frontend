@@ -4,8 +4,14 @@
 
  @layer components{
   /*  dashboard start here */
+  .dashboardHeader{
+    @apply w-full px-3 py-7 border-b bg-gray-50 sticky top-0 flex items-center justify-start gap-[100px] z-[999]
+  }
+  .dashboardHeader .logo{
+     @apply w-[280px] text-blue-950 flex items-center justify-between
+  }
    .dashboard{
-    @apply flex flex-wrap  bg-gray-200
+    @apply flex flex-wrap  bg-gray-100
    }
    .dashboardSidebar{
      @apply  w-[300px] h-screen overflow-y-auto bg-gray-50 text-black 
@@ -18,7 +24,7 @@
     @apply my-3 hover:bg-purple-200 px-2 py-1 font-medium text-sm text-black hover:text-black
    }
    .dashboardMain{
-    @apply flex-1 px-10 h-screen overflow-y-auto
+    @apply flex-1 px-4 h-screen overflow-y-auto
    }
 
    .adminLoginPage{
@@ -49,6 +55,30 @@
 .addAdminPage form input{
   @apply input
 }
+.adminListPage{
+  @apply my-20 py-10 px-4 bg-white 
+}
+.table{
+  @apply px-4 w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400
+}
+.table thead{
+   @apply  text-xs text-gray-700 uppercase bg-gray-100  
+}
+ 
+.table tr{
+  @apply   border-b dark:border-gray-700
+}
+.table tr td{
+  @apply  py-4 font-medium whitespace-nowrap
+}.table input{
+  @apply cursor-pointer
+}
+.editBtn{
+  @apply py-1 px-2 text-2xl rounded-md text-black bg-yellow-500  hover:bg-yellow-700 cursor-pointer
+}
+.deleteBtn{
+  @apply py-1 px-2 text-2xl rounded-md text-white bg-red-500 hover:bg-red-700  cursor-pointer
+}
      /*  dashboard end here */
  }
  
@@ -58,11 +88,11 @@
   }
   
    ::-webkit-scrollbar-track {
-    background: gray;        
+    background: rgb(136, 172, 233);        
   }
   
    ::-webkit-scrollbar-thumb {
-    background-color: rgb(194, 192, 192);   
+    background-color: rgb(32, 46, 152);   
     border-radius: 20px;       
   }
  }

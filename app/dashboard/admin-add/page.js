@@ -4,6 +4,7 @@ import { validateEmail } from '@/Helpers/validateAuth'
 import { handleAdminPostMethod } from '@/fetchApi/adminAuth/api'
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
+import { MdOutlineAdd } from "react-icons/md";
 
 export default function AdminAdd() {
   const formData = adminformData
@@ -51,11 +52,11 @@ export default function AdminAdd() {
       setIsLoading(false)
     }
   }
-  console.log(info)
+ 
   return (
     <div className='addAdminPage'>
       <form onSubmit={addAdminHandler}>
-        <h2 className='text-center my-4 uppercase text-2xl font-medium text-blue-900'>Add admin or modator</h2>
+        <h2 className='text-center my-4 uppercase text-2xl font-medium text-blue-900'>  Add admin or modator</h2>
         {
           formData.map((input, i) => (
 
@@ -71,8 +72,8 @@ export default function AdminAdd() {
           )
           )
         }
-        <select onChange={handleChange} className='input' name="role">
-          <option value="">select role</option>
+        <select onChange={handleChange} className='input cursor-pointer' name="role">
+          <option value="">Select Role</option>
           <option value="Admin">Admin</option>
           <option value="Moderator">Moderator</option>
         </select>
