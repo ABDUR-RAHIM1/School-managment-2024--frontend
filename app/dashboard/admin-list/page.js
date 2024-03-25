@@ -31,7 +31,7 @@ export default function AdminLists() {
     };
 
     fetchData();
-  }, [isDelete , filterText]);
+  }, [isDelete, filterText]);
 
 
   //  delete handler 
@@ -49,7 +49,7 @@ export default function AdminLists() {
       setIsLoading(false)
     }
   }
-
+  
 
   //  navigate to dashboard/admin-add route
   const handleAddNewBtn = () => {
@@ -61,15 +61,23 @@ export default function AdminLists() {
     setFilerText(text)
   }
 
+  //  edit admin handler 
+  const handleEditAdmin = (info) => {
+    router.push({
+      pathname: '/dashboard/admin-add',
+      query: { data: info }
+    });
+  }
+//  not working at a time
   return (
     <div className='adminListPage relative overflow-x-auto'>
 
       <div className='flex items-center justify-between'>
-        <h2 className='my-10 text-2xl italic font-medium'>Team <span className='text-sm ml-3 border p-1'>{adminList.length} 
+        <h2 className='my-10 text-2xl italic font-medium'>Team <span className='text-sm ml-3 border p-1'>{adminList.length}
           {
-            filterText ? " "+ filterText : " members"
+            filterText ? " " + filterText : " members"
           }
-         </span> </h2>
+        </span> </h2>
         <div>
           <button onClick={handleAddNewBtn} className='flex items-center gap-1 bg-blue-500 text-white hover:bg-blue-600 duration-200 py-2 px-3 rounded-md text-sm'> <span className='text-xl'><GoPersonAdd /></span> Add New</button>
         </div>
@@ -113,7 +121,7 @@ export default function AdminLists() {
                     <td>{t.email}</td>
                     <td className='capitalize'>{t.role}</td>
                     <td>{getDateInfo(t.createdAt).day + "/" + getDateInfo(t.createdAt).month + "/" + getDateInfo(t.createdAt).year}</td>
-                    <td> <button className='editBtn'><CiEdit /></button> </td>
+                    <td> <button onClick={() => handleEditAdmin(t)} className='editBtn'><CiEdit /></button> </td>
                     <td> <button disabled={isLoading} onClick={() => handleDeleteAdmin(t._id)} className='deleteBtn'>
                       <MdDelete />
                     </button> </td>

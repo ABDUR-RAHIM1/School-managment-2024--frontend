@@ -3,14 +3,15 @@ import adminformData from '@/Data/AdminForm'
 import { validateEmail } from '@/Helpers/validateAuth'
 import { handleAdminPostMethod } from '@/fetchApi/adminAuth/api'
 import React, { useState } from 'react'
-import { toast } from 'react-toastify'
-import { MdOutlineAdd } from "react-icons/md";
+import { toast } from 'react-toastify' 
+import { useRouter } from 'next/navigation'
 
 export default function AdminAdd() {
   const formData = adminformData
+  const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [info, setInfo] = useState({ username: "", email: "", password: "", role: "" })
-
+ console.log(router.query)
   const handleChange = (e) => {
     const value = e.target.value.toLowerCase();
 

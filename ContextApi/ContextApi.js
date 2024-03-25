@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, createContext } from "react";
 
 // usesContext and VlobalState import on the component here use it state

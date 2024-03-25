@@ -10,11 +10,18 @@
   .dashboardHeader .logo{
      @apply w-[280px] text-blue-950 flex items-center justify-between
   }
+  /* search results area */
+  .searchInput{
+    @apply w-full py-3 px-3 pl-10 focus:outline-none border border-gray-100 bg-white rounded-sm
+  }
+  .searchResultArea{
+    @apply w-full h-auto py-5 max-h-[400px] overflow-y-auto bg-gray-50 rounded-b-md shadow-md absolute top-12 left-0 text-gray-700 z-[999]
+  }
    .dashboard{
     @apply flex flex-wrap  bg-gray-100
    }
    .dashboardSidebar{
-     @apply  w-[300px] h-screen overflow-y-auto bg-gray-50 text-black 
+     @apply h-screen overflow-y-auto duration-300 bg-gray-50 text-black 
    }
 
    .sidebarItem{
