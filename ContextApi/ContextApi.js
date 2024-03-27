@@ -6,16 +6,11 @@ export const GlobalState = createContext(); // Create the context
 
 // wrap this function name on app component
 export const MyState = ({ children }) => {
-  const [count, setCount] = useState(0);
-  const [user , setUser] = useState({
-     name :"",
-     email :"",
-     password :""
-  })
+  const [reload, setReload] = useState(false);
+
 
   const value = {
-    count, setCount,
-    user , setUser
+    reload, setReload
   };
 
   return (

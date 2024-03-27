@@ -3,7 +3,7 @@ import Image from "next/image"
 import thumb from "@/public/images/adminlogin.jpg"
 import {useLayoutEffect, useState } from "react"
 import { validateEmail } from "@/Helpers/validateAuth";
-import { adminLoginHandler, handleAdminPostMethod } from "@/fetchApi/adminAuth/api";
+import { adminLoginHandler, handleAdminPostMethod } from "@/fetchApi/admin/api";
 import { toast } from "react-toastify";
 import {  useRouter } from "next/navigation";
 

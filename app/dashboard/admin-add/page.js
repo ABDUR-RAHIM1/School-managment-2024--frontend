@@ -1,23 +1,23 @@
 "use client"
 import adminformData from '@/Data/AdminForm'
 import { validateEmail } from '@/Helpers/validateAuth'
-import { handleAdminPostMethod } from '@/fetchApi/adminAuth/api'
+import { handleAdminPostMethod } from '@/fetchApi/admin/api'
 import React, { useState } from 'react'
 import { toast } from 'react-toastify' 
-import { useRouter } from 'next/navigation'
 
 export default function AdminAdd() {
   const formData = adminformData
-  const router = useRouter()
+ 
   const [isLoading, setIsLoading] = useState(false)
-  const [info, setInfo] = useState({ username: "", email: "", password: "", role: "" })
- console.log(router.query)
+  const [info, setInfo] = useState({ username: "", email: "", password: "", role: "admin" })
+ 
   const handleChange = (e) => {
-    const value = e.target.value.toLowerCase();
+    const value = e.target.value
 
     setInfo({ ...info, [e.target.name]: value })
   }
 
+ 
 
   const addAdminHandler = async (e) => {
     e.preventDefault()
@@ -53,11 +53,17 @@ export default function AdminAdd() {
       setIsLoading(false)
     }
   }
+
+  //  set Edit admin info in state
  
+
+
   return (
     <div className='addAdminPage'>
       <form onSubmit={addAdminHandler}>
-        <h2 className='text-center my-4 uppercase text-2xl font-medium text-blue-900'>  Add admin or modator</h2>
+        <h2 className='text-center my-4 uppercase text-2xl font-medium text-blue-900'>  
+             Add admin or modertor"
+         </h2>
         {
           formData.map((input, i) => (
 
@@ -73,15 +79,15 @@ export default function AdminAdd() {
           )
           )
         }
-        <select onChange={handleChange} className='input cursor-pointer' name="role">
-          <option value="">Select Role</option>
-          <option value="Admin">Admin</option>
-          <option value="Moderator">Moderator</option>
+        <select value={info.role} onChange={handleChange} className='input cursor-pointer' name="role">
+          <option value="admin">Admin</option>
+          <option value="moderator">Moderator</option>
         </select>
+
         <button disabled={isLoading} className='formBtn' type="submit">
           {isLoading ? "Waiting..." : "Add Now"}
         </button>
-
+       
       </form>
     </div>
   )

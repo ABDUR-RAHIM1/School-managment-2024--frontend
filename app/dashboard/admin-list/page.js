@@ -1,24 +1,28 @@
 "use client"
 import getDateInfo from '@/Helpers/Date';
 import Spinner from '@/components/Utils/Spinner';
-import { handleAdminDeleteMethod, handleAdminGetMethod } from '@/fetchApi/adminAuth/api'
+import { handleAdminDeleteMethod, handleAdminGetMethod } from '@/fetchApi/admin/api'
 import React, { useEffect, useState } from 'react'
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import { toast } from 'react-toastify';
 import { GoPersonAdd } from "react-icons/go";
 import { useRouter } from 'next/navigation';
+import Model from '@/components/Utils/Model';
 
 export default function AdminLists() {
   const [isLoading, setIsLoading] = useState(false)
   const [filterText, setFilerText] = useState("")
   const [isDelete, setIsDelete] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+  const [modalData, setModalData] = useState(null)
   const [adminList, setAdminList] = useState([])
   const router = useRouter()
 
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true)
       try {
         const route = `/admin/auth/all?search=${filterText}`;
         const data = await handleAdminGetMethod(route);
@@ -27,10 +31,14 @@ export default function AdminLists() {
         console.error("Error fetching admin list:", error);
 
         toast.error("Failed to fetch admin list");
+      } finally {
+        setIsLoading(false)
       }
     };
 
     fetchData();
+
+
   }, [isDelete, filterText]);
 
 
@@ -49,7 +57,7 @@ export default function AdminLists() {
       setIsLoading(false)
     }
   }
-  
+
 
   //  navigate to dashboard/admin-add route
   const handleAddNewBtn = () => {
@@ -63,12 +71,14 @@ export default function AdminLists() {
 
   //  edit admin handler 
   const handleEditAdmin = (info) => {
-    router.push({
-      pathname: '/dashboard/admin-add',
-      query: { data: info }
-    });
+    setModalData(info)
+    setShowModal(true)
+
   }
-//  not working at a time
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <div className='adminListPage relative overflow-x-auto'>
 
@@ -86,8 +96,8 @@ export default function AdminLists() {
       {/*  filterd admin moderator  */}
       <div className='flex items-center gap-2 mb-6'>
         <p className='font-medium'>filter by :</p>
-        <select onChange={handleFilterAdmin} className='py-1 px-3 focus:outline-none border border-gray-200'>
-          <option selected value="">All</option>
+        <select value={filterText} onChange={handleFilterAdmin} className='py-1 px-3 focus:outline-none border border-gray-200'>
+          <option value="">All</option>
           <option value="admin">admin</option>
           <option value="moderator">moderator</option>
         </select>
@@ -97,19 +107,20 @@ export default function AdminLists() {
         {isLoading && <Spinner />}
       </div>
       {
-        adminList.length <= 0 ? "loading . . ." :
+        isLoading ? "loading . . ." :
           <table className='table'>
-            <thead>
-              <tr>
-                <th><input className='mr-5' type="checkbox" /></th>
-                <th>Name</th>
-                <th>Email address</th>
-                <th>Role</th>
-                <th>joined</th>
-                <th>Edit</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
+            {adminList.length <= 0 ? "not found" :
+              <thead>
+                <tr>
+                  <th><input className='mr-5' type="checkbox" /></th>
+                  <th>Name</th>
+                  <th>Email address</th>
+                  <th>Role</th>
+                  <th>joined</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>}
             <tbody>
               {
                 adminList && adminList.map((t, i) => (
@@ -132,6 +143,10 @@ export default function AdminLists() {
           </table>
 
       }
+      {showModal && <Model
+        data={modalData}
+        closeModal={closeModal}
+      />}
     </div>
   )
 }

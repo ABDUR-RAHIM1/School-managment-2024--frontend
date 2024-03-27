@@ -40,13 +40,34 @@ export const handleAdminGetMethod = async (route) => {
 export const handleAdminDeleteMethod = async (deleteRoute) => {
     console.log(deleteRoute)
     try {
-          const res = await fetch(API+deleteRoute, {
-            method : "DELETE"
-          });
+        const res = await fetch(API + deleteRoute, {
+            method: "DELETE"
+        });
 
-          const  result = await res.json()
-          return result
+        const result = await res.json()
+        return result
     } catch (error) {
         console.log(error)
+    }
+}
+
+
+//  admin all edit handler
+
+export const handleEditAdminMethod = async (editRoute, data) => {
+ 
+    try {
+       const res =   await  fetch(API+editRoute, {
+            method: "PUT",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+        const result = await res.json();
+        console.log(result)
+        return result
+    } catch (error) {
+        console.log(error) 
     }
 }
