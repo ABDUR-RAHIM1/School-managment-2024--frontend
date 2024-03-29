@@ -2,21 +2,24 @@
 import getDateInfo from '@/Helpers/Date';
 import Spinner from '@/components/Utils/Spinner';
 import { handleAdminDeleteMethod, handleAdminGetMethod } from '@/fetchApi/admin/api'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import { toast } from 'react-toastify';
 import { GoPersonAdd } from "react-icons/go";
 import { useRouter } from 'next/navigation';
 import Model from '@/components/Utils/Model';
+import { GlobalState } from '@/ContextApi/ContextApi';
+import { IoReload } from 'react-icons/io5';
+import ReloadButton from '@/components/Utils/ReloadButton';
 
 export default function AdminLists() {
   const [isLoading, setIsLoading] = useState(false)
   const [filterText, setFilerText] = useState("")
-  const [isDelete, setIsDelete] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [modalData, setModalData] = useState(null)
   const [adminList, setAdminList] = useState([])
+  const { reload, setReload } = useContext(GlobalState)
   const router = useRouter()
 
 
@@ -39,7 +42,7 @@ export default function AdminLists() {
     fetchData();
 
 
-  }, [isDelete, filterText]);
+  }, [reload, filterText]);
 
 
   //  delete handler 
@@ -50,7 +53,7 @@ export default function AdminLists() {
       const result = await handleAdminDeleteMethod(deleteRoute)
 
       toast(result.message)
-      setIsDelete(!isDelete)
+      setReload(!reload)
     } catch (error) {
       toast.error("somthing went wrong")
     } finally {
@@ -79,6 +82,10 @@ export default function AdminLists() {
     setShowModal(false);
   };
 
+  const handleReload = () => {
+    setReload(!reload)
+  }
+
   return (
     <div className='adminListPage relative overflow-x-auto'>
 
@@ -94,13 +101,18 @@ export default function AdminLists() {
       </div>
 
       {/*  filterd admin moderator  */}
-      <div className='flex items-center gap-2 mb-6'>
-        <p className='font-medium'>filter by :</p>
-        <select value={filterText} onChange={handleFilterAdmin} className='py-1 px-3 focus:outline-none border border-gray-200'>
-          <option value="">All</option>
-          <option value="admin">admin</option>
-          <option value="moderator">moderator</option>
-        </select>
+      <div className='flex items-center justify-between  mb-6 '>
+        <div className='flex items-center gap-2'>
+          <p className='font-medium'>filter by :</p>
+          <select value={filterText} onChange={handleFilterAdmin} className='py-1 px-3 focus:outline-none border border-gray-200'>
+            <option value="">All</option>
+            <option value="admin">admin</option>
+            <option value="moderator">moderator</option>
+          </select>
+        </div>
+        <div>
+          <ReloadButton />
+        </div>
       </div>
 
       <div className='my-4 text-center'>

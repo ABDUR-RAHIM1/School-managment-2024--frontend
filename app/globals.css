@@ -91,6 +91,18 @@
 .manageStudentPage{
   @apply w-full py-10 px-5 bg-gray-50
 }
+.studentFilter{
+  @apply flex items-center gap-5 my-4
+}
+.studentFilter div{
+  @apply w-[300px]
+}
+.studentFilter p{
+  @apply text-gray-500
+}
+.studentFilter input{
+  @apply w-full input
+}
 .studentTableContainer{
     @apply my-10 overflow-x-auto
 }

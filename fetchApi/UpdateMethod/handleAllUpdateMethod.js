@@ -1,12 +1,13 @@
 import { API } from "../API";
 
-export const activateResource = async (route) => {
+export const handleStatusController = async (route, statusInfo) => {
      try {
-          const res = await fetch(API+route, {
+          const res = await fetch(API + route, {
                method: "PUT",
                headers: {
                     "Content-Type": "application/json"
-               }
+               },
+               body: JSON.stringify(statusInfo)
           });
           const data = await res.json();
           console.log(data);
