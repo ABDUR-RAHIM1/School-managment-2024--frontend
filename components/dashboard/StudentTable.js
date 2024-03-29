@@ -12,9 +12,11 @@ import { handleStatusController } from '@/fetchApi/UpdateMethod/handleAllUpdateM
 
 export default function StudentTable(props) {
   const { reload, setReload } = useContext(GlobalState)
-  const { _id, username, email, role, status, createdAt, profile } = props.student
-
-
+  const { _id, username, email, role, photo, status, createdAt } = props.student
+ 
+ 
+console.log(photo)
+ 
   const handleStudent = async (e, id) => {
     const selectedStatus = e.target.value;
 
@@ -51,9 +53,7 @@ export default function StudentTable(props) {
       console.log(error)
     }
   }
-
-
-
+ 
   return (
     <tr>
       <td>
@@ -63,7 +63,7 @@ export default function StudentTable(props) {
         <div className='flex items-center gap-1'>
           <Image
             alt='student'
-            src={profile.photo ? profile.photo : dummyImg}
+            src={ dummyImg}
             width={50}
             height={50}
             className='rounded-full border '

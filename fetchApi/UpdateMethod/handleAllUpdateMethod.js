@@ -16,3 +16,17 @@ export const handleStatusController = async (route, statusInfo) => {
           console.log(error);
      }
 };
+
+
+export const handleComplainStatus = async (route) => {
+     try {
+          const res = await fetch(API + route, {
+               method: "PUT",
+               headers: { "Content-type": "application/json" }
+          });
+
+          return await res.json()
+     } catch (error) {
+          console.log(error)
+     }
+}

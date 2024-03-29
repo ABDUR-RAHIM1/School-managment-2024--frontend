@@ -25,7 +25,7 @@ export default function AdminLists() {
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true)
+      !filterText && setIsLoading(true)
       try {
         const route = `/admin/auth/all?search=${filterText}`;
         const data = await handleAdminGetMethod(route);

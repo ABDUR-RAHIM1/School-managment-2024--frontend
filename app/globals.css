@@ -31,7 +31,7 @@
     @apply my-3 hover:bg-purple-200 px-2 py-1 font-medium text-sm text-black hover:text-black
    }
    .dashboardMain{
-    @apply flex-1 px-4 h-screen overflow-y-auto
+    @apply flex-1 px-4 py-10 bg-gray-50 h-screen overflow-y-auto
    }
 
    .adminLoginPage{
@@ -69,7 +69,10 @@
   @apply px-4 w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400
 }
 .table thead{
-   @apply  text-xs text-gray-700 uppercase bg-gray-100  
+   @apply  text-xs text-gray-700 uppercase  
+}
+.table thead th{
+  @apply  text-xs py-5 
 }
  
 .table tr{
@@ -81,10 +84,13 @@
   @apply cursor-pointer
 }
 .editBtn{
-  @apply py-1 px-2 text-2xl rounded-md text-black bg-yellow-500  hover:bg-yellow-700 cursor-pointer
+  @apply py-2 px-3 text-2xl rounded-md inline-block cursor-pointer
+}
+.iconBtn{
+  @apply py-2 px-3 text-2xl rounded-md inline-block cursor-pointer
 }
 .deleteBtn{
-  @apply py-1 px-2 text-2xl rounded-md text-white bg-red-500 hover:bg-red-700  cursor-pointer
+  @apply py-2 px-3 text-2xl bg-red-500 inline-block rounded-md text-white cursor-pointer hover:bg-red-700 duration-200
 }
 
 /*  student pages */
@@ -104,11 +110,16 @@
   @apply w-full input
 }
 .studentTableContainer{
-    @apply my-10 overflow-x-auto
+    @apply my-10  overflow-x-auto
 }
 /*  student pages end */
 
-
+.complain_page{
+  @apply bg-white text-gray-500 p-5
+}
+/* .complainsContainer{
+  @apply p-5
+} */
 
      /*  dashboard end here */
      .modalHeader{

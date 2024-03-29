@@ -7,12 +7,13 @@ import { useRouter } from 'next/navigation'
 import React, { useLayoutEffect, useState } from 'react'
 import { FaSchool } from 'react-icons/fa';
 import { IoMdMenu, IoIosSearch } from "react-icons/io";
+import { IoClose } from 'react-icons/io5';
 
 export default function DashboardLayout({ children }) {
 
     const router = useRouter();
-    const [menuClick, setMenuClick] = useState(false) 
-    const [search , setSearch] = useState("")
+    const [menuClick, setMenuClick] = useState(false)
+    const [search, setSearch] = useState("")
     const [items, setItems] = useState([])
 
     useLayoutEffect(() => {
@@ -38,14 +39,14 @@ export default function DashboardLayout({ children }) {
         if (text.length <= 0) {
             setItems([]);
             return
-        } 
+        }
         setItems(search);
     }
- 
-   const clickSearchItems = ()=>{
-    setItems([])
-    setSearch("") 
-   } 
+
+    const clickSearchItems = () => {
+        setItems([])
+        setSearch("")
+    }
 
     return (
         <>
@@ -55,20 +56,24 @@ export default function DashboardLayout({ children }) {
                     <h4 className='text-xl font-medium capitalize flex items-center gap-2'>
                         <span className='text-3xl'> <FaSchool /> </span>    School managment
                     </h4>
-                    <span onClick={handleMenuCLick} className='text-4xl cursor-pointer'><IoMdMenu /> </span>
+                    <span onClick={handleMenuCLick} className='bg-blue-100 py-1 px-1.5 rounded-full text-4xl cursor-pointer'>{
+                        menuClick ? <IoClose />
+                            :
+                            <IoMdMenu />
+                    }</span>
                 </div>
                 <div className="w-[350px] relative">
-                    <input onChange={handleSearch}  type="search" className='searchInput' placeholder='search here' />
+                    <input onChange={handleSearch} type="search" className='searchInput' placeholder='search here' />
                     <span className='text-3xl absolute top-3 left-2'> <IoIosSearch /> </span>
-               
+
 
                     {/* search results area */}
-                    <div className={`searchResultArea ${search.length<=0 ? "hidden" :"block"}`}>
+                    <div className={`searchResultArea ${search.length <= 0 ? "hidden" : "block"}`}>
                         <h4 className='text-center mb-5 text-xl'>Relavent Items</h4>
                         {
 
-                          items &&  items.length <= 0 ? <p className='my-3 text-center text-red-500'>No item found !</p> : items.map(i => {
-                                return i.subItems.map((s , i) => {
+                            items && items.length <= 0 ? <p className='my-3 text-center text-red-500'>No item found !</p> : items.map(i => {
+                                return i.subItems.map((s, i) => {
                                     return (
                                         <div key={i} onClick={clickSearchItems} className='my-3 font-medium text-center underline'>
                                             <Link key={s.link} href={s.link}>{s.item}  </Link>
@@ -84,7 +89,7 @@ export default function DashboardLayout({ children }) {
             </div>
             <div className='dashboard'>
 
-                <div className={`dashboardSidebar ${menuClick ? "w-16  overflow-x-hidden" : "w-[300px]"}`}>
+                <div className={`dashboardSidebar ${menuClick ? "w-0  overflow-x-hidden" : "w-[300px]"}`}>
                     <Sidebar />
                 </div>
                 <div className='dashboardMain'>
