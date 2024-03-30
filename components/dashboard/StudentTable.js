@@ -12,11 +12,9 @@ import { handleStatusController } from '@/fetchApi/UpdateMethod/handleAllUpdateM
 
 export default function StudentTable(props) {
   const { reload, setReload } = useContext(GlobalState)
-  const { _id, username, email, role, photo, status, createdAt } = props.student
+  const { _id, username, email, role, status, createdAt } = props.student
  
- 
-console.log(photo)
- 
+  
   const handleStudent = async (e, id) => {
     const selectedStatus = e.target.value;
 
@@ -76,7 +74,7 @@ console.log(photo)
       <td>{getDateInfo(createdAt).day + "/" + getDateInfo(createdAt).month + "/" + getDateInfo(createdAt).year}</td>
 
       <td>
-        <select value={status.statusInfo} onChange={(e) => handleStudent(e, _id)} name="status" className={` ${
+        <select value={status} onChange={(e) => handleStudent(e, _id)} name="status" className={` ${
            status === "active" ? "bg-blue-500" : status === "banned" ? "bg-black" : "bg-red-600"
         } cursor-pointer text-white py-2 px-3 focus:outline-none rounded-md`}>
           <option value="active">Active</option>

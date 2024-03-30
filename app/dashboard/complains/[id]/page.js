@@ -8,8 +8,9 @@ export default async function ComplaineDetails({ params }) {
     const { id } = params;
     const route = "/complain/all"
     const data = await detailsHandler(id, route);
-
     const { studentName, studentEmail, subject, details, isCheck, createdAt } = data
+
+    
     return (
         <div className='text-gray-600'>
             <div className='w-[70%] my-5 m-auto border'>

@@ -1,12 +1,12 @@
-import { MdDashboard , MdDynamicFeed } from "react-icons/md"
+import { MdDashboard, MdDynamicFeed } from "react-icons/md"
 import { PiStudent } from "react-icons/pi";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { CiViewTimeline } from "react-icons/ci";
 import { MdMoreTime } from "react-icons/md";
 import { RiAccountBoxLine } from "react-icons/ri";
 import { PiNotificationThin } from "react-icons/pi";
-import { CiSettings } from "react-icons/ci"; 
-import { IoIosBook  } from "react-icons/io"; 
+import { CiSettings } from "react-icons/ci";
+import { IoIosBook } from "react-icons/io";
 import { GiProgression } from "react-icons/gi";
 import { FcBusinessman } from "react-icons/fc";
 export const sidebarItems = [
@@ -49,14 +49,13 @@ export const sidebarItems = [
         item: "students",
         subItems: [
             {
-                item: "access student",
-                link: "/dashboard/access-student",
-            },
-            {
                 item: "manage Student",
                 link: "/dashboard/manage-student",
             },
-
+            {
+                item: "student list",
+                link: "/dashboard/student-list",
+            },
             {
                 item: "complains",
                 link: "/dashboard/complains",
@@ -135,7 +134,7 @@ export const sidebarItems = [
     {
         icon: <PiNotificationThin />,
         item: "notice",
-        subItems : [
+        subItems: [
             {
                 item: "upload notice",
                 link: "/dashboard/upload-notice",
@@ -149,8 +148,8 @@ export const sidebarItems = [
     {
         icon: <MdDynamicFeed />,
         item: "fee's",
-        subItems : [
-         
+        subItems: [
+
             {
                 item: "add fee's",
                 link: "/dashboard/add-fee",
@@ -162,9 +161,9 @@ export const sidebarItems = [
         ]
     },
     {
-        icon: <IoIosBook  />,
+        icon: <IoIosBook />,
         item: "book list",
-        subItems : [
+        subItems: [
             {
                 item: "add booklist",
                 link: "/dashboard/add-booklist",
@@ -178,7 +177,7 @@ export const sidebarItems = [
     {
         icon: <GiProgression />,
         item: "results",
-        subItems : [
+        subItems: [
             {
                 item: "upload result",
                 link: "/dashboard/add-results",
@@ -192,7 +191,7 @@ export const sidebarItems = [
     {
         icon: <FcBusinessman />,
         item: "commitee",
-        subItems : [
+        subItems: [
             {
                 item: "add committee",
                 link: "/dashboard/add-committee",

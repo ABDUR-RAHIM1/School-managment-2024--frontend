@@ -1,5 +1,7 @@
 "use client"
 import { GlobalState } from "@/ContextApi/ContextApi";
+import Empty from "@/components/Utils/Empty";
+import Loader from "@/components/Utils/Loader";
 import ReloadButton from "@/components/Utils/ReloadButton";
 import StudentTable from "@/components/dashboard/StudentTable";
 import { handleDeleteMany } from "@/fetchApi/DeleteMethod/handleDeleteMany";
@@ -15,7 +17,7 @@ export default function ManageStudent() {
   const [isCheckId, setIsCheckId] = useState([])
 
   useEffect(() => {
-    search  || !reload && setIsLoading(true)
+    search || !reload && setIsLoading(true)
     const getAllStudents = async () => {
       const route = `/student/auth/all?search=${search}`
       try {
@@ -60,6 +62,10 @@ export default function ManageStudent() {
     }
   }
 
+  if (isLoading) {
+    return <Loader />
+  }
+ 
   return (
     <div className="manageStudentPage">
       <form onSubmit={handleDeleteManyStudent}>
@@ -99,9 +105,13 @@ export default function ManageStudent() {
 
 
         <div className="studentTableContainer">
-          {
-            isLoading ? "loading . . ." :
-              <table className='table'>
+
+          <table className='table'>
+            {
+
+              student.length <= 0 ? <Empty text="record not found" />
+                :
+
                 <thead>
                   <tr>
                     <th>select</th>
@@ -113,16 +123,16 @@ export default function ManageStudent() {
                     <th>reject</th>
                   </tr>
                 </thead>
-                <tbody>
-                  {
-                    student && student.map((st) => (
-                      <StudentTable key={st._id} student={st} handleCheck={handleCheck} />
-                    ))
-                  }
-                </tbody>
-              </table>
+            }
+            <tbody>
+              {
+                student && student.map((st) => (
+                  <StudentTable key={st._id} student={st} handleCheck={handleCheck} />
+                ))
+              }
 
-          }
+            </tbody>
+          </table>
         </div>
       </form>
 

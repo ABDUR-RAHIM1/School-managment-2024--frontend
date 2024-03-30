@@ -1,30 +1,28 @@
 "use client"
+import { GlobalState } from '@/ContextApi/ContextApi'
 import getDateInfo from '@/Helpers/Date'
 import { handleComplainStatus } from '@/fetchApi/UpdateMethod/handleAllUpdateMethod'
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext } from 'react'
 import { CiRead } from 'react-icons/ci'
 import { MdReadMore } from 'react-icons/md'
 import { TiTick } from 'react-icons/ti'
-import { toast } from 'react-toastify'
 
 export default function ComplainTable(props) {
     const { _id, studentName, studentEmail, subject, isCheck, createdAt } = props.complains
-
+    const { reload, setReload } = useContext(GlobalState)
     const handleStatus = async (id) => {
         const route = `/complain/${id}/checking`
         const result = await handleComplainStatus(route);
         if (result) {
-            toast.success(result.message)
+            setReload(!reload)
         }
     }
 
 
     return (
         <tr>
-            <td>
-                <input type="checkbox" />
-            </td>
+
             <td>{studentName}</td>
             <td>{studentEmail}</td>
             <td>{subject.length > 25 ? subject.slice(0, 25) + ". . ." : subject}</td>
