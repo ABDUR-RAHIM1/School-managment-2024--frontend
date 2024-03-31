@@ -1,6 +1,5 @@
 "use client"
-import { GlobalState } from "@/ContextApi/ContextApi"
-import Empty from "@/components/Utils/Empty"
+import { GlobalState } from "@/ContextApi/ContextApi" 
 import Loader from "@/components/Utils/Loader"
 import ReloadButton from "@/components/Utils/ReloadButton"
 import ComplainTable from "@/components/dashboard/ComplainTable"
@@ -67,31 +66,12 @@ export default function ManageComplains() {
       </div>
 
       <div className="complainsContainer">
-        <table className="table">
-          {
-            complain.length <= 0 ? <Empty text={`${search} not found`} />
-              :
-              <thead>
-                <tr>
-                  <th>author</th>
-                  <th>email</th>
-                  <th>title</th>
-                  <th>Date</th>
-                  <th>Details</th>
-                  <th>Status</th>
-                </tr>
-              </thead>}
-          <tbody>
-            {
-              complain && complain.slice().reverse().map(complain => (
-                <ComplainTable
-                  key={complain._id}
-                  complains={complain}
-                />
-              ))
-            }
-          </tbody>
-        </table>
+
+        <ComplainTable
+          complains={complain}
+        />
+
+
       </div>
 
     </div>

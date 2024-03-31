@@ -1,14 +1,13 @@
 "use client"
-import { GlobalState } from '@/ContextApi/ContextApi'
-import getDateInfo from '@/Helpers/Date'
+import { GlobalState } from '@/ContextApi/ContextApi' 
 import { handleAllDeleteMethod } from '@/fetchApi/DeleteMethod/handleAllDeleteMethod'
 import Image from 'next/image'
 import React, { useContext } from 'react'
 import { toast } from 'react-toastify'
 import dummyImg from "@/public/images/sd.png"
 import { handleStatusController } from '@/fetchApi/UpdateMethod/handleAllUpdateMethod'
-import DataTable from 'react-data-table-component';
 import Link from 'next/link'
+import DataTable from 'react-data-table-component';
 
 //  child of manage-student component
 export default function StudentTable(props) {
