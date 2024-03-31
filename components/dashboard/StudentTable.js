@@ -3,18 +3,17 @@ import { GlobalState } from '@/ContextApi/ContextApi'
 import getDateInfo from '@/Helpers/Date'
 import { handleAllDeleteMethod } from '@/fetchApi/DeleteMethod/handleAllDeleteMethod'
 import Image from 'next/image'
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { toast } from 'react-toastify'
 import dummyImg from "@/public/images/sd.png"
-import { TiTick } from "react-icons/ti";
-import { TbHandClick } from 'react-icons/tb'
 import { handleStatusController } from '@/fetchApi/UpdateMethod/handleAllUpdateMethod'
+import DataTable from 'react-data-table-component';
+import Link from 'next/link'
 
+//  child of manage-student component
 export default function StudentTable(props) {
   const { reload, setReload } = useContext(GlobalState)
-  const { _id, username, email, role, status, createdAt } = props.student
- 
-  
+
   const handleStudent = async (e, id) => {
     const selectedStatus = e.target.value;
 
@@ -51,9 +50,68 @@ export default function StudentTable(props) {
       console.log(error)
     }
   }
- 
+
+  const columns = [
+    {
+      name: "Select",
+      cell: info => <input onChange={(e) => props.handleCheck(e, info._id)} type="checkbox" />
+    },
+    {
+      name: 'Image',
+      cell: info =>
+        <Link href={`/dashboard/student-list/${info._id}`}>
+          <img src={info.image} alt="Student" style={{ width: 40, height: 40, border: "1px solid gray", borderRadius: "50%" }} />
+        </Link>,
+
+    },
+    {
+      name: 'Username',
+      selector: info => info.username,
+    },
+    {
+      name: 'Email',
+      selector: info => info.email,
+    },
+    {
+      name: 'role',
+      selector: info => info.role,
+    },
+    {
+      name: 'Joined',
+      selector: info => info.createdAt,
+      cell: info => new Date(info.createdAt).toLocaleDateString('en-US'),
+    },
+    {
+      name: 'Status',
+      cell: info => <select value={info.status} onChange={(e) => handleStudent(e, info._id)} name="status" className={` ${info.status === "active" ? "bg-blue-500" : info.status === "banned" ? "bg-black" : "bg-red-600"
+        } cursor-pointer text-white py-2 px-3 focus:outline-none rounded-md`}>
+        <option value="active">Active</option>
+        <option value="pending">Pending</option>
+        <option value="banned">Banned</option>
+      </select>
+    },
+    {
+      name: "Reject",
+      cell: info => <button onClick={() => handleDeleteStudent(info._id)} className='py-2 px-3 bg-red-500 rounded-md text-cyan-50 hover:bg-red-600'>
+        Reject
+      </button>
+    }
+
+  ];
+
+
+
   return (
-    <tr>
+    <DataTable
+      columns={columns}
+      data={props.student}
+      pagination
+    />
+  )
+}
+
+{/* <>
+<tr>
       <td>
         <input onClick={(e) => props.handleCheck(e, _id)} type="checkbox" />
       </td>
@@ -61,7 +119,7 @@ export default function StudentTable(props) {
         <div className='flex items-center gap-1'>
           <Image
             alt='student'
-            src={ dummyImg}
+            src={dummyImg}
             width={50}
             height={50}
             className='rounded-full border '
@@ -74,9 +132,8 @@ export default function StudentTable(props) {
       <td>{getDateInfo(createdAt).day + "/" + getDateInfo(createdAt).month + "/" + getDateInfo(createdAt).year}</td>
 
       <td>
-        <select value={status} onChange={(e) => handleStudent(e, _id)} name="status" className={` ${
-           status === "active" ? "bg-blue-500" : status === "banned" ? "bg-black" : "bg-red-600"
-        } cursor-pointer text-white py-2 px-3 focus:outline-none rounded-md`}>
+        <select value={status} onChange={(e) => handleStudent(e, _id)} name="status" className={` ${status === "active" ? "bg-blue-500" : status === "banned" ? "bg-black" : "bg-red-600"
+          } cursor-pointer text-white py-2 px-3 focus:outline-none rounded-md`}>
           <option value="active">Active</option>
           <option value="pending">Pending</option>
           <option value="banned">Banned</option>
@@ -89,5 +146,4 @@ export default function StudentTable(props) {
         </button>
       </td>
     </tr>
-  )
-}
+</> */}

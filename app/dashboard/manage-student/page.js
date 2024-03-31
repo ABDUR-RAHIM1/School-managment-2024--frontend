@@ -65,7 +65,7 @@ export default function ManageStudent() {
   if (isLoading) {
     return <Loader />
   }
- 
+
   return (
     <div className="manageStudentPage">
       <form onSubmit={handleDeleteManyStudent}>
@@ -106,33 +106,8 @@ export default function ManageStudent() {
 
         <div className="studentTableContainer">
 
-          <table className='table'>
-            {
+          <StudentTable student={student} handleCheck={handleCheck} />
 
-              student.length <= 0 ? <Empty text="record not found" />
-                :
-
-                <thead>
-                  <tr>
-                    <th>select</th>
-                    <th>username</th>
-                    <th>email</th>
-                    <th>role</th>
-                    <th>joined</th>
-                    <th>status</th>
-                    <th>reject</th>
-                  </tr>
-                </thead>
-            }
-            <tbody>
-              {
-                student && student.map((st) => (
-                  <StudentTable key={st._id} student={st} handleCheck={handleCheck} />
-                ))
-              }
-
-            </tbody>
-          </table>
         </div>
       </form>
 
