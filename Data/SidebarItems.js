@@ -67,12 +67,12 @@ export const sidebarItems = [
         item: "teachers",
         subItems: [
             {
-                item: "access teacher",
-                link: "/dashboard/access-teacher",
-            },
-            {
                 item: "manage teacher",
                 link: "/dashboard/manage-teacher",
+            },
+            {
+                item: "teacher-list",
+                link: "/dashboard/teacher-list",
             },
 
             {

@@ -8,6 +8,7 @@ export const handleDeleteMany = async (route, ids) => {
             body: JSON.stringify({ids:ids})
         });
         const data = await response.json();
+        console.log(data)
         return data
     } catch (error) {
         console.log(error)

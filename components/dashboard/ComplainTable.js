@@ -35,7 +35,7 @@ export default function ComplainTable(props) {
         },
         {
             name: 'date',
-            selector: info => info.date,
+            selector: info => new Date(info.createdAt).toLocaleDateString("en-US"),
         },
         {
             name: 'Details',

@@ -109,40 +109,4 @@ export default function StudentTable(props) {
   )
 }
 
-{/* <>
-<tr>
-      <td>
-        <input onClick={(e) => props.handleCheck(e, _id)} type="checkbox" />
-      </td>
-      <td>
-        <div className='flex items-center gap-1'>
-          <Image
-            alt='student'
-            src={dummyImg}
-            width={50}
-            height={50}
-            className='rounded-full border '
-          />
-          {username}
-        </div>
-      </td>
-      <td>{email}</td>
-      <td>{role}</td>
-      <td>{getDateInfo(createdAt).day + "/" + getDateInfo(createdAt).month + "/" + getDateInfo(createdAt).year}</td>
-
-      <td>
-        <select value={status} onChange={(e) => handleStudent(e, _id)} name="status" className={` ${status === "active" ? "bg-blue-500" : status === "banned" ? "bg-black" : "bg-red-600"
-          } cursor-pointer text-white py-2 px-3 focus:outline-none rounded-md`}>
-          <option value="active">Active</option>
-          <option value="pending">Pending</option>
-          <option value="banned">Banned</option>
-        </select>
-
-      </td>
-      <td>
-        <button onClick={() => handleDeleteStudent(_id)} className='py-2 px-3 bg-red-500 rounded-md text-cyan-50 hover:bg-red-600'>
-          Reject
-        </button>
-      </td>
-    </tr>
-</> */}
+ 

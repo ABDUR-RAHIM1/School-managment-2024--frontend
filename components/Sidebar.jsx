@@ -42,8 +42,8 @@ export default function Sidebar() {
                     {/*  sub menu */}
                     <ul className={`ml-5 ${activeItem === index ? "block" : "hidden"}`}>
                         {item.subItems && item.subItems.map((subItem, subIndex) => (
-                            <li className={`sidebarSubItem ${path === subItem.link ? "bg-purple-200 text-purple-700 border-r-2 border-purple-700" : ""}`} key={subIndex}>
-                                <Link onClick={handleSubItemClick} href={subItem.link}>
+                            <li onClick={handleSubItemClick} className={`sidebarSubItem ${path === subItem.link ? "bg-purple-200 text-purple-700 border-r-2 border-purple-700" : ""}`} key={subIndex}>
+                                <Link  href={subItem.link}>
                                     {subItem.item}
                                 </Link>
                             </li>
