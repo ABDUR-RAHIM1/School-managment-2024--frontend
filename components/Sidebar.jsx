@@ -13,11 +13,17 @@ export default function Sidebar() {
     const [activeItem, setActiveItem] = useState(null)
 
     const handleItemClick = (index) => {
-        setActiveItem(activeItem === index ? null : index)
-
+        if (activeItem === index) {
+            return;
+        }
+        setActiveItem(index);
     }
 
-    const handleLogOut = ()=>{
+    const handleSubItemClick = () => {
+        event.stopPropagation()  
+    }
+
+    const handleLogOut = () => {
         localStorage.removeItem("isAdmin")
         toast.success("Logged out")
         setTimeout(() => {
@@ -37,7 +43,9 @@ export default function Sidebar() {
                     <ul className={`ml-5 ${activeItem === index ? "block" : "hidden"}`}>
                         {item.subItems && item.subItems.map((subItem, subIndex) => (
                             <li className={`sidebarSubItem ${path === subItem.link ? "bg-purple-200 text-purple-700 border-r-2 border-purple-700" : ""}`} key={subIndex}>
-                                <Link href={subItem.link}>{subItem.item}</Link>
+                                <Link onClick={handleSubItemClick} href={subItem.link}>
+                                    {subItem.item}
+                                </Link>
                             </li>
                         ))}
                     </ul>
@@ -47,24 +55,9 @@ export default function Sidebar() {
             <li onClick={handleLogOut} className='sidebarItem'>
                 <p className='flex items-center justify-between text-red-500'>
                     <span className='flex items-center gap-2'>
-                        <span className='text-2xl'> <IoMdLogOut/> </span> log out</span>   
+                        <span className='text-2xl'> <IoMdLogOut /> </span> log out</span>
                 </p>
             </li>
         </ul>
     )
 }
-
-
-
-{/* <ul className='px-5 py-10'>
-{
-    items.map((item, i) => (
-        <li className={`sidebarItem ${path === item.link ? " bg-purple-100 text-purple-500" : ""}`} key={i}>
-            <span className='text-2xl'>{item.icon}</span>
-            <Link href={item.link}>{item.item}</Link>
-
-        </li>
-    ))
-}
-
-</ul> */}

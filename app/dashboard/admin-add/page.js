@@ -62,7 +62,7 @@ export default function AdminAdd() {
     <div className='addAdminPage'>
       <form onSubmit={addAdminHandler}>
         <h2 className='text-center my-4 uppercase text-2xl font-medium text-blue-900'>  
-             Add admin or modertor"
+             Add admin or modertor
          </h2>
         {
           formData.map((input, i) => (
@@ -79,7 +79,7 @@ export default function AdminAdd() {
           )
           )
         }
-        <select value={info.role} onChange={handleChange} className='input cursor-pointer' name="role">
+        <select value={info.role} onChange={handleChange} className='input text-gray-500 cursor-pointer' name="role">
           <option value="admin">Admin</option>
           <option value="moderator">Moderator</option>
         </select>

@@ -1,17 +1,16 @@
 "use client"
-import getDateInfo from '@/Helpers/Date';
 import Spinner from '@/components/Utils/Spinner';
 import { handleAdminDeleteMethod, handleAdminGetMethod } from '@/fetchApi/admin/api'
 import React, { useContext, useEffect, useState } from 'react'
-import { CiEdit } from "react-icons/ci";
-import { MdDelete } from "react-icons/md";
 import { toast } from 'react-toastify';
 import { GoPersonAdd } from "react-icons/go";
 import { useRouter } from 'next/navigation';
 import Model from '@/components/Utils/Model';
 import { GlobalState } from '@/ContextApi/ContextApi';
-import { IoReload } from 'react-icons/io5';
 import ReloadButton from '@/components/Utils/ReloadButton';
+import AdminTable from '@/components/dashboard/AdminTable';
+import Loader from '@/components/Utils/Loader';
+import { handleDeleteMany } from '@/fetchApi/DeleteMethod/handleDeleteMany';
 
 export default function AdminLists() {
   const [isLoading, setIsLoading] = useState(false)
@@ -19,13 +18,14 @@ export default function AdminLists() {
   const [showModal, setShowModal] = useState(false)
   const [modalData, setModalData] = useState(null)
   const [adminList, setAdminList] = useState([])
+  const [checkIds, setCheckIds] = useState([])
   const { reload, setReload } = useContext(GlobalState)
   const router = useRouter()
 
 
   useEffect(() => {
     const fetchData = async () => {
-      !filterText && setIsLoading(true)
+      filterText || !reload && setIsLoading(true)
       try {
         const route = `/admin/auth/all?search=${filterText}`;
         const data = await handleAdminGetMethod(route);
@@ -47,7 +47,7 @@ export default function AdminLists() {
 
   //  delete handler 
   const handleDeleteAdmin = async (id) => {
-    setIsLoading(true)
+
     try {
       const deleteRoute = `/admin/auth/delete/${id}`
       const result = await handleAdminDeleteMethod(deleteRoute)
@@ -56,8 +56,6 @@ export default function AdminLists() {
       setReload(!reload)
     } catch (error) {
       toast.error("somthing went wrong")
-    } finally {
-      setIsLoading(false)
     }
   }
 
@@ -76,18 +74,42 @@ export default function AdminLists() {
   const handleEditAdmin = (info) => {
     setModalData(info)
     setShowModal(true)
-
+    console.log("edit")
   }
   const closeModal = () => {
     setShowModal(false);
   };
 
-  const handleReload = () => {
-    setReload(!reload)
+  //  inputs checked for multiple delete
+  const handleCheck = (e, id) => {
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      setCheckIds([...checkIds, id])
+    } else {
+      const removeIds = checkIds.filter(i => i !== id)
+      setCheckIds(removeIds)
+    }
+  }
+
+  //  multiple delete handler
+  const handleDeleteManyAdmins = async () => {
+    const route = '/admin/auth/delete-many'
+    const result = await handleDeleteMany(route, checkIds);
+    if (result.isDelete) {
+      toast.success(result.message)
+      setReload(!reload)
+      setCheckIds([])
+    } else {
+      toast.warning(result.message)
+    }
+  }
+
+  if (isLoading) {
+    return <Loader />
   }
 
   return (
-    <div className='adminListPage relative overflow-x-auto'>
+    <div className='adminListPage relative'>
 
       <div className='flex items-center justify-between'>
         <h2 className='my-10 text-2xl italic font-medium'>Team <span className='text-sm ml-3 border p-1'>{adminList.length}
@@ -118,43 +140,19 @@ export default function AdminLists() {
       <div className='my-4 text-center'>
         {isLoading && <Spinner />}
       </div>
-      {
-        isLoading ? "loading . . ." :
-          <table className='table'>
-            {adminList.length <= 0 ? "not found" :
-              <thead>
-                <tr>
-                  <th><input className='mr-5' type="checkbox" /></th>
-                  <th>Name</th>
-                  <th>Email address</th>
-                  <th>Role</th>
-                  <th>joined</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                </tr>
-              </thead>}
-            <tbody>
-              {
-                adminList && adminList.map((t, i) => (
-                  <tr key={t._id}>
-                    <th>
-                      <input type="checkbox" />
-                    </th>
-                    <td className='capitalize'> <span className='py-2 px-3 bg-blue-300 rounded-full'>{t.username.slice(0, 1)}</span> {t.username}</td>
-                    <td>{t.email}</td>
-                    <td className='capitalize'>{t.role}</td>
-                    <td>{getDateInfo(t.createdAt).day + "/" + getDateInfo(t.createdAt).month + "/" + getDateInfo(t.createdAt).year}</td>
-                    <td> <button onClick={() => handleEditAdmin(t)} className='editBtn'><CiEdit /></button> </td>
-                    <td> <button disabled={isLoading} onClick={() => handleDeleteAdmin(t._id)} className='deleteBtn'>
-                      <MdDelete />
-                    </button> </td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
 
-      }
+
+      <AdminTable
+        adminList={adminList}
+        handleEditAdmin={handleEditAdmin}
+        handleDeleteAdmin={handleDeleteAdmin}
+        handleCheck={handleCheck}
+        checkIds={checkIds}
+        handleDeleteManyAdmins={handleDeleteManyAdmins}
+      />
+
+
+
       {showModal && <Model
         data={modalData}
         closeModal={closeModal}

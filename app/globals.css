@@ -54,10 +54,10 @@
 }
 
 .addAdminPage{
-  @apply w-full h-screen flex items-center justify-center
+  @apply w-full flex items-center justify-center
 }
 .addAdminPage form{
-   @apply w-full md:w-[75%] m-auto bg-white px-5 py-20
+   @apply w-full md:w-[75%] m-auto bg-gray-200 px-5 py-20
 }
 .addAdminPage form input{
   @apply input
@@ -117,9 +117,17 @@
 .complain_page{
   @apply bg-white text-gray-500 p-5
 }
-/* .complainsContainer{
-  @apply p-5
-} */
+ /*  add staff page */
+ .addStaffPage {
+  @apply  bg-gray-200 p-10
+ }
+ .addStaffPage form{
+  @apply flex items-center justify-between flex-wrap
+ }
+ .addStaffPage div{
+  @apply w-full md:w-[48%]  
+ }
+ /*  add staff page end */
 
      /*  dashboard end here */
      .modalHeader{
@@ -137,6 +145,19 @@
  }
  
  @layer base{
+   *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+   }
+   body{
+    color: rgb(78, 77, 77);
+   }
+  input[type="checkbox"]{
+    cursor: pointer;
+    transition: 2s all ease;
+    text-align: center; 
+  }
    ::-webkit-scrollbar {
     width: 5px;               
   }
