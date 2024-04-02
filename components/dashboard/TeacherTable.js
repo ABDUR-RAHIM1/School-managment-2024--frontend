@@ -62,11 +62,7 @@ export default function StudentTable(props) {
         },
         {
             name: 'Image',
-            cell: info =>
-                <Link href={`/dashboard/student-list/${info._id}`}>
-                    <img src={info.image} alt="Student" style={{ width: 40, height: 40, border: "1px solid gray", borderRadius: "50%" }} />
-                </Link>,
-
+            cell: info => <img src={info.image} alt="Student" style={{ width: 40, height: 40, border: "1px solid gray", borderRadius: "50%" }} /> ,
         },
         {
             name: 'Username',

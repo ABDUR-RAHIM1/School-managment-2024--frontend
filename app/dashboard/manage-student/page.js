@@ -68,48 +68,47 @@ export default function ManageStudent() {
 
   return (
     <div className="manageStudentPage">
-      <form onSubmit={handleDeleteManyStudent}>
-        <div className=" flex items-center justify-between border-b">
-          <h2 className="text-2xl font-medium my-3 text-blue-900">Student Managment</h2>
-          <ReloadButton />
+      <div className=" flex items-center justify-between border-b">
+        <h2 className="text-2xl font-medium my-3 text-blue-900">Student Managment</h2>
+        <ReloadButton />
+      </div>
+
+
+      <div className="studentFilter">
+        <div>
+          <p>Student Name</p>
+          <input onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Search" />
         </div>
-
-
-        <div className="studentFilter">
-          <div>
-            <p>Student Name</p>
-            <input onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Search" />
-          </div>
-          <div>
-            <p>Status</p>
-            <select onChange={(e) => setSearch(e.target.value)} className="input text-gray-500">
-              <option value="">All</option>
-              <option value="active">Active</option>
-              <option value="pending">Pending</option>
-              <option value="banned">Banned</option>
-            </select>
-          </div>
+        <div>
+          <p>Status</p>
+          <select onChange={(e) => setSearch(e.target.value)} className="input text-gray-500">
+            <option value="">All</option>
+            <option value="active">Active</option>
+            <option value="pending">Pending</option>
+            <option value="banned">Banned</option>
+          </select>
         </div>
+      </div>
 
 
-        <div className="flex items-center justify-between">
-          <p className="text-gray-400">Showing <span className="text-blue-600">
-            {student.length} </span> Students </p>
-          {/*  delete  many button */}
-          {isCheckId.length > 0 && <div>
-            <button type="submit" className="py-2 px-4 bg-red-600 text-white rounded-md font-medium hover:bg-red-700 duration-200">Delete</button>
-          </div>}
-          {/*  delete  many button */}
-        </div>
+      <div className="flex items-center justify-between">
+        <p className="text-gray-400">Showing <span className="text-blue-600">
+          {student.length} </span> Students </p>
+     
+      </div>
 
 
 
-        <div className="studentTableContainer">
+      <div className="studentTableContainer">
 
-          <StudentTable student={student} handleCheck={handleCheck} />
+        <StudentTable
+          student={student}
+          handleCheck={handleCheck}
+          isCheckId={isCheckId}
+          handleDeleteManyStudent={handleDeleteManyStudent}
+        />
 
-        </div>
-      </form>
+      </div>
 
     </div>
   )

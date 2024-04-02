@@ -1,5 +1,5 @@
 "use client"
-import { GlobalState } from '@/ContextApi/ContextApi' 
+import { GlobalState } from '@/ContextApi/ContextApi'
 import { handleAllDeleteMethod } from '@/fetchApi/DeleteMethod/handleAllDeleteMethod'
 import Image from 'next/image'
 import React, { useContext } from 'react'
@@ -8,6 +8,7 @@ import dummyImg from "@/public/images/sd.png"
 import { handleStatusController } from '@/fetchApi/UpdateMethod/handleAllUpdateMethod'
 import Link from 'next/link'
 import DataTable from 'react-data-table-component';
+import { MdDelete } from 'react-icons/md'
 
 //  child of manage-student component
 export default function StudentTable(props) {
@@ -51,16 +52,19 @@ export default function StudentTable(props) {
   }
 
   const columns = [
-    {
-      name: "Select",
+    { 
+      name: <div>
+        {props.isCheckId.length > 0 ?
+          <span onClick={props.handleDeleteManyStudent} className='deleteBtn'> <MdDelete /> </span>
+          : "Select"}
+      </div>,
       cell: info => <input onChange={(e) => props.handleCheck(e, info._id)} type="checkbox" />
     },
     {
       name: 'Image',
       cell: info =>
-        <Link href={`/dashboard/student-list/${info._id}`}>
           <img src={info.image} alt="Student" style={{ width: 40, height: 40, border: "1px solid gray", borderRadius: "50%" }} />
-        </Link>,
+        ,
 
     },
     {
@@ -109,4 +113,3 @@ export default function StudentTable(props) {
   )
 }
 
- 

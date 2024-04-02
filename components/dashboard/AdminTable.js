@@ -1,4 +1,4 @@
- 
+
 import React from 'react'
 import DataTable from 'react-data-table-component';
 import { CiEdit } from 'react-icons/ci';
@@ -10,7 +10,7 @@ export default function AdminTable(props) {
     const columns = [
         {
             name: (
-                <span className={props.checkIds.length > 0 ? 'text-3xl px-1 py-1 rounded-sm cursor-pointer bg-red-500  text-white' : ''}>
+                <span className={props.checkIds.length > 0 ? 'deleteBtn' : ''}>
                     {props.checkIds.length > 0 ? <MdDelete onClick={props.handleDeleteManyAdmins} /> : 'Select'}
                 </span>
             ),

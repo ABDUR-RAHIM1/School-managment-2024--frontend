@@ -1,13 +1,13 @@
 import { detailsHandler } from '@/fetchApi/detailsHandler/detailsHandler'
 import Image from 'next/image';
 import React from 'react'
-import img from "@/public/images/sd.png"; 
+import img from "@/public/images/sd.png";
 
-//  child of student list compoent
-export default async function StudentDetails({ params }) {
+//  child of teacher list compoent
+export default async function TeacherDetails({ params }) {
     const { id } = params
-    const route = "/profile/all"
-    const studentData = await detailsHandler(id, route);
+    const route = "/teachers/profile/all"
+    const taecherData = await detailsHandler(id, route);
 
     return (
         <div>
@@ -31,12 +31,12 @@ export default async function StudentDetails({ params }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {Object.keys(studentData).map((key) => (
+                        {Object.keys(taecherData).map((key) => (
                             key !== 'photo' && key !== '_id' && key !== '__v' && (
                                 <tr key={key}>
                                     <th>{key}</th>
                                     <td>
-                                        {key === "dob" ? new Date(studentData[key]).toLocaleDateString('en-US') : studentData[key]}
+                                        {key === "dob" ? new Date(taecherData[key]).toLocaleDateString('en-US') : taecherData[key]}
                                     </td>
                                 </tr>
                             )

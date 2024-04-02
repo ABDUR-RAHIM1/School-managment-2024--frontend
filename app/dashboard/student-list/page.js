@@ -49,7 +49,7 @@ export default function AccessStudent() {
   if (isLoading) {
     return <Loader />
   }
-
+ 
   return (
     <div>
       <div className='flex items-center justify-between my-3 font-medium capitalize'>

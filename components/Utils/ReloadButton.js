@@ -1,3 +1,4 @@
+"use client"
 import { GlobalState } from '@/ContextApi/ContextApi'
 import React, { useContext } from 'react'
 import { IoReload } from 'react-icons/io5'
