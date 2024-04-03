@@ -1,7 +1,6 @@
 import React from 'react'
 import DataTable from 'react-data-table-component';
-import image from "@/public/images/sd.png"
-import Image from 'next/image';
+import dummyImage from "@/public/images/sd.png"
 import { MdDelete } from 'react-icons/md';
 import { CiEdit } from 'react-icons/ci';
 export default function StaffTable(props) {
@@ -23,11 +22,9 @@ export default function StaffTable(props) {
             name: "Photo",
             selector: (info) => info.photo,
             cell: (info) => (
-                <Image
-                    width={50}
-                    height={50}
-                    src={image}  // dummy images change before
-                    className="w-30 h-30 rounded-full border border-gray-50"
+                <img
+                    src={info.photo || dummyImage}   
+                    className="w-10 h-10 rounded-full border border-gray-50"
                     alt=""
                 />
             ),

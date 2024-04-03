@@ -49,7 +49,7 @@ export default function AccessStudent() {
   if (isLoading) {
     return <Loader />
   }
- 
+
   return (
     <div>
       <div className='flex items-center justify-between my-3 font-medium capitalize'>
@@ -81,17 +81,14 @@ export default function AccessStudent() {
       <div className="flex items-center justify-between my-4">
         <p className="text-gray-400">Showing <span className="text-blue-600">
           {StudentList.length} </span> Students </p>
-        {/*  delete  many button */}
-        {isCheckId.length > 0 && <div>
-          <button type="submit" className="py-2 px-4 bg-red-600 text-white rounded-md font-medium hover:bg-red-700 duration-200">Delete</button>
-        </div>}
-        {/*  delete  many button */}
+
       </div>
 
 
       <StudentProfileTable
         info={StudentList}
         handleCheck={handleCheck}
+        isCheckId={isCheckId}
       />
     </div>
   )

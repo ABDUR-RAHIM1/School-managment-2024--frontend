@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React from 'react'
 import DataTable from 'react-data-table-component';
 import { MdDelete } from 'react-icons/md';
+import dummyImg from "@/public/images/sd.png"
 
 export default function TeacherProfileTable(props) {
     const { info } = props
@@ -21,7 +22,7 @@ export default function TeacherProfileTable(props) {
             name: 'Image',
             cell: info =>
                 <Link href={`/dashboard/teacher-list/${info._id}`}>
-                    <img src={info.image} alt="teacher" style={{ width: 40, height: 40, border: "1px solid gray", borderRadius: "50%" }} />
+                    <img src={info.photo || dummyImg} alt="teacher" style={{ width: 40, height: 40, border: "1px solid gray", borderRadius: "50%" }} />
                 </Link>,
 
         },

@@ -12,15 +12,14 @@ export default async function TeacherDetails({ params }) {
     return (
         <div>
             <div className='w-full md:w-[60%] my-4 m-auto border'>
-                <Image
-                    src={img}
+                <img
+                    src={taecherData.photo}
                     width={200}
                     height={200}
                     className='w-full h-[400px] rounded-md'
-                    alt='student details'
+                    alt='teacher details details'
                 />
             </div>
-
 
             <div>
                 <table className='table'>

@@ -16,7 +16,7 @@ export default function StudentTable(props) {
 
   const handleStudent = async (e, id) => {
     const selectedStatus = e.target.value;
-
+    console.log(selectedStatus, id)
     const info = { status: selectedStatus }
     try {
       const route = `/student/auth/${id}/approve`;
@@ -31,7 +31,6 @@ export default function StudentTable(props) {
       console.log(error);
     }
   };
-
 
 
 
@@ -52,7 +51,7 @@ export default function StudentTable(props) {
   }
 
   const columns = [
-    { 
+    {
       name: <div>
         {props.isCheckId.length > 0 ?
           <span onClick={props.handleDeleteManyStudent} className='deleteBtn'> <MdDelete /> </span>
@@ -63,8 +62,8 @@ export default function StudentTable(props) {
     {
       name: 'Image',
       cell: info =>
-          <img src={info.image} alt="Student" style={{ width: 40, height: 40, border: "1px solid gray", borderRadius: "50%" }} />
-        ,
+        <img src={info.photo || dummyImg} alt="Student" style={{ width: 40, height: 40, border: "1px solid gray", borderRadius: "50%" }} />
+      ,
 
     },
     {

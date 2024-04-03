@@ -2,19 +2,27 @@
 import Link from 'next/link';
 import React from 'react'
 import DataTable from 'react-data-table-component';
+import dummyImg from "@/public/images/sd.png"
+import { MdDelete } from 'react-icons/md';
 
 export default function StudentProfileTable(props) {
     const { info } = props
     const columns = [
         {
-            name: "Select",
+            name: <div>
+                {
+                    props.isCheckId.length > 0 ?
+                        <span className='deleteBtn'> <MdDelete /> </span>
+                        : "Select"
+                }
+            </div>,
             cell: info => <input onChange={(e) => props.handleCheck(e, info._id)} type="checkbox" />
         },
         {
             name: 'Image',
             cell: info =>
                 <Link href={`/dashboard/student-list/${info._id}`}>
-                    <img src={info.image} alt="Student" style={{ width: 40, height: 40, border: "1px solid gray", borderRadius: "50%" }} />
+                    <img src={info.photo || dummyImg} alt="Student" style={{ width: 40, height: 40, border: "1px solid gray", borderRadius: "50%" }} />
                 </Link>,
 
         },

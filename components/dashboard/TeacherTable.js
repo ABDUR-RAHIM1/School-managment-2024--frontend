@@ -10,16 +10,16 @@ import Link from 'next/link'
 import DataTable from 'react-data-table-component';
 import { MdDelete } from 'react-icons/md'
 
-//  child of manage-student component
+//  child of manage-techer component
 export default function StudentTable(props) {
     const { reload, setReload } = useContext(GlobalState)
 
-    const handleStudent = async (e, id) => {
+    const handleTeacher = async (e, id) => {
         const selectedStatus = e.target.value;
 
         const info = { status: selectedStatus }
         try {
-            const route = `/student/auth/${id}/approve`;
+            const route = `/teachers/auth/${id}/approve`;
             const result = await handleStatusController(route, info);
             if (result.ok) {
                 toast.success(result.message)
@@ -83,7 +83,7 @@ export default function StudentTable(props) {
         },
         {
             name: 'Status',
-            cell: info => <select value={info.status} onChange={(e) => handleStudent(e, info._id)} name="status" className={` ${info.status === "active" ? "bg-blue-500" : info.status === "banned" ? "bg-black" : "bg-red-600"
+            cell: info => <select value={info.status} onChange={(e) => handleTeacher(e, info._id)} name="status" className={` ${info.status === "active" ? "bg-blue-500" : info.status === "banned" ? "bg-black" : "bg-red-600"
                 } cursor-pointer text-white py-2 px-3 focus:outline-none rounded-md`}>
                 <option value="active">Active</option>
                 <option value="pending">Pending</option>
