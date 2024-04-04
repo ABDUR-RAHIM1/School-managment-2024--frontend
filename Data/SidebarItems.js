@@ -76,6 +76,10 @@ export const sidebarItems = [
             },
 
             {
+                item: "Posts",
+                link: "/dashboard/teacher-posts",
+            },
+            {
                 item: "Gallary",
                 link: "/dashboard/teacher-gallary",
             },

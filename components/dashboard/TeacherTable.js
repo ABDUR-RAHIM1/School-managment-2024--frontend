@@ -11,7 +11,7 @@ import DataTable from 'react-data-table-component';
 import { MdDelete } from 'react-icons/md'
 
 //  child of manage-techer component
-export default function StudentTable(props) {
+export default function TeacherTable(props) {
     const { reload, setReload } = useContext(GlobalState)
 
     const handleTeacher = async (e, id) => {
@@ -62,7 +62,7 @@ export default function StudentTable(props) {
         },
         {
             name: 'Image',
-            cell: info => <img src={info.image} alt="Student" style={{ width: 40, height: 40, border: "1px solid gray", borderRadius: "50%" }} /> ,
+            cell: info => <Image src={info.photo || dummyImg} width={50} height={50} alt="Student" style={{ width: 40, height: 40, border: "1px solid gray", borderRadius: "50%" }} />,
         },
         {
             name: 'Username',

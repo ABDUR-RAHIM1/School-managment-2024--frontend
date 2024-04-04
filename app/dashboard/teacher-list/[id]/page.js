@@ -1,24 +1,26 @@
+ 
 import { detailsHandler } from '@/fetchApi/detailsHandler/detailsHandler'
 import Image from 'next/image';
 import React from 'react'
 import img from "@/public/images/sd.png";
 
-//  child of teacher list compoent
+//  child of teacher list component
 export default async function TeacherDetails({ params }) {
     const { id } = params
     const route = "/teachers/profile/all"
     const taecherData = await detailsHandler(id, route);
-
+ 
     return (
         <div>
             <div className='w-full md:w-[60%] my-4 m-auto border'>
-                <img
-                    src={taecherData.photo}
+                <Image
+                    src={taecherData.photo || img}
                     width={200}
                     height={200}
                     className='w-full h-[400px] rounded-md'
                     alt='teacher details details'
                 />
+ 
             </div>
 
             <div>
@@ -30,7 +32,7 @@ export default async function TeacherDetails({ params }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {Object.keys(taecherData).map((key) => (
+                        {taecherData && Object.keys(taecherData).map((key) => (
                             key !== 'photo' && key !== '_id' && key !== '__v' && (
                                 <tr key={key}>
                                     <th>{key}</th>

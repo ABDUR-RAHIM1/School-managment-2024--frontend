@@ -1,9 +1,10 @@
+ 
 import { detailsHandler } from '@/fetchApi/detailsHandler/detailsHandler'
 import Image from 'next/image';
 import React from 'react'
-import img from "@/public/images/sd.png"; 
+import img from "@/public/images/sd.png";
 
-//  child of student list compoent
+//  child of student list component
 export default async function StudentDetails({ params }) {
     const { id } = params
     const route = "/profile/all"
@@ -13,12 +14,13 @@ export default async function StudentDetails({ params }) {
         <div>
             <div className='w-full md:w-[60%] my-4 m-auto border'>
                 <Image
-                    src={img}
+                    src={studentData && studentData.photo || img}
                     width={200}
                     height={200}
                     className='w-full h-[400px] rounded-md'
                     alt='student details'
                 />
+
             </div>
 
 
@@ -31,7 +33,7 @@ export default async function StudentDetails({ params }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {Object.keys(studentData).map((key) => (
+                        {studentData && Object.keys(studentData).map((key) => (
                             key !== 'photo' && key !== '_id' && key !== '__v' && (
                                 <tr key={key}>
                                     <th>{key}</th>
