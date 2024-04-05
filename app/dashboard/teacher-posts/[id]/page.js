@@ -23,7 +23,7 @@ export default async function PostsDetails({ params }) {
 
             <div className='my-5 '>
                 <p className='text-sm font-medium capitalize'>Author - 
-                    <Link href={`/dashboard/profile/${post.teacherId}`} className='underline'>
+                    <Link href={`/dashboard/profile/${post.teacherId}`} className='underline text-blue-600'>
                         {post.creator}
                     </Link>
                 </p>

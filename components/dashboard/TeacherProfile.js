@@ -55,7 +55,7 @@ export default function TeacherProfileTable(props) {
     return (
         <DataTable
             columns={columns}
-            data={info}
+            data={info} 
             pagination
         />
     )

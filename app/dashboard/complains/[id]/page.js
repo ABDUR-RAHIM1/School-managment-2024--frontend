@@ -8,14 +8,16 @@ export default async function ComplaineDetails({ params }) {
     const { id } = params;
     const route = "/complain/all"
     const data = await detailsHandler(id, route);
-    const { studentName, studentEmail, subject, details, isCheck, createdAt } = data
+    const { photo, studentName, studentEmail, subject, details, isCheck, createdAt } = data
 
-    
+
     return (
-        <div className='text-gray-600'>
+        <div className='text-gray-600 adminPage'>
             <div className='w-[70%] my-5 m-auto border'>
                 <Image
-                    src={img}
+                    src={photo || img}
+                    height={1000}
+                    width={1000}
                     className='w-full'
                     alt='complaine Details '
                 />

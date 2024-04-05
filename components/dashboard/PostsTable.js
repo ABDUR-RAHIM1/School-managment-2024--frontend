@@ -11,7 +11,7 @@ export default function PostsTable(props) {
         {
             name: "Auhtor",
             selector: info => info.creator,
-            cell: info => <Link className='underline' href={`/dashboard/profile/${info.teacherId}`}>
+            cell: info => <Link className='underline text-blue-600' href={`/dashboard/profile/${info.teacherId}`}>
                 {info.creator}
             </Link>
         },

@@ -24,6 +24,9 @@ export default function ComplainTable(props) {
         {
             name: 'Author',
             selector: info => info.studentName,
+            cell: info => <Link className='text-blue-600 underline capitalize' href={`/dashboard/student-profile/${info.studentId}`}>
+                {info.studentName}
+            </Link>
         },
         {
             name: 'Email',

@@ -4,6 +4,7 @@ import React from 'react'
 import DataTable from 'react-data-table-component';
 import dummyImg from "@/public/images/sd.png"
 import { MdDelete } from 'react-icons/md';
+import Image from 'next/image';
 
 export default function StudentProfileTable(props) {
     const { info } = props
@@ -22,13 +23,16 @@ export default function StudentProfileTable(props) {
             name: 'Image',
             cell: info =>
                 <Link href={`/dashboard/student-list/${info._id}`}>
-                    <img src={info.photo || dummyImg} alt="Student" style={{ width: 40, height: 40, border: "1px solid gray", borderRadius: "50%" }} />
+                    <Image src={info.photo || dummyImg} width={1000} height={1000} alt="Student" className='w-12 h-12 rounded-full my-2' />
                 </Link>,
 
         },
         {
             name: 'Name',
             selector: info => info.name,
+            cell: info => <Link className='underline text-blue-600' href={`/dashboard/student-profile/${info.studentId}`}>
+                {info.name}
+            </Link>
         },
         {
             name: 'Email',
@@ -50,6 +54,10 @@ export default function StudentProfileTable(props) {
             name: 'Session',
             selector: info => info.session,
         },
+        {
+            name: 'Scholarship',
+            selector: info => "Yes",
+        }
     ];
 
 

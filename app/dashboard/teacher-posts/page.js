@@ -1,14 +1,13 @@
 "use client"
 import { GlobalState } from '@/ContextApi/ContextApi';
 import Loader from '@/components/Utils/Loader';
-import PageHeader from '@/components/Utils/PageHeader';
-import ReloadButton from '@/components/Utils/ReloadButton';
+import PageHeader from '@/components/Utils/PageHeader'; 
 import PostsTable from '@/components/dashboard/PostsTable';
 import { handleAllGetMethod } from '@/fetchApi/GetMethod/handleAllGetMethod';
 import React, { useContext, useLayoutEffect, useState } from 'react'
 
 export default function TeachersPosts() {
-  const { reload, setReload } = useContext(GlobalState)
+  const { reload } = useContext(GlobalState)
   const [isLoading, setIsLoading] = useState(false);
   const [posts, setPosts] = useState([]);
 

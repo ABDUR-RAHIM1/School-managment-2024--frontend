@@ -16,7 +16,7 @@ export default async function Profile({ params }) {
  
 
   return (
-    <div className='profileContainer'>
+    <div className='profileContainer adminPage'>
       <div className="profileCard">
         <div className='w-[100px] m-auto h-[100px] rounded-full overflow-hidden'>
           <Image
