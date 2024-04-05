@@ -1,4 +1,10 @@
+
+import TeacherGallaryAdmin from '@/components/profile/TeacherGallaryAdmin';
+import TeacherPostsAdmin from '@/components/profile/TeacherPostsAdmin';
+import TeacherProfileAdmin from '@/components/profile/TeacherProfileAdmin';
+import TeahcerClassAdmin from '@/components/profile/TeahcerClassAdmin';
 import { handleGetProfile } from '@/fetchApi/getProifle/handleGetProfile'
+import dummyImg from "@/public/images/sd.png"
 import Image from 'next/image';
 import React from 'react'
 
@@ -7,15 +13,14 @@ export default async function Profile({ params }) {
   const { id } = params
   const route = `/teachers/auth/${id}/profile`
   const profile = await handleGetProfile(route, id);
-
-   console.log(profile.profile)
+ 
 
   return (
     <div className='profileContainer'>
       <div className="profileCard">
         <div className='w-[100px] m-auto h-[100px] rounded-full overflow-hidden'>
           <Image
-            src={profile.photo}
+            src={profile.photo || dummyImg}
             width={1000}
             height={1000}
             className='w-full h-full'
@@ -64,7 +69,45 @@ export default async function Profile({ params }) {
         </div>
 
       </div>
- 
+
+      <div className="profileDetails">
+        <div>
+          <h1>Profile</h1>
+          <TeacherProfileAdmin
+            info={profile.profile}
+          />
+        </div>
+
+        <div className='my-5'>
+          <h1>Classes</h1>
+          <TeahcerClassAdmin
+            info={profile.routine}
+          />
+        </div>
+
+        <div className='my-5'>
+          <h1>Posts</h1>
+          <TeacherPostsAdmin
+            info={profile.posts}
+          />
+        </div>
+
+        <div className='my-5'>
+          <h1>Gallary</h1>
+          <div className='flex items-center justify-between flex-wrap'>
+            {
+              profile && profile.gallary.map(gl => (
+                <TeacherGallaryAdmin
+                  key={gl._id}
+                  gallary={gl}
+                />
+              ))
+            }
+          </div>
+        </div>
+
+      </div>
+
 
     </div>
   )

@@ -2,8 +2,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { FcApproval, FcDisapprove } from 'react-icons/fc'
-import { MdDelete } from 'react-icons/md'
+import { FcApproval, FcDisapprove } from 'react-icons/fc' 
 
 export default function Gallary(props) {
     const { _id, author, title, photo } = props.gallary

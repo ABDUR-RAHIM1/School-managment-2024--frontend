@@ -136,7 +136,16 @@
      .profileCard{
       @apply w-[50%] m-auto bg-white border border-gray-100  py-5 shadow-md
      }
-    
+    .profileDetails{
+      @apply my-10
+    }
+    .profileDetails div{
+      @apply text-center   bg-white
+    }
+    .profileDetails div h1{
+      @apply my-3 text-xl font-medium
+    }
+  
  /*  profile end here */
 
 

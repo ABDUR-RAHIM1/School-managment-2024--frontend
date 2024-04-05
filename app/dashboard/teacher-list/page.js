@@ -3,7 +3,6 @@
 import { GlobalState } from "@/ContextApi/ContextApi"
 import Loader from "@/components/Utils/Loader"
 import ReloadButton from "@/components/Utils/ReloadButton"
-import StudentProfileTable from "@/components/dashboard/StudentProfileTable"
 import TeacherProfileTable from "@/components/dashboard/TeacherProfile"
 import { handleAllGetMethod } from "@/fetchApi/GetMethod/handleAllGetMethod"
 import { useContext, useEffect, useState } from "react"

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React from 'react'
 import DataTable from 'react-data-table-component';
 import { MdDelete } from 'react-icons/md';
+import { CgProfile } from 'react-icons/cg';
 import dummyImg from "@/public/images/sd.png"
 
 export default function TeacherProfileTable(props) {
@@ -45,6 +46,10 @@ export default function TeacherProfileTable(props) {
         {
             name: 'dateOfBirth',
             selector: info => new Date(info.dateOfBirth).toLocaleDateString("en-US"),
+        },
+        {
+            name: 'Profile',
+            cell: info => <Link href={`/dashboard/profile/${info.teacherId}`} className='iconBtn text-white bg-blue-600'> <CgProfile /> </Link>
         },
 
     ];
