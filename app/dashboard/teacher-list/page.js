@@ -2,6 +2,7 @@
 
 import { GlobalState } from "@/ContextApi/ContextApi"
 import Loader from "@/components/Utils/Loader"
+import PageHeader from "@/components/Utils/PageHeader"
 import ReloadButton from "@/components/Utils/ReloadButton"
 import TeacherProfileTable from "@/components/dashboard/TeacherProfile"
 import { handleAllGetMethod } from "@/fetchApi/GetMethod/handleAllGetMethod"
@@ -45,7 +46,7 @@ export default function ManageTecher() {
       setIsCheckId(prevState => prevState.filter(item => item !== id));
     }
   }
- 
+
 
 
 
@@ -54,11 +55,8 @@ export default function ManageTecher() {
   }
 
   return (
-    <div>
-      <div className='flex items-center justify-between my-3 font-medium capitalize'>
-        <h2 className='text-2xl'>Teachers List</h2>
-        <ReloadButton />
-      </div>
+    <div className="adminPage">
+      <PageHeader text="Teachers List" />
       <div className="studentFilter">
         <div>
           <p>Teacher Name</p>
@@ -91,7 +89,7 @@ export default function ManageTecher() {
       <TeacherProfileTable
         info={teachertList}
         handleCheck={handleCheck}
-        isCheckId={isCheckId} 
+        isCheckId={isCheckId}
       />
     </div>
   )

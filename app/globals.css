@@ -18,10 +18,10 @@
     @apply w-full h-auto py-5 max-h-[400px] overflow-y-auto bg-gray-50 rounded-b-md shadow-md absolute top-12 left-0 text-gray-700 z-[999]
   }
    .dashboard{
-    @apply flex flex-wrap  bg-gray-100
+    @apply flex flex-wrap  bg-gray-200
    }
    .dashboardSidebar{
-     @apply h-screen overflow-y-auto duration-300 bg-gray-50 text-black 
+     @apply h-screen overflow-y-auto duration-300 bg-white text-black 
    }
 
    .sidebarItem{
@@ -31,7 +31,7 @@
     @apply my-3 hover:bg-purple-200 px-2 py-1 font-medium text-sm text-black hover:text-black
    }
    .dashboardMain{
-    @apply flex-1 px-4 py-10 bg-gray-50 h-screen overflow-y-auto
+    @apply flex-1 px-4 py-10 h-screen overflow-y-auto
    }
 
    .adminLoginPage{
@@ -57,7 +57,7 @@
   @apply w-full flex items-center justify-center
 }
 .addAdminPage form{
-   @apply w-full md:w-[75%] m-auto bg-gray-200 px-5 py-20
+   @apply w-full md:w-[75%] m-auto bg-white rounded-md px-5 py-20
 }
 .addAdminPage form input{
   @apply input
@@ -119,7 +119,7 @@
 }
  /*  add staff page */
  .addStaffPage {
-  @apply  bg-gray-200 p-10
+  @apply  bg-white rounded-md p-10
  }
  .addStaffPage form{
   @apply flex items-center justify-between flex-wrap
@@ -127,12 +127,13 @@
  .addStaffPage div{
   @apply w-full md:w-[48%]  
  }
+ .adminPage{
+  @apply bg-white px-2 py-10 rounded-md
+ }
  /*  add staff page end */
 
  /*  profile start here */
-     /* .profileContainer{
-      @apply flex items-center justify-between flex-wrap
-     } */
+
      .profileCard{
       @apply w-[50%] m-auto bg-white border border-gray-100  py-5 shadow-md
      }

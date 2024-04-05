@@ -1,6 +1,7 @@
 "use client"
 import { GlobalState } from "@/ContextApi/ContextApi";
 import Loader from "@/components/Utils/Loader";
+import PageHeader from "@/components/Utils/PageHeader";
 import ReloadButton from "@/components/Utils/ReloadButton";
 import TeacherTable from "@/components/dashboard/TeacherTable";
 import { handleDeleteMany } from "@/fetchApi/DeleteMethod/handleDeleteMany";
@@ -67,10 +68,8 @@ export default function ManageTeacher() {
 
   return (
     <div className="manageStudentPage">
-      <div className=" flex items-center justify-between border-b">
-        <h2 className="text-2xl font-medium my-3 text-blue-900">Teacher Managment</h2>
-        <ReloadButton />
-      </div>
+
+      <PageHeader text="Teacher Managment" />
 
 
       <div className="studentFilter">

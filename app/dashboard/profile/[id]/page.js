@@ -92,7 +92,7 @@ export default async function Profile({ params }) {
           />
         </div>
 
-        <div className='my-5'>
+        <div className='my-5 px-2'>
           <h1>Gallary</h1>
           <div className='flex items-center justify-between flex-wrap'>
             {

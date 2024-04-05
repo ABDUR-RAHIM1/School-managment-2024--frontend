@@ -82,7 +82,7 @@ export default function ContactMessage() {
     return <Loader />
   }
   return (
-    <div className='contactMessagePage'>
+    <div className='adminPage'>
       <div className="flex items-center justify-between">
         <h2 className='text-2xl italic font-medium'>Contact Message</h2>
         <ReloadButton />

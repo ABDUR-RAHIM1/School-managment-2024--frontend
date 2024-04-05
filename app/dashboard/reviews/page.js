@@ -76,7 +76,7 @@ export default function Reviews() {
     return <Loader />
   }
   return (
-    <div className='reviewPage'>
+    <div className='adminPage'>
       <div className="flex items-center justify-between">
         <h2 className='text-2xl italic font-medium'>Reviews</h2>
         <ReloadButton />

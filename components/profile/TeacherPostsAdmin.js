@@ -1,6 +1,7 @@
 "use client"
 import Image from 'next/image'
 import React from 'react'
+import dummyImg from "@/public/images/no-image.jpg"
 import DataTable from 'react-data-table-component'
 
 export default function TeacherPostsAdmin(props) {
@@ -9,7 +10,7 @@ export default function TeacherPostsAdmin(props) {
         {
             name: "Photos",
             selector: info => info.photo,
-            cell: info => <Image src={info.photo} width={100} height={100} className='w-16 h-16 rounded-md my-3' alt='post photos' />
+            cell: info => <Image src={info.photo || dummyImg} width={100} height={100} className='w-16 h-16 rounded-md my-3' alt='post photos' />
         },
         {
             name: "Title",

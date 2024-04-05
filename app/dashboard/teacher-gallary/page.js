@@ -1,6 +1,7 @@
 "use client"
 import { GlobalState } from '@/ContextApi/ContextApi';
 import Loader from '@/components/Utils/Loader';
+import PageHeader from '@/components/Utils/PageHeader';
 import ReloadButton from '@/components/Utils/ReloadButton'
 import Gallary from '@/components/dashboard/Gallary';
 import GallaryTable from '@/components/dashboard/GallaryTable';
@@ -58,12 +59,10 @@ export default function TeacherGallary() {
     return <Loader />
   }
   return (
-    <div className='teacherGallary'>
-      <div className='flex items-center justify-between'>
-        <h2 className='text-2xl font-medium items-start'>Teachers Gallary</h2>
-        <ReloadButton />
-      </div>
+    <div className='adminPage'>
 
+      <PageHeader text="Teachers Gallary" />
+      
       <div className='flex items-center justify-between my-4'>
         <p className='my-4'>Showing {gallary.length} photos</p>
 

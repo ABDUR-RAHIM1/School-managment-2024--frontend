@@ -51,7 +51,7 @@ export default function AccessStudent() {
   }
 
   return (
-    <div>
+    <div className="adminPage">
       <div className='flex items-center justify-between my-3 font-medium capitalize'>
         <h2 className='text-2xl'>Student List</h2>
         <ReloadButton />

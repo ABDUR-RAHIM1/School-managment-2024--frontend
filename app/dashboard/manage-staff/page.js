@@ -80,7 +80,7 @@ export default function ManageStaff() {
     return <Loader />
   }
   return (
-    <div className='staffPage'>
+    <div className='adminPage'>
       <div className='flex items-center justify-between'>
         <h2 className='my-10 text-2xl italic font-medium'>Staff <span className='text-sm ml-3 border p-1'>{staff.length+ " " }
            Membars

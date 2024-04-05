@@ -14,7 +14,7 @@ export default function GallaryTable(props) {
         {
             name: "author",
             selector: info => info.author,
-            cell: info => <Link title='See Profile' className='underline' href={`/dashboard/profile/${info.teacherId}`} >{info.author}</Link>
+            cell: info => <Link title='See Profile' className='underline capitalize text-blue-600' href={`/dashboard/profile/${info.teacherId}`} >{info.author}</Link>
         },
         {
             name: "title",
