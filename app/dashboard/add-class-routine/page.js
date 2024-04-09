@@ -70,8 +70,8 @@ export default function AddClassRoutine() {
         <AddNewButton />
       </div>
 
-      <form onSubmit={handleClassRoutineSubmit} className='py-10 px-4 bg-gray-50'>
-        <div className='w-full flex gap-2'>
+      <form onSubmit={handleClassRoutineSubmit} className='form'>
+        <div className='form_group'>
 
           <select disabled={Object.keys(editValue).length !== 0} required value={info.teacherId} onChange={handleChange} name="teacherId" className='input'>
             {
@@ -85,7 +85,7 @@ export default function AddClassRoutine() {
           <input required value={info.classCode} onChange={handleChange} className='input' type="text" name='classCode' placeholder='Class' />
         </div>
 
-        <div className='w-full flex gap-2'>
+        <div className='form_group'>
           <input required value={info.subject} onChange={handleChange} className='input' type="text" name='subject' placeholder='subject Name' />
 
           <select required value={info.dayOfWeek} onChange={handleChange} name="dayOfWeek" className='input'>
@@ -99,16 +99,16 @@ export default function AddClassRoutine() {
           </select>
         </div>
 
-        <div className='w-full flex gap-2'>
+        <div className='form_group'>
           <input required value={info.startTime} onChange={handleChange} className='input' type="text" name='startTime' placeholder='start Time' />
           <input required value={info.endTime} onChange={handleChange} className='input' type="text" name='endTime' placeholder='end Time' />
         </div>
 
 
-        <div className='w-full md:w-[60%] m-auto'>
+        <div className='form_btn_wrap'>
           <button className='formBtn'>
             {
-              isLoading ? "Posting . . ." : Object.keys(editValue).length !== 0 ? "Update" : "Add"
+              isLoading ? "Posting . . ." : Object.keys(editValue).length !== 0 ? "Update +" : "Add +"
             }
           </button>
         </div>

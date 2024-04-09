@@ -11,11 +11,7 @@ export const handlePostMethod = async (route, data) => {
             body: JSON.stringify(data)
         });
 
-        if (!res.ok) {
-            console.log("failed to fatch")
-            return
-        }
-
+      
         const result = await res.json()
         return result
     } catch (error) {
