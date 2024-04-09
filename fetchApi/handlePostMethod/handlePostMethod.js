@@ -1,7 +1,7 @@
 import { API } from "../API";
 
 export const handlePostMethod = async (route, data) => {
-
+    console.log(API + route, data)
     try {
         const res = await fetch(`${API + route}`, {
             method: "POST",

@@ -84,7 +84,7 @@
   @apply cursor-pointer
 }
 .editBtn{
-  @apply py-2 px-3 text-2xl rounded-md inline-block cursor-pointer
+  @apply py-2 px-3 text-2xl bg-blue-600 text-white rounded-md inline-block cursor-pointer
 }
 .iconBtn{
   @apply py-2 px-3 text-2xl rounded-md inline-block cursor-pointer
