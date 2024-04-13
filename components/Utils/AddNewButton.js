@@ -6,7 +6,7 @@ export default function AddNewButton() {
     const { editValue, setEditValue } = useContext(GlobalState)
     const handleAddNewClick = () => {
         setEditValue({})
-        console.log("click", editValue)
+        
     }
     return (
         <>

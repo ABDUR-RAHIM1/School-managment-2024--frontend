@@ -5,7 +5,7 @@ import { BiSolidMessageDetail } from "react-icons/bi";
 
 
 export default function ContactMessageTable(props) {
-
+  const route = "/contact/delete"
   const { message, handleCheckBox, handleDeleteContactMessage, handleDetails } = props;
 
 
@@ -13,7 +13,7 @@ export default function ContactMessageTable(props) {
     {
       name: <div>
         {props.checkIds.length > 0 ?
-          <span onClick={handleDeleteContactMessage} className='deleteBtn'> <MdDelete />  </span>
+          <span onClick={() => handleDeleteContactMessage(route)} className='deleteBtn'> <MdDelete />  </span>
           : "Select"}
       </div>,
       selector: info => <input onChange={(e) => handleCheckBox(e, info._id)} type="checkbox" />

@@ -5,13 +5,13 @@ import { MdDelete } from 'react-icons/md';
 import { CiEdit } from 'react-icons/ci';
 export default function StaffTable(props) {
     const { staff } = props;
-
+    const route = "/staffs/delete";
     const columns = [
         {
             name: <div>
                 {
                     props.checkIds.length > 0 ?
-                        <span onClick={props.handleDeleteStaff} className='deleteBtn'><MdDelete /></span> : "select"
+                        <span onClick={() => props.handleDeleteStaff(route)} className='deleteBtn'><MdDelete /></span> : "select"
                 }
             </div>,
             cell: info => <input
@@ -23,7 +23,7 @@ export default function StaffTable(props) {
             selector: (info) => info.photo,
             cell: (info) => (
                 <img
-                    src={info.photo || dummyImage}   
+                    src={info.photo || dummyImage}
                     className="w-10 h-10 rounded-full border border-gray-50"
                     alt=""
                 />

@@ -7,11 +7,12 @@ import { BiSolidMessageDetail } from 'react-icons/bi';
 
 export default function ReviewsTable(props) {
     const { review, handleCheckBox, checkIds, handleReviewDeleteMany, handleDetails } = props;
+    const route = '/review/delete'
     const columns = [
         {
             name: <div>
                 {checkIds.length > 0 ?
-                    <span onClick={handleReviewDeleteMany} className='deleteBtn'> <MdDelete />  </span>
+                    <span onClick={() => handleReviewDeleteMany(route)} className='deleteBtn'> <MdDelete />  </span>
                     : "Select"}
             </div>,
             selector: info => <input onChange={(e) => handleCheckBox(e, info._id)} type="checkbox" />

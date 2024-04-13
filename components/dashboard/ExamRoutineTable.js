@@ -1,15 +1,21 @@
 "use client"
-import React from 'react'
+import { GlobalState } from '@/ContextApi/ContextApi';
+import React, { useContext } from 'react'
 import DataTable from 'react-data-table-component'
-import { MdEdit } from 'react-icons/md';
+import { MdDelete, MdEdit } from 'react-icons/md';
 
 export default function ExamRoutineTable(props) {
-    const { info ,handleEditRoutine} = props;
-
+    const { checkIds } = useContext(GlobalState)
+    const { info, handleEditRoutine, handleCheck, handleDeleteRoutine } = props;
+    const route = "/examroutine/delete-many"
     const columns = [
         {
-          name :"Select",
-          selector : info => <input type="checkbox" />
+            name: <div>
+                {
+                    checkIds.length > 0 ? <span onClick={() => handleDeleteRoutine(route)} className='deleteBtn'> <MdDelete /> </span> : "Select"
+                }
+            </div>,
+            selector: info => <input onChange={(e) => handleCheck(e, info._id)} type="checkbox" />
         },
         {
             name: "Exam Name",
@@ -17,7 +23,8 @@ export default function ExamRoutineTable(props) {
         },
         {
             name: "Class",
-            selector: info => info.classCode
+            selector: info => info.classCode,
+            cell: info => info.classCode < 10 ? "0" + info.classCode : info.classCode
         },
         {
             name: "Subject",
@@ -34,7 +41,7 @@ export default function ExamRoutineTable(props) {
         },
         {
             name: "Edit",
-            selector: info => <span onClick={()=>handleEditRoutine(info)} className='editBtn my-3'> <MdEdit /> </span>
+            selector: info => <span onClick={() => handleEditRoutine(info)} className='editBtn my-3'> <MdEdit /> </span>
         },
     ]
     return (

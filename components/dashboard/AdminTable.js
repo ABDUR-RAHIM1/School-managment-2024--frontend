@@ -4,14 +4,13 @@ import DataTable from 'react-data-table-component';
 import { CiEdit } from 'react-icons/ci';
 import { MdDelete } from 'react-icons/md';
 
-export default function AdminTable(props) {
-    const { _id, username, email, role, createdAt, } = props.adminList;
-
+export default function AdminTable(props) { 
+    const route = '/admin/auth/delete-many'
     const columns = [
         {
             name: (
-                <span className={props.checkIds.length > 0 ? 'deleteBtn' : ''}>
-                    {props.checkIds.length > 0 ? <MdDelete onClick={props.handleDeleteManyAdmins} /> : 'Select'}
+                <span onClick={() => props.handleDeleteManyAdmins(route)} className={props.checkIds.length > 0 ? 'deleteBtn' : ''}>
+                    {props.checkIds.length > 0 ? <MdDelete /> : 'Select'}
                 </span>
             ),
             cell: info => <input onChange={(e) => props.handleCheck(e, info._id)} type="checkbox" />
@@ -56,20 +55,4 @@ export default function AdminTable(props) {
         />
     )
 }
-
-
-{/* <>
-    <tr key={_id}>
-        <th>
-            <input type="checkbox" />
-        </th>
-        <td className='capitalize'> <span className='py-2 px-3 bg-blue-300 rounded-full'>{username.slice(0, 1)}</span> {username}</td>
-        <td>{email}</td>
-        <td className='capitalize'>{role}</td>
-        <td>{getDateInfo(createdAt).day + "/" + getDateInfo(createdAt).month + "/" + getDateInfo(createdAt).year}</td>
-        <td> <button onClick={() => props.handleEditAdmin(props.admins)} className='editBtn'><CiEdit /></button> </td>
-        <td> <button onClick={() => props.handleDeleteAdmin(_id)} className='deleteBtn'>
-            <MdDelete />
-        </button> </td>
-    </tr>
-</> */}
+ 

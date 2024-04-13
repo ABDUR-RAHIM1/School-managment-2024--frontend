@@ -4,64 +4,25 @@ import Loader from '@/components/Utils/Loader'
 import MessageModal from '@/components/Utils/MessageModal'
 import ReloadButton from '@/components/Utils/ReloadButton'
 import ReviewsTable from '@/components/dashboard/ReviewsTable'
-import { handleDeleteMany } from '@/fetchApi/DeleteMethod/handleDeleteMany'
-import { handleAllGetMethod } from '@/fetchApi/GetMethod/handleAllGetMethod'
 import React, { useContext, useLayoutEffect, useState } from 'react'
-import { toast } from 'react-toastify'
 
 export default function Reviews() {
-  const [isLoading, setIsLoading] = useState(false)
-  const { reload, setReload, setEditValue } = useContext(GlobalState)
+  const { reload, setEditValue, getAllDataFunc, data, isLoading, checkIds, HandleCheckIds, multipleDeleteFunc } = useContext(GlobalState)
   const [showModel, setShowModel] = useState(false)
-  const [checkIds, setCheckIds] = useState([])
-  const [review, setReview] = useState([]);
 
   useLayoutEffect(() => {
-    !reload && setIsLoading(true)
-    const getAllReview = async () => {
-      try {
-        const route = "/review/all";
-        const result = await handleAllGetMethod(route);
-        if (result) {
-          setReview((result))
-        }
-      } catch (error) {
-        console.log(error)
-      } finally {
-        setIsLoading(false)
-      }
-    };
-    getAllReview()
+    const route = "/review/all";
+    getAllDataFunc(route)
   }, [reload]);
 
 
   //  handle check box
-  const handleCheckBox = (e, id) => {
+  const handleCheckBox = (e, ids) => {
     const isChecked = e.target.checked;
-    if (isChecked) {
-      setCheckIds([...checkIds, id])
-
-    } else {
-      const removeId = checkIds.filter(i => i !== id)
-      setCheckIds(removeId)
-    }
+    HandleCheckIds(isChecked, ids)
   }
   //  handle check box end
 
-  //  handle Delete multiple
-  const handleReviewDeleteMany = async () => {
-    try {
-      const route = '/review/delete'
-      const result = await handleDeleteMany(route, checkIds);
-      if (result) {
-        toast.success(result.message);
-        setReload(!reload);
-        setCheckIds([])
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
 
   const handleDetails = (info) => {
@@ -84,7 +45,7 @@ export default function Reviews() {
 
       {/*  show count of review */}
       <div className='my-4 flex items-center justify-between'>
-        <p>Showing {review.length} Reviews</p>
+        <p>Showing {data.length} Reviews</p>
 
       </div>
       {/*  show count of review  end here*/}
@@ -92,10 +53,10 @@ export default function Reviews() {
       {/*  review table start here */}
       <div>
         <ReviewsTable
-          review={review}
+          review={data}
           handleCheckBox={handleCheckBox}
           checkIds={checkIds}
-          handleReviewDeleteMany={handleReviewDeleteMany}
+          handleReviewDeleteMany={multipleDeleteFunc}
           handleDetails={handleDetails}
         />
       </div>

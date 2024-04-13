@@ -5,66 +5,27 @@ import MessageModal from '@/components/Utils/MessageModal'
 import ReloadButton from '@/components/Utils/ReloadButton'
 import ContactMessageTable from '@/components/dashboard/ContactMessageTable'
 import { handleDeleteMany } from '@/fetchApi/DeleteMethod/handleDeleteMany'
-import { handleAllGetMethod } from '@/fetchApi/GetMethod/handleAllGetMethod'
 import React, { useContext, useLayoutEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 
 export default function ContactMessage() {
-  const [isLoading, setIsLoading] = useState(false)
-  const { reload, setReload, setEditValue } = useContext(GlobalState)
-  const [checkIds, setCheckIds] = useState([])
-  const [search, setSearch] = useState("")
+  const { reload, setReload, setEditValue, getAllDataFunc, data, search, setSearch, isLoading, HandleCheckIds, checkIds, multipleDeleteFunc } = useContext(GlobalState)
+
   const [showModel, setShowModel] = useState(false)
-  const [contactMessage, setContactMessage] = useState([])
 
   useLayoutEffect(() => {
-    search || !reload && setIsLoading(true)
-    const getAllContactMessage = async () => {
-      try {
-        const route = `/contact/all?search=${search}`
-        const result = await handleAllGetMethod(route);
-        if (result) {
-          setContactMessage(result)
-        }
-      } catch (error) {
-        console.log(error)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    getAllContactMessage()
+    const route = `/contact/all?search=${search}`
+    getAllDataFunc(route)
   }, [reload, search])
 
 
   //  handle check box
-  const handleCheckBox = (e, id) => {
+  const handleCheckBox = (e, ids) => {
     const isChecked = e.target.checked;
-    if (isChecked) {
-      setCheckIds([...checkIds, id])
-
-    } else {
-      const removeId = checkIds.filter(i => i !== id)
-      setCheckIds(removeId)
-    }
+    HandleCheckIds(isChecked, ids)
   }
   //  handle check box end
-
-  //  delete multiple contact messsage handler
-  const handleDeleteContactMessage = async () => {
-
-    try {
-      const route = "/contact/delete"
-      const result = await handleDeleteMany(route, checkIds);
-      if (result) {
-        toast.success(result.message);
-        setCheckIds([])
-        setReload(!reload)
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  //  delete multiple contact messsage handler end
+ 
 
   // handle Details message
   const handleDetails = (info) => {
@@ -92,7 +53,7 @@ export default function ContactMessage() {
 
       {/*  show items message */}
       <div className='my-4 flex items-center justify-between'>
-        <p>Showing {contactMessage.length} Message</p>
+        <p>Showing {data.length} Message</p>
         <div className='w-[40%]'>
           <p>Name</p>
           <input onChange={(e) => setSearch(e.target.value)} value={search} type="search" className='input' placeholder='Search . . ' />
@@ -105,10 +66,10 @@ export default function ContactMessage() {
       {/* contact message table component start here */}
       <div>
         <ContactMessageTable
-          message={contactMessage}
+          message={data}
           handleCheckBox={handleCheckBox}
           checkIds={checkIds}
-          handleDeleteContactMessage={handleDeleteContactMessage}
+          handleDeleteContactMessage={multipleDeleteFunc}
           handleDetails={handleDetails}
         />
       </div>

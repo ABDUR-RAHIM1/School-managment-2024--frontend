@@ -1,5 +1,6 @@
 "use client"
 import { GlobalState } from '@/ContextApi/ContextApi';
+import AddNewButton from '@/components/Utils/AddNewButton';
 import { handleUpdate } from '@/fetchApi/UpdateMethod/handleAllUpdateMethod';
 import { handlePostMethod } from '@/fetchApi/handlePostMethod/handlePostMethod';
 import React, { useContext, useEffect, useState } from 'react'
@@ -34,8 +35,10 @@ export default function AddExamRoutine() {
       } else {
         result = await handlePostMethod(postRoute, info);
       }
-      if (result) {
+      if (result.ok) {
         toast.success(result.message)
+      } else {
+        toast.error(result.message)
       }
 
     } catch (error) {
@@ -48,10 +51,10 @@ export default function AddExamRoutine() {
 
   // set info value for edit
   useEffect(() => {
+
     if (condition) {
       setInfo({
         ...editValue,
-        examDate : editValue.examDate
       })
     }
   }, [editValue])
@@ -59,11 +62,14 @@ export default function AddExamRoutine() {
 
   return (
     <div className='adminPage'>
-      <h2 className='text-2xl text-center my-4 font-medium'>
-        {
-          condition ? "Edit Exam Routine" : "Add Exam Routine"
-        }
-      </h2>
+      <div className='flex items-center justify-center gap-2'>
+        <h2 className='text-2xl text-center my-4 font-medium'>
+          {
+            condition ? "Edit Exam Routine" : "Add Exam Routine"
+          }
+        </h2>
+        <AddNewButton />
+      </div>
 
       <form onSubmit={handleSubmitExamRoutine} className='form'>
         <div className='form_group'>
@@ -75,7 +81,7 @@ export default function AddExamRoutine() {
           <input value={info.subject} onChange={handleChange} type="text" className='input' placeholder='Subject' name='subject' required />
         </div>
         <div className='form_group'>
-          <input value={info.examDate} onChange={handleChange} type="date" className='input' placeholder='examDate' name='examDate' required />
+          <input value={info.examDate} onChange={handleChange} type="date" className='input' placeholder='exam Date' name='examDate' required />
 
           <input value={info.examTime} onChange={handleChange} type="time" className='input' placeholder='Exam Time' name='examTime' required />
         </div>
@@ -83,7 +89,7 @@ export default function AddExamRoutine() {
         <div className="form_btn_wrap">
           <button className='formBtn'>
             {
-              isLoading ? "Posting. . ." : condition? "Update +" : "Add +"
+              isLoading ? "Posting. . ." : condition ? "Update +" : "Add +"
             }
           </button>
         </div>

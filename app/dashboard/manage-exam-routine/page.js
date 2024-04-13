@@ -1,42 +1,31 @@
 "use client"
+import React, { useContext, useLayoutEffect } from 'react'
 import { GlobalState } from '@/ContextApi/ContextApi'
 import Loader from '@/components/Utils/Loader'
 import PageHeader from '@/components/Utils/PageHeader'
 import ExamRoutineTable from '@/components/dashboard/ExamRoutineTable'
-import { handleAllGetMethod } from '@/fetchApi/GetMethod/handleAllGetMethod'
 import { useRouter } from 'next/navigation'
-import React, { useContext, useLayoutEffect, useState } from 'react'
 
 export default function ManageExamRoutine() {
-  const { reload, setReload, setEditValue } = useContext(GlobalState)
-  const [isLoading, setIsLoding] = useState(false)
-  const [routine, setRoutine] = useState([])
+  const { reload, setEditValue, HandleCheckIds, multipleDeleteFunc, getAllDataFunc, isLoading, data } = useContext(GlobalState)
   const router = useRouter()
 
   useLayoutEffect(() => {
-    setIsLoding(true)
-    const getAllExamRoutine = async () => {
-      try {
-        const route = "/examroutine/all"
-        const routines = await handleAllGetMethod(route);
-        setRoutine(routines)
-      } catch (error) {
-        console.log(error)
-      } finally {
-        setIsLoding(false)
-      }
-    }
-
-    getAllExamRoutine()
+    const route = "/examroutine/all"
+    getAllDataFunc(route)
   }, [reload])
-
 
 
   //  edit exam routine 
   const handleEditRoutine = (info) => {
     router.push("/dashboard/add-exam-routine")
     setEditValue(info)
-    console.log(info)
+  }
+
+  // check routine items (ID)
+  const handleCheck = (e, ids) => {
+    const isCheck = e.target.checked
+    HandleCheckIds(isCheck, ids)
   }
 
 
@@ -52,8 +41,10 @@ export default function ManageExamRoutine() {
       {/*  exam routines table start here */}
       <div>
         <ExamRoutineTable
-          info={routine}
+          info={data}
           handleEditRoutine={handleEditRoutine}
+          handleCheck={handleCheck}
+          handleDeleteRoutine={multipleDeleteFunc}
         />
       </div>
       {/*  exam routines table end here */}
