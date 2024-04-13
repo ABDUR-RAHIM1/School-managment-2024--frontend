@@ -1,6 +1,7 @@
 "use client"
 import { GlobalState } from '@/ContextApi/ContextApi'
 import AddNewButton from '@/components/Utils/AddNewButton'
+import Heading from '@/components/Utils/Heading'
 import { handleAllGetMethod } from '@/fetchApi/GetMethod/handleAllGetMethod'
 import { handleUpdate } from '@/fetchApi/UpdateMethod/handleAllUpdateMethod'
 import { handlePostMethod } from '@/fetchApi/handlePostMethod/handlePostMethod'
@@ -24,7 +25,7 @@ export default function AddClassRoutine() {
 
     //   set edit value in info State
     if (Object.keys(editValue).length !== 0) {
-      setInfo(editValue); 
+      setInfo(editValue);
     }
   }, []);
 
@@ -62,11 +63,11 @@ export default function AddClassRoutine() {
   return (
     <div className='adminPage'>
       <div className='flex items-center justify-center gap-3'>
-        <h2 className='text-center text-2xl font-medium'>
+        <div>
           {
-            Object.keys(editValue).length !== 0 ? "Edit Class Routine" : "Add Class Routine"
+            Object.keys(editValue).length !== 0 ? <Heading text="Edit Class Routine" /> : <Heading text="Add Class Routine" />
           }
-        </h2>
+        </div>
         <AddNewButton />
       </div>
 

@@ -1,6 +1,8 @@
 "use client"
 import { handleDeleteMany } from "@/fetchApi/DeleteMethod/handleDeleteMany";
 import { handleAllGetMethod } from "@/fetchApi/GetMethod/handleAllGetMethod";
+import { handleUpdate } from "@/fetchApi/UpdateMethod/handleAllUpdateMethod";
+import { handlePostMethod } from "@/fetchApi/handlePostMethod/handlePostMethod";
 import React, { useState, createContext } from "react";
 import { toast } from "react-toastify";
 
@@ -29,7 +31,20 @@ export const MyState = ({ children }) => {
     }
   }
 
-  // handle useeffect function (reusable)
+  // handle all submit form (post method (reusable))
+  const postAllDataFunc = async (route, data) => {
+    setIsLoding(true)
+    try {
+      const result = await handlePostMethod(route, data);
+      result.ok ? toast.success(result.message) : toast.warning(result.message)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoding(false)
+    }
+  }
+
+  // handle all useeffect function (reusable)
   const getAllDataFunc = async (route) => {
     !search && !reload && setIsLoding(true)
     try {
@@ -42,7 +57,21 @@ export const MyState = ({ children }) => {
     }
   }
 
-  //  handle Delete many function
+  //  handle all Update data (put method (reusable) )
+  const editDataFunc = async (route, info) => {
+    setIsLoding(true)
+    try {
+      const result = await handleUpdate(route, info);
+      console.log(result)
+      result.ok ? toast.success(result.message) : toast.warning(result.message)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoding(false)
+    }
+  }
+
+  //  handle   Delete many function (delete method (reusable))
   const multipleDeleteFunc = async (route) => {
     try {
       const result = await handleDeleteMany(route, checkIds)
@@ -64,9 +93,11 @@ export const MyState = ({ children }) => {
     reload, setReload,
     imgLoading, setImgLoading,
     editValue, setEditValue,
+    postAllDataFunc,
     getAllDataFunc, isLoading, data,
     search, setSearch,
     HandleCheckIds, checkIds,
+    editDataFunc,
     multipleDeleteFunc,
   };
 
