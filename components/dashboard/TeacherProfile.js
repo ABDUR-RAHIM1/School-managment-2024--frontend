@@ -2,17 +2,18 @@
 import Link from 'next/link';
 import React from 'react'
 import DataTable from 'react-data-table-component';
-import { MdDelete } from 'react-icons/md'; 
+import { MdDelete } from 'react-icons/md';
 import dummyImg from "@/public/images/sd.png"
 
 export default function TeacherProfileTable(props) {
-    const { info } = props
+    const { info, handleTeacherDelete } = props
+    const route = "/teachers/profile/delete"
     const columns = [
         {
             name: <div>
                 {
                     props.isCheckId.length > 0 ?
-                        <span className='deleteBtn'> <MdDelete /> </span>
+                        <span onClick={() => handleTeacherDelete(route)} className='deleteBtn'> <MdDelete /> </span>
                         : "Select"
                 }
             </div>,
@@ -47,7 +48,7 @@ export default function TeacherProfileTable(props) {
             name: 'dateOfBirth',
             selector: info => new Date(info.dateOfBirth).toLocaleDateString("en-US"),
         },
-      
+
 
     ];
 
@@ -55,7 +56,7 @@ export default function TeacherProfileTable(props) {
     return (
         <DataTable
             columns={columns}
-            data={info} 
+            data={info}
             pagination
         />
     )

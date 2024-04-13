@@ -6,12 +6,12 @@ import { MdDelete, MdEdit } from 'react-icons/md';
 
 export default function ClassRoutineTable(props) {
     const { info, handleCheckId, checkIds, handleDeleteMultipleRoutine, handleUpdateClassRoutine } = props;
-
+    const route = "/routine/delete-many"
     const columns = [
         {
             name: <div>
                 {
-                    checkIds.length > 0 ? <span onClick={handleDeleteMultipleRoutine} className='deleteBtn'><MdDelete /></span> : "select"
+                    checkIds.length > 0 ? <span onClick={() => handleDeleteMultipleRoutine(route)} className='deleteBtn'><MdDelete /></span> : "select"
                 }
             </div>,
             cell: info => <input onChange={(e) => handleCheckId(e, info._id)} type="checkbox" />

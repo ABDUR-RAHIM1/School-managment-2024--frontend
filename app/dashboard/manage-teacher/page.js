@@ -2,65 +2,24 @@
 import { GlobalState } from "@/ContextApi/ContextApi";
 import Loader from "@/components/Utils/Loader";
 import PageHeader from "@/components/Utils/PageHeader";
-import ReloadButton from "@/components/Utils/ReloadButton";
 import TeacherTable from "@/components/dashboard/TeacherTable";
-import { handleDeleteMany } from "@/fetchApi/DeleteMethod/handleDeleteMany";
-import { handleAllGetMethod } from "@/fetchApi/GetMethod/handleAllGetMethod";
-import { useContext, useEffect, useState } from "react"
-import { toast } from "react-toastify";
+import { useContext, useEffect } from "react"
 
 export default function ManageTeacher() {
-  const [teacher, setTeacher] = useState([]);
-  const [isLoading, setIsLoading] = useState(false)
-  const [search, setSearch] = useState("")
-  const { reload, setReload } = useContext(GlobalState)
-  const [isCheckId, setIsCheckId] = useState([])
+  const { reload, search, setSearch, isLoading, getAllDataFunc, data, HandleCheckIds, checkIds, multipleDeleteFunc } = useContext(GlobalState)
+
 
   useEffect(() => {
-    search || !reload && setIsLoading(true)
-    const getAllStudents = async () => {
-      const route = `/teachers/auth/all?search=${search}`
-      try {
-        const result = await handleAllGetMethod(route);
-        setTeacher(result)
-
-      } catch (error) {
-        console.log(error)
-      } finally {
-        setIsLoading(false)
-      }
-    };
-
-    getAllStudents()
+    const route = `/teachers/auth/all?search=${search}`
+    getAllDataFunc(route)
   }, [reload, search]);
 
-  const handleCheck = (e, id) => {
-    const check = e.target.checked;
-
-    if (check) {
-      setIsCheckId(prevState => [...prevState, id]);
-    } else {
-      setIsCheckId(prevState => prevState.filter(item => item !== id));
-    }
+  const handleCheck = (e, ids) => {
+    const isCheck = e.target.checked;
+    HandleCheckIds(isCheck, ids)
   }
 
-  //  handle Delete many teacher
-  const handleDeleteManyTeahcer = async (e) => {
 
-    const route = "/teachers/auth/delete-many"
-    try {
-      const result = await handleDeleteMany(route, isCheckId);
-      if (result.isDelete) {
-        toast.success(result.message)
-        setReload(!reload)
-        setIsCheckId([])
-      } else {
-        toast.warning(result.message)
-      }
-    } catch (error) {
-      toast.error(error.message)
-    }
-  }
 
   if (isLoading) {
     return <Loader />
@@ -91,7 +50,7 @@ export default function ManageTeacher() {
 
       <div className="flex items-center justify-between">
         <p className="text-gray-400">Showing <span className="text-blue-600">
-          {teacher.length} </span> Teachers </p>
+          {data.length} </span> Teachers </p>
 
       </div>
 
@@ -100,10 +59,10 @@ export default function ManageTeacher() {
       <div className="studentTableContainer">
 
         <TeacherTable
-          teacher={teacher}
+          teacher={data}
           handleCheck={handleCheck}
-          isCheckId={isCheckId}
-          handleDeleteManyTeahcer={handleDeleteManyTeahcer}
+          isCheckId={checkIds}
+          handleDeleteManyTeahcer={multipleDeleteFunc}
         />
 
       </div>

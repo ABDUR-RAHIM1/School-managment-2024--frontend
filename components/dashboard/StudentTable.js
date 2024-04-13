@@ -13,10 +13,11 @@ import { MdDelete } from 'react-icons/md'
 //  child of manage-student component
 export default function StudentTable(props) {
   const { reload, setReload } = useContext(GlobalState)
-
+  const route = "/student/auth/delete-many"
+  
   const handleStudent = async (e, id) => {
     const selectedStatus = e.target.value;
-    console.log(selectedStatus, id)
+
     const info = { status: selectedStatus }
     try {
       const route = `/student/auth/${id}/approve`;
@@ -54,7 +55,7 @@ export default function StudentTable(props) {
     {
       name: <div>
         {props.isCheckId.length > 0 ?
-          <span onClick={props.handleDeleteManyStudent} className='deleteBtn'> <MdDelete /> </span>
+          <span onClick={() => props.handleDeleteManyStudent(route)} className='deleteBtn'> <MdDelete /> </span>
           : "Select"}
       </div>,
       cell: info => <input onChange={(e) => props.handleCheck(e, info._id)} type="checkbox" />
