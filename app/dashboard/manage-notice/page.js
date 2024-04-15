@@ -7,20 +7,28 @@ import { useRouter } from 'next/navigation'
 import React, { useContext, useLayoutEffect } from 'react'
 
 export default function ManageNotice() {
-  const { getAllDataFunc, isLoading, data, reload, setEditValue } = useContext(GlobalState)
+  const { getAllDataFunc, isLoading, data, reload, search, setSearch, setEditValue, HandleCheckIds, checkIds, multipleDeleteFunc } = useContext(GlobalState)
 
   const router = useRouter()
 
   useLayoutEffect(() => {
-    const route = "/notice/all"
+    const route = `/notice/all?search=${search}`
     getAllDataFunc(route)
-  }, [reload])
+  }, [reload, search])
 
 
   const handleUpdateNotice = (data) => {
     setEditValue(data)
     router.push("/dashboard/upload-notice")
   }
+
+
+  const handleCheckBox = (e, ids) => {
+    const isChecked = e.target.checked;
+    HandleCheckIds(isChecked, ids)
+  }
+
+
 
   if (isLoading) {
     return <Loader />
@@ -36,7 +44,7 @@ export default function ManageNotice() {
         <p> Showing {data.length} notice</p>
         <div className='w-full md:w-[60%]'>
           <small>Subject</small>
-          <input type="search" placeholder='Search' className='input' />
+          <input onChange={(e) => setSearch(e.target.value)} type="search" placeholder='Search' className='input' />
         </div>
       </div>
 
@@ -45,6 +53,9 @@ export default function ManageNotice() {
         <NoticeTable
           info={data}
           handleUpdateNotice={handleUpdateNotice}
+          handleCheckBox={handleCheckBox}
+          checkIds={checkIds}
+          handleDeleteNotice={multipleDeleteFunc}
         />
       </div>
 

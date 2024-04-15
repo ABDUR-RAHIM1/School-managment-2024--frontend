@@ -1,22 +1,28 @@
 import React from 'react'
 import DataTable from 'react-data-table-component'
-import { MdEdit } from 'react-icons/md';
+import { MdDelete, MdEdit } from 'react-icons/md';
 
 export default function NoticeTable(props) {
-    const { info, handleUpdateNotice } = props;
-    console.log(info)
+    const { info, handleUpdateNotice, handleCheckBox, checkIds, handleDeleteNotice } = props;
+    const route = "/notice/delete-many"
     const columns = [
         {
-            name: "select",
-            selector: info => <input type="checkbox" />
+            name: <div>
+                {
+                    checkIds.length > 0 ?
+                        <span onClick={() => handleDeleteNotice(route)} className='deleteBtn'> <MdDelete /> </span>
+                        : "select"
+                }
+            </div>,
+            selector: info => <input onChange={(e) => handleCheckBox(e, info._id)} type="checkbox" />
         },
         {
             name: "Subject",
-            selector: info => info.subject.length > 15 ? info.details.slice(0, 15) : info.details
+            selector: info => info.subject.length > 15 ? info.subject.slice(0, 15) + " . . ." : info.subject
         },
         {
             name: "Details",
-            selector: info => info.details.length > 20 ? info.details.slice(0, 20) : info.details
+            selector: info => info.details.length > 20 ? info.details.slice(0, 20) + " . . ." : info.details
         },
         {
             name: "Date",

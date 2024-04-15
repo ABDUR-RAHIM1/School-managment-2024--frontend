@@ -12,7 +12,7 @@ export default async function StudentProfile({ params }) {
     const { id } = params
     const route = `/student/auth/${id}/profile`
     const profile = await handleGetProfile(route, id);
-
+  
     let totalAmount = 0
     profile.fee.forEach(element => {
         totalAmount = totalAmount + Number(element.feeAmount)

@@ -35,7 +35,7 @@ export const MyState = ({ children }) => {
   const postAllDataFunc = async (route, data) => {
     setIsLoding(true)
     try {
-      const result = await handlePostMethod(route, data);
+      const result = await handlePostMethod(route, data); 
       result.ok ? toast.success(result.message) : toast.warning(result.message)
     } catch (error) {
       console.log(error)

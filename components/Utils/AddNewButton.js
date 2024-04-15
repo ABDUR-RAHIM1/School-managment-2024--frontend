@@ -6,15 +6,15 @@ export default function AddNewButton() {
     const { editValue, setEditValue } = useContext(GlobalState)
     const handleAddNewClick = () => {
         setEditValue({})
-        
+
     }
     return (
-        <>
+        <div className='text-center'>
             {
                 Object.keys(editValue).length !== 0 ?
-                    <h3 onClick={handleAddNewClick} className='text-sm font-medium border border-gray-200 cursor-pointer'>Add New</h3>
+                    <p onClick={handleAddNewClick} className='text-sm inline-block font-medium border border-gray-200 cursor-pointer p-1'>Add New</p>
                     : null
             }
-        </>
+        </div>
     )
 }

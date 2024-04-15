@@ -1,5 +1,6 @@
 "use client"
 import { GlobalState } from '@/ContextApi/ContextApi'
+import AddNewButton from '@/components/Utils/AddNewButton'
 import Heading from '@/components/Utils/Heading'
 import React, { useContext, useEffect, useState } from 'react'
 
@@ -29,10 +30,13 @@ export default function UploadNotice() {
       setInfo(editValue)
     }
   }, [])
-console.log(info)
+
+
+
   return (
     <div className='adminPage'>
       <Heading text={condition ? "Edit Notice" : "Upload Notice"} />
+      <AddNewButton />
       <form className='form' onSubmit={handleUploadEditNotice}>
         <input onChange={handleChange} type="text" value={info.subject} name='subject' className='input' required placeholder='Subject' />
         <textarea onChange={handleChange} value={info.details} name="details" className='input' required cols="30" rows="10" placeholder='Write Notice Details here . . .' />
