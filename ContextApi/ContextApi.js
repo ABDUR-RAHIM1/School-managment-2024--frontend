@@ -62,7 +62,6 @@ export const MyState = ({ children }) => {
     setIsLoding(true)
     try {
       const result = await handleUpdate(route, info);
-      console.log(result)
       result.ok ? toast.success(result.message) : toast.warning(result.message)
     } catch (error) {
       console.log(error)

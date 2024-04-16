@@ -3,20 +3,25 @@ import { GlobalState } from '@/ContextApi/ContextApi'
 import Loader from '@/components/Utils/Loader'
 import PageHeader from '@/components/Utils/PageHeader'
 import ManageFeeTable from '@/components/dashboard/ManageFeeTable'
-import { useRouter } from 'next/navigation'
 import React, { useContext, useLayoutEffect } from 'react'
 
 export default function ManageFees() {
-  const { getAllDataFunc, isLoading, data, setEditValue, reload, search, setSearch } = useContext(GlobalState)
+  const { getAllDataFunc, isLoading, data, reload, search, setSearch, HandleCheckIds, checkIds } = useContext(GlobalState)
 
-  const router = useRouter()
+
 
   useLayoutEffect(() => {
     const route = `/fee/all?search=${search}`;
     getAllDataFunc(route)
   }, [reload, search])
 
- 
+
+
+  const handleCheckBox = (e, ids) => {
+    const isCheck = e.target.checked;
+    HandleCheckIds(isCheck, ids)
+  }
+
 
 
   if (isLoading) {
@@ -46,7 +51,9 @@ export default function ManageFees() {
 
       <div>
         <ManageFeeTable
-          info={data} 
+          info={data}
+          handleCheckBox={handleCheckBox}
+          checkIds={checkIds}
         />
       </div>
 
