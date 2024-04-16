@@ -36,7 +36,6 @@ export default function ManageBookLists() {
     return <Loader />
   }
 
-console.log(checkIds)
 
   return (
     <div className='adminPage'>
