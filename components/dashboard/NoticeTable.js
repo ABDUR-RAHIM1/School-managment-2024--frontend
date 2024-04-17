@@ -18,11 +18,11 @@ export default function NoticeTable(props) {
         },
         {
             name: "Subject",
-            selector: info => info.subject.length > 15 ? info.subject.slice(0, 15) + " . . ." : info.subject
+            cell: info => info.subject.length > 15 ? info.subject.slice(0, 15) + " . . ." : info.subject
         },
         {
             name: "Details",
-            selector: info => info.details.length > 20 ? info.details.slice(0, 20) + " . . ." : info.details
+            cell: info => info.details.length > 20 ? info.details.slice(0, 20) + " . . ." : info.details
         },
         {
             name: "Date",

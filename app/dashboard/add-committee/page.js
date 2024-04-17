@@ -1,17 +1,21 @@
 "use client"
 import { GlobalState } from '@/ContextApi/ContextApi';
 import { validateEmail } from '@/Helpers/validateAuth';
+import AddNewButton from '@/components/Utils/AddNewButton';
 import Heading from '@/components/Utils/Heading'
 import React, { useContext, useEffect, useState } from 'react'
 import { MdAdd } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
 export default function AddComitee() {
-  const { postAllDataFunc, isLoading, UploadFIle, imgUrl, imgLoading } = useContext(GlobalState);
+  const { postAllDataFunc, isLoading, UploadFIle, imgUrl, imgLoading, editValue, editDataFunc } = useContext(GlobalState);
+
+  const condition = Object.keys(editValue).length !== 0;
 
   const initialFormData = {
     name: "",
     email: "",
+    phone: "",
     title: "",
     position: "",
     photo: imgUrl
@@ -31,6 +35,14 @@ export default function AddComitee() {
       ...prevFormData,
       photo: imgUrl
     }));
+
+
+    //  set Edit Value in state
+    if (condition) {
+      setFormData(editValue)
+    }
+
+
   }, [imgUrl]);
 
   const handleComitteForm = (e) => {
@@ -43,26 +55,42 @@ export default function AddComitee() {
       return;
     }
 
-    const route = "/comitee/add"
-    postAllDataFunc(route, formData)
+    const postRoute = "/comitee/add"
+    const editRoute = `/comitee/edit/${editValue._id}`
+    condition ?
+      editDataFunc(editRoute, formData)
+      :
+      postAllDataFunc(postRoute, formData)
 
 
   }
 
   return (
     <div className='adminPage'>
-      <Heading text="Add Comitee" />
+      <Heading text={condition ? "Edit Committee" : "Add Committee"} />
+      <AddNewButton />
 
       <div className='form'>
         <form onSubmit={handleComitteForm}>
           <div className="form_group">
             <input required type="text" onChange={handleChange} value={formData.name} name='name' placeholder='Enter Name' className='input' />
+          </div>
+
+          <div className="form_group">
+
             <input required type="email" onChange={handleChange} value={formData.email} name='email' placeholder='Enter Email' className='input' />
+
+            <input required type="number" onChange={handleChange} value={formData.phone} name='phone' placeholder='Enter Phone' className='input' />
           </div>
 
           <div className="form_group">
             <input required type="text" onChange={handleChange} value={formData.title} name='title' placeholder='Enter Title' className='input' />
-            <input required type="text" onChange={handleChange} value={formData.position} name='position' placeholder='Enter Position' className='input' />
+            <select onChange={handleChange} id="searchByPosition" name='position' className='input'>
+              <option value="">Select Position</option>
+              <option value="member">Member</option>
+              <option value="secretary">Secretary</option>
+              <option value="president">President</option>
+            </select>
           </div>
           <div className="form_wrap">
             <input onChange={handleFileChange} type="file" name='photo' className={`input ${imgLoading ? "border border-red-600 duration-150" : null}`} />
@@ -70,7 +98,7 @@ export default function AddComitee() {
 
           <div className="form_btn_wrap mt-6">
             <button type='submit' className='formBtn'>
-              {isLoading ? "Posting . . ." : "Add Member"}
+              {isLoading ? "Posting . . ." : condition ? "Update" : "Add Member"}
               <span className='text-xl'><MdAdd /></span> </button>
           </div>
         </form>

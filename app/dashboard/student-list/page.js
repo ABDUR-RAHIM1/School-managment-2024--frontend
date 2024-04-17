@@ -56,23 +56,17 @@ export default function AccessStudent() {
         <h2 className='text-2xl'>Student List</h2>
         <ReloadButton />
       </div>
-      <div className="studentFilter">
-        <div>
-          <p>Student Name</p>
-          <input onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Search" />
-        </div>
-        <div>
-          <p>Class</p>
-          <select onChange={(e) => setSearch(e.target.value)} className="input text-gray-500">
-            <option value="">All</option>
-            <option value="six">Six</option>
-            <option value="seven">Seven</option>
-            <option value="eight">Eight</option>
-            <option value="nine">Nine</option>
-            <option value="ten">Ten</option>
+      <div className="search_wrap">
+        <input onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Search By Name" className="input" />
+        <select onChange={(e) => setSearch(e.target.value)} className="input text-gray-500">
+          <option value="">Search By Class</option>
+          <option value="six">Six</option>
+          <option value="seven">Seven</option>
+          <option value="eight">Eight</option>
+          <option value="nine">Nine</option>
+          <option value="ten">Ten</option>
 
-          </select>
-        </div>
+        </select>
 
       </div>
 

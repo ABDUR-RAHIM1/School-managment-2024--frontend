@@ -32,17 +32,18 @@ export default function ManageFees() {
       <PageHeader text="Manage Student Fee's" />
 
 
-      <div className='flex items-center justify-between gap-4'>
-        <select onChange={(e) => setSearch(e.target.value)} name="classCode" className='input' >
-          <option value="">Select Class</option>
-          <option value="06">Six</option>
-          <option value="07">Seven</option>
-          <option value="08">Eight</option>
-          <option value="09">Nine</option>
-          <option value="10">Ten</option>
-        </select>
+      <div className='search_wrap'>
 
         <input onChange={(e) => setSearch(e.target.value)} type="search" className='input' placeholder='Search By Student Name' />
+        <select onChange={(e) => setSearch(e.target.value)} name="classCode" className='input' >
+          <option value="">Select Class</option>
+          <option value="06">Class 6</option>
+          <option value="07">Class 7</option>
+          <option value="08">Class 8</option>
+          <option value="09">Class 9</option>
+          <option value="10">Class 10</option>
+        </select>
+
       </div>
 
       <div className='my-3'>

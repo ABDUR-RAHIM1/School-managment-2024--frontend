@@ -42,7 +42,7 @@ export default function ManageBookLists() {
       <PageHeader text="Manage Book Lists" />
 
 
-      <div className='flex items-center justify-between gap-4 my-5'>
+      <div className='search_wrap'>
         <select onChange={(e) => setSearch(e.target.value)} name="byClassCode" id="byClassCode" className='input'>
           <option value="">Select Class</option>
           <option value="6">Class 6</option>

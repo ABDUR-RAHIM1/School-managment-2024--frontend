@@ -175,6 +175,9 @@
      .form_btn_wrap{
       @apply w-full md:w-[60%] m-auto
      }
+     .search_wrap{
+      @apply my-4 flex items-center justify-between gap-4
+     }
  }
  
  @layer base{

@@ -32,7 +32,7 @@ export default function PostsTable(props) {
         {
             name: "Content",
             selector: info => info.content,
-            cell: info => info.content.length > 20 ? info.content.slice(0, 15) : info.content
+            cell: info => info.content.length > 20 ? info.content.slice(0, 20) : info.content
         },
         {
             name: "Date",

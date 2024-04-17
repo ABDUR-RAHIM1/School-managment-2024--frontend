@@ -33,23 +33,20 @@ export default function ManageTecher() {
   return (
     <div className="adminPage">
       <PageHeader text="Teachers List" />
-      <div className="studentFilter">
-        <div>
-          <p>Teacher Name</p>
-          <input onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Search" />
-        </div>
-        <div>
-          <p>Class</p>
-          <select onChange={(e) => setSearch(e.target.value)} className="input text-gray-500">
-            <option value="">All</option>
-            <option value="six">Six</option>
-            <option value="seven">Seven</option>
-            <option value="eight">Eight</option>
-            <option value="nine">Nine</option>
-            <option value="ten">Ten</option>
+      <div className="search_wrap">
 
-          </select>
-        </div>
+        <input onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Search" className="input" />
+
+
+        <select onChange={(e) => setSearch(e.target.value)} className="input text-gray-500">
+          <option value="">Search By Class</option>
+          <option value="six">Six</option>
+          <option value="seven">Seven</option>
+          <option value="eight">Eight</option>
+          <option value="nine">Nine</option>
+          <option value="ten">Ten</option>
+
+        </select>
 
       </div>
 

@@ -32,20 +32,15 @@ export default function ManageStudent() {
       </div>
 
 
-      <div className="studentFilter">
-        <div>
-          <p>Student Name</p>
-          <input onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Search" />
-        </div>
-        <div>
-          <p>Status</p>
-          <select onChange={(e) => setSearch(e.target.value)} className="input text-gray-500">
-            <option value="">All</option>
-            <option value="active">Active</option>
-            <option value="pending">Pending</option>
-            <option value="banned">Banned</option>
-          </select>
-        </div>
+      <div className="search_wrap">
+        <input onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Search By Name" className="input" />
+
+        <select onChange={(e) => setSearch(e.target.value)} className="input text-gray-500">
+          <option value="">All</option>
+          <option value="active">Active</option>
+          <option value="pending">Pending</option>
+          <option value="banned">Banned</option>
+        </select>
       </div>
 
 

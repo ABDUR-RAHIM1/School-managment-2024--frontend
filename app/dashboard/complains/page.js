@@ -1,5 +1,5 @@
 "use client"
-import { GlobalState } from "@/ContextApi/ContextApi" 
+import { GlobalState } from "@/ContextApi/ContextApi"
 import Loader from "@/components/Utils/Loader"
 import ReloadButton from "@/components/Utils/ReloadButton"
 import ComplainTable from "@/components/dashboard/ComplainTable"
@@ -44,19 +44,13 @@ export default function ManageComplains() {
         <ReloadButton />
       </div>
 
-      <div className="studentFilter">
-        <div>
-          <p>Student Name</p>
-          <input onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Search" />
-        </div>
-        <div>
-          <p>Status</p>
-          <select onChange={(e) => setSearch(e.target.value)} className="input text-gray-500">
-            <option value="">All</option>
-            <option value="checked">Seen</option>
-            <option value="pending">Unseen</option>
-          </select>
-        </div>
+      <div className="search_wrap">
+        <input onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Search" className="input"/>
+        <select onChange={(e) => setSearch(e.target.value)} className="input text-gray-500">
+          <option value="">Search By Status</option>
+          <option value="checked">Seen</option>
+          <option value="pending">Unseen</option>
+        </select>
       </div>
 
       <div className="flex items-center justify-between my-4">
