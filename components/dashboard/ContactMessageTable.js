@@ -28,7 +28,7 @@ export default function ContactMessageTable(props) {
     },
     {
       name: "Message",
-      selector: info => info.message.slice(0, 17)
+      selector: info => info.message.length > 17 ? info.message.slice(0, 17) : info.message
     },
     {
       name: "Date",

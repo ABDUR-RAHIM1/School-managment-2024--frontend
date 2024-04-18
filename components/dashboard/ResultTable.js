@@ -1,15 +1,11 @@
 "use client"
 import React from 'react'
 import DataTable from 'react-data-table-component';
-import { MdEdit } from 'react-icons/md';
+import { MdDelete, MdEdit } from 'react-icons/md';
 
 export default function ResultTable(props) {
-    const { info, handleEditResult } = props;
-
-
-    info.forEach(element => {
-        console.log(element.marks)
-    });
+    const { info, handleEditResult, handleCheckBox, checkIds, handleDeleteResults } = props;
+    const route = "/results/delete-many"
 
 
 
@@ -33,8 +29,14 @@ export default function ResultTable(props) {
 
     const columns = [
         {
-            name: "Select",
-            selector: info => <input type="checkbox" />
+            name: <div>
+                {
+                    checkIds.length > 0 ?
+                        <span onClick={() => handleDeleteResults(route)} className='deleteBtn'><MdDelete /></span>
+                        : "Select"
+                }
+            </div>,
+            selector: info => <input onChange={(e) => handleCheckBox(e, info._id)} type="checkbox" />
         },
         {
             name: "Student Name",

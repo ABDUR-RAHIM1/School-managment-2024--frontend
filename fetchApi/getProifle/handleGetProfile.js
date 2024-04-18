@@ -1,6 +1,6 @@
 import { API } from "../API"
 
-export const handleGetProfile = async (route, id) => {
+export const handleGetProfile = async (route) => {
     try {
         const response = await fetch(API + route, {
             cache: "no-store"

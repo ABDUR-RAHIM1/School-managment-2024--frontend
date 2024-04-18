@@ -178,6 +178,9 @@
      .search_wrap{
       @apply my-4 flex items-center justify-between gap-4
      }
+     .link{
+      @apply text-blue-600  capitalize hover:underline
+     }
  }
  
  @layer base{
@@ -194,19 +197,27 @@
     transition: 2s all ease;
     text-align: center; 
   }
-   ::-webkit-scrollbar {
-    width: 5px;               
+  input::file-selector-button {
+    font-weight: bold;
+    color: dodgerblue;
+    padding: 0.5em;
+    border: thin solid dodgerblue;
+    border-radius: 3px;
   }
-  
-   ::-webkit-scrollbar-track {
-    background: rgb(19, 26, 37);        
+   ::-webkit-scrollbar {
+    width: 5px;  
+    height: 8px;             
   }
   
    ::-webkit-scrollbar-thumb {
-    background-color: rgb(169, 170, 173);   
-    border-radius: 20px;       
+    background-color: rgb(119, 152, 248);   
+    border-radius: 10px;       
   }
-
+  ::-webkit-scrollbar-track-piece{
+    background-color: rgb(41, 89, 230); ;
+    height: 5px;
+  }
+ 
   /* loader animation */
   .loader {
     width: 48px;
