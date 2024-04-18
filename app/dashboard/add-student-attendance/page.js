@@ -29,7 +29,7 @@ export default function AddStudentAttendance() {
           <option value="9">Class 9</option>
           <option value="10">Class 10</option>
         </select>
-        <select onChange={(e) => setSearch(e.target.value)} name="byClassGroup" id="byClassCode" className='input'>
+        <select onChange={(e) => setSearch(e.target.value)} name="byClassGroup" id="byClassGroup" className='input'>
           <option value="">Select Group</option>
           <option value="science">Science</option>
           <option value="arts">Arts</option>

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react'
-import DataTable from 'react-data-table-component'; 
+import DataTable from 'react-data-table-component';
 
 export default function StudentAttendancetable(props) {
     const { info, handlePostAttendance } = props;
@@ -13,19 +13,19 @@ export default function StudentAttendancetable(props) {
     }
     const [formData, setFormData] = useState(initialFormData)
 
-
+    // console.log(formData)
     const handleAttendanceStatus = async (e, stInfo) => {
         const { value } = e.target;
 
         if (value) {
-
-            setFormData({
-                ...formData, 
+            const formValue = {
+                ...formData,
                 studentId: stInfo.studentId,
                 status: e.target.value
-            })
+            }
+            console.log(formValue)
             const route = "/attendence/create"
-            await handlePostAttendance(route, formData)
+            await handlePostAttendance(route, formValue);
 
         } else {
             setFormData({})
@@ -49,7 +49,7 @@ export default function StudentAttendancetable(props) {
         {
             name: "Name",
             selector: info => <Link className='link' href={`/dashboard/student-profile/${info.studentId}`} >
-             {info.name}
+                {info.name}
             </Link>
         },
         {
@@ -67,8 +67,9 @@ export default function StudentAttendancetable(props) {
         {
             name: "Status",
             selector: info => <div className='w-[150px]'>
-        
+
                 <select onChange={(e) => handleAttendanceStatus(e, info)} name="status" className='py-2 px-3 rounded-md border border-gray-300'>
+                    <option className='text-red-700' value="">Status</option>
                     <option value="Absent">Absent</option>
                     <option value="Present">Present</option>
                     <option value="Late">Late</option>

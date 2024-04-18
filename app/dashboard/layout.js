@@ -63,7 +63,7 @@ export default function DashboardLayout({ children }) {
                     }</span>
                 </div>
                 <div className="w-[350px] relative">
-                    <input onChange={handleSearch} type="search" className='searchInput' placeholder='search here' />
+                    <input onChange={handleSearch} name='searchItem' type="search" className='searchInput' placeholder='search here' />
                     <span className='text-3xl absolute top-3 left-2'> <IoIosSearch /> </span>
 
 
