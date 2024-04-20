@@ -23,13 +23,14 @@ export default function AddComitee() {
   const [formData, setFormData] = useState(initialFormData);
   const handleChange = (e) => {
     const { name, value } = e.target
-    setFormData({ ...formData, [name]: value })
+    if (name === "photo") {
+      const file = e.target.files[0]
+      UploadFIle(file)
+    } else {
+      setFormData({ ...formData, [name]: value })
+    }
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0]
-    UploadFIle(file)
-  }
   useEffect(() => {
     setFormData(prevFormData => ({
       ...prevFormData,
@@ -93,7 +94,7 @@ export default function AddComitee() {
             </select>
           </div>
           <div className="form_wrap">
-            <input onChange={handleFileChange} type="file" name='photo' className={`input ${imgLoading ? "border border-red-600 duration-150" : null}`} />
+            <input onChange={handleChange} type="file" name='photo' className={`input ${imgLoading ? "border border-red-600 duration-150" : null}`} />
           </div>
 
           <div className="form_btn_wrap mt-6">
