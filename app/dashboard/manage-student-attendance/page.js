@@ -1,36 +1,34 @@
 'use client'
 import { GlobalState } from '@/ContextApi/ContextApi'
+import AttendanceEditModal from '@/components/Utils/AttendanceEditModal'
 import Loader from '@/components/Utils/Loader'
 import PageHeader from '@/components/Utils/PageHeader'
 import StudentAttendanceManagmentTable from '@/components/dashboard/StudentAttendanceManagmentTable'
 import React, { useContext, useLayoutEffect, useState } from 'react'
 
 export default function ManageStudentAttendance() {
-  const { getAllDataFunc, isLoading, data, search, setSearch, reload, HandleCheckIds, checkIds, multipleDeleteFunc } = useContext(GlobalState)
+  const { getAllDataFunc, isLoading, data, search, setSearch, reload, HandleCheckIds, checkIds, multipleDeleteFunc, setEditValue, showModal, setShowModal } = useContext(GlobalState)
 
-  const [dateFilter, setDateFilter] = useState("")
-  const [newData, setNewData] = useState([])
+
 
   useLayoutEffect(() => {
     const route = `/attendence/all?search=${search}`
     getAllDataFunc(route)
 
-    const newDate = dateFilter !== "" && new Date(dateFilter).toISOString()
-    const filterData = data.filter(item => item.dateByday === newDate)
- 
-    if (filterData.length > 0) {
-      setNewData(filterData)
-    } else {
-      setNewData(data)
-    }
 
-  }, [reload, search, dateFilter])
- 
+  }, [reload, search])
+
 
   const handleCheckBox = (e, ids) => {
     const isCheck = e.target.checked;
     HandleCheckIds(isCheck, ids)
   }
+
+  const handleEditAttendance = (editInfo) => {
+    setEditValue(editInfo)
+    setShowModal(true)
+  }
+
 
 
   if (isLoading) {
@@ -50,26 +48,31 @@ export default function ManageStudentAttendance() {
           <option value="9">Class 9</option>
           <option value="10">Class 10</option>
         </select>
-        <input onChange={(e) => setDateFilter(e.target.value)} type="date" name='searchByDate' className='input' />
+        <input type="date" name='searchByDate' className='input' />
       </div>
 
 
 
-      <div>
-        Showing {newData.length} Results
+      <div className='my-4'>
+        Showing {data.length} Results
       </div>
 
 
       <div>
         <StudentAttendanceManagmentTable
-          info={newData}
+          info={data}
           handleCheckBox={handleCheckBox}
           checkIds={checkIds}
           handleDeleteAttendance={multipleDeleteFunc}
+          handleEditAttendance={handleEditAttendance}
         />
       </div>
 
-
+      {
+        showModal && <AttendanceEditModal 
+         editRoute="/attendence/edit/"
+        />
+      }
 
     </div>
   )

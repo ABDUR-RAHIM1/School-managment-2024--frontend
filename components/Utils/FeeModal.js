@@ -4,7 +4,7 @@ import { MdClose } from 'react-icons/md'
 
 export default function FeeModal(props) {
     const { closeModel } = props;
-    const { editValue, editDataFunc, isLoading } = useContext(GlobalState)
+    const { editValue, editDataFunc, editLoading } = useContext(GlobalState)
     const [info, setInfo] = useState({ feeFor: "", feeAmount: "" })
 
     const handleChange = (e) => {
@@ -43,7 +43,7 @@ export default function FeeModal(props) {
                     <input defaultValue={info.feeAmount} onChange={handleChange} name='feeAmount' type="number" className='input' placeholder='Fee Amount' />
                     <button onClick={handleUpdateFee} type='submit' className='formBtn'>
                         {
-                            isLoading ? "Posting . ." : "Update"
+                            editLoading ? "Posting . ." : "Update"
                         }
                     </button>
                 </div>

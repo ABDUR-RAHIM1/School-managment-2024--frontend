@@ -4,10 +4,10 @@ import React from 'react'
 import DataTable from 'react-data-table-component'
 import { MdDelete, MdDone, MdEdit, MdError, MdWarning } from 'react-icons/md'
 
-export default function StudentAttendanceManagmentTable(props) {
+export default function TeacherAttendanceManagmentTable(props) {
     const { info, handleCheckBox, checkIds, handleDeleteAttendance, handleEditAttendance } = props
 
-    const route = "/attendence/delete-many"
+    const route = "/attendence/teacher/delete-many"
     const columns = [
         {
             name: <div>
@@ -21,21 +21,13 @@ export default function StudentAttendanceManagmentTable(props) {
         },
         {
             name: "Name",
-            selector: info => <Link href={`/dashboard/student-profile/${info.studentId}`} className='link'>
-                {info.studentName}
+            selector: info => <Link href={`/dashboard/profile/${info.teacherId}`} className='link'>
+                {info.teacherName}
             </Link>
         },
         {
-            name: "Class",
-            selector: info => info.classCode
-        },
-        {
-            name: "Roll",
-            selector: info => info.roll
-        },
-        {
-            name: "Group",
-            selector: info => info.group
+            name: "Email",
+            selector: info => info.email
         },
         {
             name: "Day",
@@ -43,7 +35,7 @@ export default function StudentAttendanceManagmentTable(props) {
         },
         {
             name: "Status",
-            selector: info => <div className={` flex items-center min-w-[85px] justify-center gap-2 py-2 px-3  rounded-sm border ${info.status === "Present" ? "text-blue-600 border-blue-600" : info.status === "Absent" ? "text-black border-black" : "text-yellow-600 border-yellow-600"
+            selector: info => <div className={` flex items-center min-w-[100px] justify-center gap-2 py-2 px-3  rounded-sm border ${info.status === "Present" ? "text-blue-600 border-blue-600" : info.status === "Absent" ? "text-black border-black" : "text-yellow-600 border-yellow-600"
                 }`}>
                 {info.status} <small className='text-xl'>
                     {info.status === "Present" ? <MdDone /> : info.status === "Absent" ? <MdError /> : <MdWarning />}

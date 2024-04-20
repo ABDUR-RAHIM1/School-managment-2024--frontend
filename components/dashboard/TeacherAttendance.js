@@ -4,27 +4,26 @@ import React, { useState } from 'react'
 import DataTable from 'react-data-table-component';
 import dummyImg from "@/public/images/sd.png"
 
-export default function StudentAttendancetable(props) {
+export default function TeacherAttendancetable(props) {
     const { info, handlePostAttendance } = props;
 
     const initialFormData = {
-        studentId: "",
+        teacherId: "",
         dateByday: new Date().toISOString().slice(0, 10),
         status: ""
     }
     const [formData, setFormData] = useState(initialFormData)
 
-    // console.log(formData)
     const handleAttendanceStatus = async (e, stInfo) => {
         const { value } = e.target;
 
         if (value) {
             const formValue = {
                 ...formData,
-                studentId: stInfo.studentId,
+                teacherId: stInfo.teacherId,
                 status: e.target.value
             }
-            const route = "/attendence/create"
+            const route = "/attendence/teacher/add"
             await handlePostAttendance(route, formValue);
 
         } else {
@@ -41,28 +40,20 @@ export default function StudentAttendancetable(props) {
                     src={info.photo || dummyImg}
                     width={1000}
                     height={1000}
-                    alt='student photo'
+                    alt='teacher photo'
                     className='w-full h-full rounded-full'
                 />
             </div>
         },
         {
             name: "Name",
-            selector: info => <Link className='link' href={`/dashboard/student-profile/${info.studentId}`} >
+            selector: info => <Link className='link' href={`/dashboard/profile/${info.teacherId}`} >
                 {info.name}
             </Link>
         },
         {
-            name: "Class",
-            selector: info => info.classCode
-        },
-        {
-            name: "Roll",
-            selector: info => info.roll
-        },
-        {
-            name: "Group",
-            selector: info => info.group
+            name: "Email",
+            selector: info => info.email
         },
         {
             name: "Status",

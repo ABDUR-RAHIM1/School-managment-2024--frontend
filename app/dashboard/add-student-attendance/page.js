@@ -5,7 +5,7 @@ import StudentAttendancetable from '@/components/dashboard/StudentAttendancetabl
 import React, { useContext, useLayoutEffect, useState } from 'react'
 
 export default function AddStudentAttendance() {
-  const { getAllDataFunc, data, isLoading, search, setSearch, postAllDataFunc } = useContext(GlobalState)
+  const { getAllDataFunc, data, search, setSearch, postAllDataFunc } = useContext(GlobalState)
 
 
 

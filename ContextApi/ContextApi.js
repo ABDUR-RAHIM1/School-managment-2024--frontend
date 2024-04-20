@@ -10,11 +10,13 @@ export const GlobalState = createContext();
 
 export const MyState = ({ children }) => {
   const [isLoading, setIsLoding] = useState(false)
+  const [editLoading, setEditLoding] = useState(false)
   const [data, setData] = useState([])
   const [search, setSearch] = useState("")
   const [reload, setReload] = useState(false);
   const [imgLoading, setImgLoading] = useState(false)
   const [editValue, setEditValue] = useState({})
+  const [showModal, setShowModal] = useState(false)
   const [checkIds, setCheckIds] = useState([])
   const [imgUrl, setImgUrl] = useState("")
 
@@ -60,14 +62,14 @@ export const MyState = ({ children }) => {
 
   //  handle all Update data (put method (reusable) )
   const editDataFunc = async (route, info) => {
-    setIsLoding(true)
+    setEditLoding(true)
     try {
       const result = await handleUpdate(route, info);
       result.ok ? toast.success(result.message) : toast.warning(result.message)
     } catch (error) {
       console.log(error)
     } finally {
-      setIsLoding(false)
+      setEditLoding(false)
     }
   }
 
@@ -118,11 +120,13 @@ export const MyState = ({ children }) => {
   const value = {
     reload, setReload,
     editValue, setEditValue,
+    editLoading, setEditLoding,
     postAllDataFunc,
     getAllDataFunc, isLoading, data,
     search, setSearch,
     HandleCheckIds, checkIds,
     editDataFunc,
+    showModal, setShowModal,
     multipleDeleteFunc,
     UploadFIle, imgUrl,
     imgLoading, setImgLoading,
