@@ -9,12 +9,7 @@ export default function ManageAllContent() {
           Add Contents
         </Link>
       </button>
-      <ManageContent />
-      <p>add logo</p>
-      <p>aabout page</p>
-      <p>add tour slider</p>
-      <p>add main slider</p>
-      <p>add headline</p>
+      <ManageContent /> 
     </div>
   )
 }

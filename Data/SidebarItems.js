@@ -211,7 +211,31 @@ export const sidebarItems = [
         item: "settings",
         subItems: [
             {
+                item: "Add content",
+                link: "/dashboard/manage-content/add-content",
+            },
+            {
                 item: "manage content",
+                link: "/dashboard/manage-content",
+            },
+            {
+                item: "Logo",
+                link: "/dashboard/manage-content",
+            },
+            {
+                item: "Headline",
+                link: "/dashboard/manage-content",
+            },
+            {
+                item: "About Page",
+                link: "/dashboard/manage-content",
+            },
+            {
+                item: "Slider Main",
+                link: "/dashboard/manage-content",
+            },
+            {
+                item: "Slider Tour",
                 link: "/dashboard/manage-content",
             },
         ]

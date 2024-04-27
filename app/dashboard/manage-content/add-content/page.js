@@ -1,10 +1,12 @@
-import UploadContent from '@/components/dashboard/Settings/UploadContent'
+ 
 import React from 'react'
+import UploadLogo from '@/components/dashboard/Settings/UploadLogo' 
 
 export default function AddContent() {
     return (
         <div>
-             <UploadContent/>
+            
+            <UploadLogo /> 
         </div>
     )
 }
