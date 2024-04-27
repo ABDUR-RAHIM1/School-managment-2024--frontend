@@ -6,7 +6,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import { MdAdd } from 'react-icons/md'
 
 export default function UploadAbout() {
-    const { postAllDataFunc, isLoading, UploadFIle, imgLoading, imgUrl } = useContext(GlobalState)
+    const { postAllDataFunc, isLoading, UploadFIle, imgLoading, imgUrl, editValue, editDataFunc , editLoading } = useContext(GlobalState)
+
+
+    const condition = Object.keys(editValue).length !== 0
+
+
     const initialFormData = {
         title: "",
         content: "",
@@ -35,13 +40,26 @@ export default function UploadAbout() {
             photo: imgUrl
         }));
 
+
+
+        //  set edit value is state
+        if (condition) {
+            setFormData(editValue)
+        }
+
+
     }, [imgUrl]);
 
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const route = `/about/add`
-        postAllDataFunc(route, formData)
+        const postRoute = `/about/add`
+        const editRoute = `/about/edit/${editValue._id}`
+
+        condition ?
+            editDataFunc(editRoute, formData)
+            :
+            postAllDataFunc(postRoute, formData)
     }
 
 
@@ -49,7 +67,7 @@ export default function UploadAbout() {
         <div className='adminPage my-5'>
 
             <div>
-                <Heading text=" About Page Content" />
+                <Heading text={condition ? "Update Content" : " About Page Content"} />
                 <form onSubmit={handleSubmit} className='form' action="">
                     <input
                         required
@@ -62,7 +80,7 @@ export default function UploadAbout() {
                     />
 
                     <textarea
-                       rows={10} 
+                        rows={10}
                         required
                         onChange={handleChange}
                         type="text"
@@ -74,7 +92,7 @@ export default function UploadAbout() {
 
                     <div className="form_group">
                         <input
-                            required
+                            required={!condition}
                             onChange={handleChange}
                             type="file"
                             name='photo'
@@ -86,7 +104,7 @@ export default function UploadAbout() {
                     <div className="form_btn_wrap">
                         <button disabled={imgLoading} className='formBtn'>
                             {
-                                isLoading ? <Spinner /> : "Add"
+                                isLoading || editLoading ? <Spinner /> : condition ? "Update" : "Add"
                             }
                             <span span className="text-xl"><MdAdd /></span>
                         </button>

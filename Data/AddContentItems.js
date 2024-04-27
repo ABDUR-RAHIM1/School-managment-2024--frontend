@@ -1,23 +1,23 @@
 const addContentItem = [
     {
         text: "Add Logo",
-        href: "/dashboard/manage-content/add-content/add-logo", 
+        href: "/dashboard/add-content", 
     },
     {
         text: "Add Headline",
-        href: "/dashboard/manage-content/add-content/add-headline", 
+        href: "/dashboard/add-content/add-headline", 
     },
     {
         text: "Add About Page",
-        href: "/dashboard/manage-content/add-content/add-about", 
+        href: "/dashboard/add-content/add-about", 
     },
     {
         text: "Add Slider",
-        href: "/dashboard/manage-content/add-content/add-slider", 
+        href: "/dashboard/add-content/add-slider", 
     },
     {
         text: "Add Tour Gallery",
-        href: "/dashboard/manage-content/add-content/add-tour", 
+        href: "/dashboard/add-content/add-tour", 
     }
 ];
 

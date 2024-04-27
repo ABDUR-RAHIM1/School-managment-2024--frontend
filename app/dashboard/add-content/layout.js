@@ -14,8 +14,8 @@ export default function AddContentLayout({ children }) {
                  <h2 className='text-2xl italic font-medium mb-4'>Add Content</h2>
                 <div className='flex flex-col gap-4 my-4'>
                     {
-                        addContentItem.map(ad => (
-                            <div className='flex items-center gap-2'>
+                        addContentItem.map((ad, i) => (
+                            <div key={i} className='flex items-center gap-2'>
                                 <MdLabel className='text-2xl' />
                                 <Link key={ad.href} href={ad.href}>
                                     {ad.text}

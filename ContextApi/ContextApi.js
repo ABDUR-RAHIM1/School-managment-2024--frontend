@@ -1,4 +1,5 @@
 "use client"
+import { handleAllDeleteMethod } from "@/fetchApi/DeleteMethod/handleAllDeleteMethod";
 import { handleDeleteMany } from "@/fetchApi/DeleteMethod/handleDeleteMany";
 import { handleAllGetMethod } from "@/fetchApi/GetMethod/handleAllGetMethod";
 import { handleUpdate } from "@/fetchApi/UpdateMethod/handleAllUpdateMethod";
@@ -19,6 +20,10 @@ export const MyState = ({ children }) => {
   const [showModal, setShowModal] = useState(false)
   const [checkIds, setCheckIds] = useState([])
   const [imgUrl, setImgUrl] = useState("")
+
+
+
+
 
   // select multple or single items for delete (ID)
   const HandleCheckIds = async (isCheck, ids) => {
@@ -51,8 +56,13 @@ export const MyState = ({ children }) => {
   const getAllDataFunc = async (route) => {
     !search && !reload && setIsLoding(true)
     try {
-      const routines = await handleAllGetMethod(route);
-      setData(routines)
+      const results = await handleAllGetMethod(route);
+
+      if (results.length > 0) {
+        const reverseData = results.slice().reverse()
+        setData(reverseData)
+      }
+
     } catch (error) {
       console.log(error)
     } finally {
@@ -70,6 +80,16 @@ export const MyState = ({ children }) => {
       console.log(error)
     } finally {
       setEditLoding(false)
+    }
+  }
+
+  //  single Delete function
+  const singleDeleteFunc = async (route) => {
+    try {
+      const result = await handleAllDeleteMethod(route);
+      result.ok ? toast.success(result.message) : toast.warning(result.message)
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -127,6 +147,7 @@ export const MyState = ({ children }) => {
     HandleCheckIds, checkIds,
     editDataFunc,
     showModal, setShowModal,
+    singleDeleteFunc,
     multipleDeleteFunc,
     UploadFIle, imgUrl,
     imgLoading, setImgLoading,

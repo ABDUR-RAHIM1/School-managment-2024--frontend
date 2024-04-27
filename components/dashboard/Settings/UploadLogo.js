@@ -56,7 +56,7 @@ export default function UploadLogo() {
             ?
             editDataFunc(editRoute, formData)
             :
-            postAllDataFunc(route, formData)
+            postAllDataFunc(postRoute, formData)
     }
 
 

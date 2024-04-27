@@ -26,7 +26,7 @@ export default function ManageHeadline() {
 
   const handlEditHeadline = (editInfo) => {
     setEditValue(editInfo);
-    router.push("/dashboard/manage-content/add-content")
+    router.push("/dashboard/add-content/add-headline")
   }
 
 

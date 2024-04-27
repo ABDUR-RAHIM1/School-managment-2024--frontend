@@ -1,32 +1,22 @@
 "use client"
-import { GlobalState } from '@/ContextApi/ContextApi';
-import { UploadFIle } from '@/Helpers/UploadFile';
-import Image from 'next/image';
-import dummyImg from "@/public/images/sd.png"
-import React, { useContext, useState } from 'react'
+import PeopleCounter from '@/components/dashboard/Home/PeopleCounter'
+import React from 'react'
+import { MdDashboard } from 'react-icons/md'
 
-export default function DashboardHome() {
-  const [imageUrl, setImageUrl] = useState('')
-  const { imgLoading } = useContext(GlobalState)
-
-  const handleFileChange = async (e) => {
-    const file = e.target.files[0];
-    const result = await UploadFIle(file)
-    setImageUrl(result)
-  }
-
-  console.log(imageUrl, imgLoading)
+export default function DashboadHome() {
   return (
-    <div className='w-[60%] m-auto'>
-      <form action="">
-        <input onChange={handleFileChange} type="file" />
-        <br />
-        <button className='formBtn'>Upload file</button>
-      </form>
+    <>
+      <div className='flex items-center gap-2 my-4 text-blue-950'>
+        <span className='text-4xl'>
+          <MdDashboard />
+        </span>
+        <h2 className='text-2xl font-medium '>Dashboard</h2>
+      </div>
 
-      
+
+      <PeopleCounter />
 
 
-    </div>
+    </>
   )
 }

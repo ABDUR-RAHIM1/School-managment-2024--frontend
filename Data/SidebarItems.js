@@ -212,31 +212,27 @@ export const sidebarItems = [
         subItems: [
             {
                 item: "Add content",
-                link: "/dashboard/manage-content/add-content",
-            },
-            {
-                item: "manage content",
-                link: "/dashboard/manage-content",
+                link: "/dashboard/add-content",
             },
             {
                 item: "Logo",
-                link: "/dashboard/manage-content",
+                link: "/dashboard/manage-logo",
             },
             {
                 item: "Headline",
-                link: "/dashboard/manage-content",
+                link: "/dashboard/manage-headline",
             },
             {
                 item: "About Page",
-                link: "/dashboard/manage-content",
+                link: "/dashboard/manage-about",
             },
             {
                 item: "Slider Main",
-                link: "/dashboard/manage-content",
+                link: "/dashboard/manage-slider",
             },
             {
                 item: "Slider Tour",
-                link: "/dashboard/manage-content",
+                link: "/dashboard/manage-tour",
             },
         ]
     },

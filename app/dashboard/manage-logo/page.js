@@ -27,7 +27,7 @@ export default function ManageLogo() {
 
     const handleEditLogo = (editInfo) => {
         setEditValue(editInfo)
-        router.push("/dashboard/manage-content/add-content")
+        router.push("/dashboard/add-content")
     }
 
 
