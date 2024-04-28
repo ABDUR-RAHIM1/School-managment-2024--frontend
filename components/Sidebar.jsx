@@ -20,7 +20,7 @@ export default function Sidebar() {
     }
 
     const handleSubItemClick = () => {
-        event.stopPropagation()  
+        event.stopPropagation()
     }
 
     const handleLogOut = () => {
@@ -34,7 +34,7 @@ export default function Sidebar() {
     return (
         <ul className='px-5 py-10'>
             {sidebarItems.map((item, index) => (
-                <li className={`sidebarItem ${activeItem === index ? "text-purple-500" : ""}`} key={index} onClick={() => handleItemClick(index)}>
+                <li className={`sidebarItem ${activeItem === index ? "bg-[#6459df] font-bold" : ""}`} key={index} onClick={() => handleItemClick(index)}>
                     <p className='flex items-center justify-between'>
                         <span className='flex items-center gap-2'>
                             <span className='text-2xl'>{item.icon}</span>  {item.item}</span>   <span><IoIosArrowForward /></span>
@@ -42,8 +42,8 @@ export default function Sidebar() {
                     {/*  sub menu */}
                     <ul className={`ml-5 ${activeItem === index ? "block" : "hidden"}`}>
                         {item.subItems && item.subItems.map((subItem, subIndex) => (
-                            <li onClick={handleSubItemClick} className={`sidebarSubItem ${path === subItem.link ? "bg-purple-200 text-purple-700 border-r-2 border-purple-700" : ""}`} key={subIndex}>
-                                <Link  href={subItem.link}>
+                            <li onClick={handleSubItemClick} className={`sidebarSubItem ${path === subItem.link ? "bg-[#463ac9]  border-r-4 border-[#1d1296]" : ""}`} key={subIndex}>
+                                <Link href={subItem.link}>
                                     {subItem.item}
                                 </Link>
                             </li>

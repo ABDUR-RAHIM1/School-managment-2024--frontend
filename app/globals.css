@@ -5,7 +5,7 @@
  @layer components{
   /*  dashboard start here */
   .dashCard{
-    @apply flex items-center justify-between py-4 px-2 w-[48%] md:w-[31%]  shadow-sm rounded-md
+    @apply flex items-center justify-between p-4 w-[48%] md:w-[31%]  shadow-sm rounded-md
   }
   .count{
     @apply font-medium text-2xl my-2
@@ -27,14 +27,14 @@
     @apply flex flex-wrap  bg-gray-200
    }
    .dashboardSidebar{
-     @apply h-screen overflow-y-auto duration-300 bg-white text-black 
+     @apply h-screen overflow-y-auto duration-300 bg-[#4d44b5] text-white 
    }
 
    .sidebarItem{
-     @apply capitalize tracking-widest my-3 py-3 px-3 font-bold cursor-pointer  hover:bg-purple-100 hover:text-purple-500 duration-300
+     @apply capitalize tracking-widest my-3 py-3 px-3 font-bold cursor-pointer  hover:bg-[#6459df] hover:text-white duration-300
    }
    .sidebarSubItem{
-    @apply my-3 hover:bg-purple-200 px-2 py-1 font-medium text-sm text-black hover:text-black
+    @apply my-3 hover:bg-[#695df4] px-2 py-1 font-medium text-sm text-white hover:text-white
    }
    .dashboardMain{
     @apply flex-1 px-4 py-10 h-screen overflow-y-auto
@@ -156,7 +156,39 @@
  /*  profile end here */
 
 
-     /*  dashboard end here */
+ /* 1 dashboard end here */
+
+ /*  1 client side start here mainAsideWrapper start here */
+     .mainAsideWrapper{
+      @apply flex justify-between flex-wrap
+     }
+     .mainAsideWrapper main{
+      @apply w-full md:w-[75%] border-r border-gray-500 px-5
+     }
+     .mainAsideWrapper aside{
+      @apply w-full md:w-[23%] px-2
+     }
+ /*  1 client side start here mainAsideWrapper end here */
+
+
+ /*  basic utils start here */
+
+ .bgColor{
+   @apply bg-green-800
+ }
+ .card{
+  @apply shadow-md py-4 my-4 text-sm
+ }
+ 
+ .card div{
+  @apply my-4  
+ }
+ .btn_wrap{
+  @apply flex justify-end
+ }
+.myBtn{
+  @apply py-2 px-4 bgColor text-white font-medium rounded-md my-2 text-sm
+}
      .modalHeader{
       @apply  flex items-center justify-center bg-black bg-opacity-80 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50  w-full md:inset-0 h-[calc(100%-1rem)] max-h-full
      }
@@ -195,9 +227,43 @@
       padding: 0;
       box-sizing: border-box;
    }
-   body{
+   body{ 
     color: rgb(78, 77, 77);
    }
+
+   /*  navbar responsive start*/
+   .nav_menu_icon{
+      display: none;
+   }
+
+
+   @media screen and (max-width:768px) {
+    .nav_menu_icon{
+      display: block;
+      z-index: 999;
+   }
+   .navUl {
+    flex-direction: column;
+    width: 60%;
+    height: 100ch;
+    padding: 50px 0px;
+    background-color: #4d44b5;
+    color: white;
+    align-items: center; 
+    padding: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 1;  
+    transition: opacity 1s ease;
+}
+ 
+   }
+
+
+   /*  navbar responsive end */
+
+
   input[type="checkbox"]{
     cursor: pointer;
     transition: 2s all ease;
@@ -216,11 +282,13 @@
   }
   
    ::-webkit-scrollbar-thumb {
-    background-color: rgb(119, 152, 248);   
+    /* background-color: rgb(119, 152, 248);    */
+    background-color: rgb(193, 195, 197);
     border-radius: 10px;       
   }
   ::-webkit-scrollbar-track-piece{
-    background-color: rgb(41, 89, 230); ;
+    /* background-color: rgb(41, 89, 230); ; */
+    background-color: white;
     height: 5px;
   }
  
