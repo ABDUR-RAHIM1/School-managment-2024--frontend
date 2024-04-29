@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import { useLayoutEffect } from 'react';
-import {  Slide } from 'react-slideshow-image';
+import { Zoom } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 import { handleAllGetMethod } from '@/fetchApi/GetMethod/handleAllGetMethod';
 
@@ -18,11 +18,11 @@ export default function TourSlider() {
         }
         getAllData()
     }, [])
- 
- 
+
+
     return (
         <div className="slide-container w-full overflow-hidden">
-            <Slide>
+            <Zoom scale={0.4}>
                 {data.map((item) => (
                     <div className='relative' key={item._id}>
                         <img className='w-full h-[300px]' src={item.photo} />
@@ -31,8 +31,8 @@ export default function TourSlider() {
                         </span>
                     </div>
                 ))}
-            </Slide>
-          
+            </Zoom>
+
         </div>
     )
 }

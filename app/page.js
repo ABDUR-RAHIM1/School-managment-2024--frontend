@@ -1,4 +1,4 @@
-import Sidebar from '@/components/Client/Aside/Sidebar'
+import Sidebar from '@/components/Client/Aside/HomeSidebar'
 import About from '@/components/Client/Main/About'
 import AcademicInfo from '@/components/Client/Main/AcademicInfo'
 import Committe from '@/components/Client/Main/Committe'

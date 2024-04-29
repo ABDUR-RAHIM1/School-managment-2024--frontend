@@ -5,8 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { MyState } from "@/ContextApi/ContextApi";
 import MainSlider from "@/components/Client/MainSlider";
 import Headline from "@/components/Client/Headline";
-import Navbar from "@/components/Client/Navbar";
-import Sidebar from "@/components/Client/Aside/Sidebar";
+import Navbar from "@/components/Client/Navbar"; 
+import HomeSidebar from "@/components/Client/Aside/HomeSidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
             </main>
 
             <aside>
-              <Sidebar />
+              <HomeSidebar />
             </aside>
 
           </div>

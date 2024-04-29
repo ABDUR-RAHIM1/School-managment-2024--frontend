@@ -166,9 +166,18 @@
       @apply w-full md:w-[75%] md:border-r border-gray-500 px-5
      }
      .mainAsideWrapper aside{
-      @apply w-full md:w-[23%] px-2
+      @apply w-full md:w-[24%] px-2
      }
- /*  1 client side start here mainAsideWrapper end here */
+
+     .sidebarCard{
+      @apply shadow-md  p-1 my-2 w-full rounded-md  
+     }
+     .sidebarFooter{
+      @apply w-full block capitalize bg-green-800 text-white text-center py-1
+     }
+
+
+ /*  1 client side  mainAsideWrapper end here */
 
 
  /*  basic utils start here */
