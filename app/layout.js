@@ -3,6 +3,10 @@ import "./globals.css";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { MyState } from "@/ContextApi/ContextApi";
+import MainSlider from "@/components/Client/MainSlider";
+import Headline from "@/components/Client/Headline";
+import Navbar from "@/components/Client/Navbar";
+import Sidebar from "@/components/Client/Aside/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +21,24 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <ToastContainer />
         <MyState>
-          {children}
+
+
+          <MainSlider />
+          <Headline />
+          <Navbar />
+
+          <div className='mainAsideWrapper'>
+
+            <main>
+              {children}
+            </main>
+
+            <aside>
+              <Sidebar />
+            </aside>
+
+          </div>
+
         </MyState>
       </body>
     </html>

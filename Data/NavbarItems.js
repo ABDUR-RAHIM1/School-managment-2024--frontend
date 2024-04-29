@@ -15,11 +15,11 @@ export const navbarItems = [
         subItem: [
             {
                 item: "আমাদের সম্পর্কে",
-                link: "/about-us"
+                link: "/about"
             },
             {
                 item: "কমিটি ",
-                link: "/comitte-list"
+                link: "/committe-list"
             },
             {
                 item: "ডোনার ",
