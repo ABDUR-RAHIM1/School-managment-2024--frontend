@@ -170,7 +170,7 @@
      }
 
      .sidebarCard{
-      @apply shadow-md  p-1 my-2 w-full rounded-md  
+      @apply shadow-md  p-1 mb-5 w-full rounded-md  
      }
      .sidebarFooter{
       @apply w-full block capitalize bg-green-800 text-white text-center py-1
