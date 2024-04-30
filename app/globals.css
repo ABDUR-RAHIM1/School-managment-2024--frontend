@@ -176,6 +176,9 @@
       @apply w-full block capitalize bg-green-800 text-white text-center py-1
      }
 
+     .page{
+      @apply my-5 
+     }
 
  /*  1 client side  mainAsideWrapper end here */
 

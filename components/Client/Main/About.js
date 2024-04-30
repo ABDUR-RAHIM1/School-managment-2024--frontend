@@ -1,4 +1,5 @@
 import Title from '@/components/Utils/Title'
+import Link from 'next/link'
 import React from 'react'
 
 export default function About() {
@@ -12,7 +13,7 @@ export default function About() {
 
             </div>
             <div className="btn_wrap">
-                <button className='myBtn'>আরো দেখুন </button>
+                <Link href={'/about'} className='myBtn'>আরো দেখুন </Link>
             </div>
         </div>
     )
