@@ -1,7 +1,7 @@
 "use client"
 import Image from 'next/image'
 import React from 'react'
-import { FaBookReader, FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaPhone, FaTwitter  } from 'react-icons/fa'
+import { FaBookReader, FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaPhone, FaTwitter } from 'react-icons/fa'
 import { MdEmail, MdFacebook } from 'react-icons/md'
 
 export default function Footer() {
@@ -56,7 +56,7 @@ export default function Footer() {
 
                     <div className='w-auto'>
                         <h2 className='text-2xl italic font-medium'>Abdur Rahim</h2>
-                        <h2 className='text-xl italic font-medium'>Web Developer</h2>
+                        <h2 className='text-xl italic font-medium text-blue-700'>Web Developer</h2>
                         <div className='my-3 flex items-center gap-3 bg-gray-200 shadow-md py-2 px-3'>
                             <a className='inline-block text-3xl text-blue-700 hover:text-blue-800 duration-150' href="https://web.facebook.com/Aabdurrahim.17" target="_blank" rel="noopener noreferrer">
                                 <FaFacebook />

@@ -1,7 +1,5 @@
 import { Inter } from "next/font/google";
-import "./globals.css";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import "../globals.css"; 
 import { MyState } from "@/ContextApi/ContextApi";
 import MainSlider from "@/components/Client/MainSlider";
 import Headline from "@/components/Client/Headline";
@@ -20,7 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ToastContainer />
+      
         <MyState>
 
 

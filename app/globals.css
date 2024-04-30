@@ -163,10 +163,10 @@
       @apply flex justify-between flex-wrap
      }
      .mainAsideWrapper main{
-      @apply w-full md:w-[75%] md:border-r border-gray-500 px-5
+      @apply w-full md:w-[74%] md:border-r border-gray-500 px-5
      }
      .mainAsideWrapper aside{
-      @apply w-full md:w-[24%] px-2
+      @apply w-full md:w-[25%] px-2
      }
 
      .sidebarCard{
