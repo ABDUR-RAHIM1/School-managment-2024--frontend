@@ -6,7 +6,6 @@ import Headline from "@/components/Client/Headline";
 import Navbar from "@/components/Client/Navbar";
 import HomeSidebar from "@/components/Client/Aside/HomeSidebar";
 import Footer from "@/components/Client/Footer";
-import Menu from "@/components/Client/Menu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,8 +24,7 @@ export default function RootLayout({ children }) {
 
           <MainSlider />
           <Headline />
-          {/* <Navbar /> */}
-          <Menu />
+          <Navbar />
 
           <div className='mainAsideWrapper'>
 

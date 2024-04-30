@@ -1,67 +1,167 @@
 "use client"
-import { navbarItems } from '@/Data/NavbarItems'
-import Link from 'next/link';
+import Link from 'next/link'
 import React, { useState } from 'react'
-import { MdArrowDropDown, MdMenu, MdOutlineSchool, MdSchool } from 'react-icons/md';
+import { AiOutlineNotification } from 'react-icons/ai'
+import { FaBookOpen } from 'react-icons/fa'
+import { GrGallery } from 'react-icons/gr'
+import { HiAcademicCap } from 'react-icons/hi'
+import { MdArrowDropDown, MdClose, MdHome, MdInfo, MdList, MdLogin, MdMenu, MdOutlineAddIcCall } from 'react-icons/md'
 
-export default function Navbar() {
-    const [activeIndex, setActiveIndex] = useState(null); // State to track  
-    const [showMenu, setShowMenu] = useState(false)
-
-    const handleItemClick = (index) => {
-        setActiveIndex(activeIndex === index ? null : index);
-    };
+export default function Menu() {
+    const [openMenu, setOpenMenu] = useState(true)
 
     const handleOpenMenu = () => {
-        setShowMenu(!showMenu)
+        setOpenMenu(!openMenu)
     }
+ 
 
     return (
-        <div className='sticky top-0 z-50 bg-white'>
-            <div className='flex items-start justify-between py-4 px-5 border-b border-slate-200 relative'>
-                <div className='text-6xl text-blue-700 md:hidden'>
-                    <MdOutlineSchool />
-                </div>
-                <nav className='flex justify-between  w-full'>
-                    {/* ${showMenu ? "w-0" : "w-[70%]"} */}
-                    <ul className={`navUl ${showMenu ? "hidden" :"flex"} duration-500 navUl  items-start gap-5  font-medium  pb-4`}>
-                        {navbarItems.map((item, index) => (
-                            <div key={index} className='flex items-start gap-1'>
-                                <span className='text-2xl '>
-                                    {item.icon}
-                                </span>
-                                <li className='cursor-pointer'>
-                                    <div className='flex items-center'>
-                                <a href={item.link} onClick={() => handleItemClick(index)}>
-                                    {item.item}
-                                </a>
-                                        {
-                                            item.subItem && <span className='text-2xl'><MdArrowDropDown /></span>
-                                        }
-                                    </div>
-
-
-                                    {item.subItem && activeIndex === index && (
-                                        <ul className='my-2  '>
-                                            {item.subItem.map((subItem, subIndex) => (
-                                                <li className='my-2' key={subIndex}>
-                                                    <a href={subItem.link}>{subItem.item}</a>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    )}
-                                </li>
-                            </div>
-                        ))}
-                    </ul>
-
-
-                </nav>
-
-                <div onClick={handleOpenMenu} className='text-4xl nav_menu_icon text-red-700 cursor-pointer'>
-                    <MdMenu />
-                </div>
+        <div className='navbarWrapper'>
+            <div className="logo">
+                <span className='text-3xl text-blue-700'>
+                    <FaBookOpen />
+                </span>
             </div>
+            <nav>
+                <ul className={`menu transform origin-right duration-700 ${openMenu ? "scale-x-1" : "scale-x-0"}`}>
+                    <li>
+                        <Link href={"/"} className='navLink'>
+                            <span><MdHome /></span>  হোম
+                        </Link>
+                    </li>
+
+                    <li>
+                        <div className='navLink'>
+                            <span><MdInfo /></span>
+                            ইনস্টিটিউট তথা
+                            <span><MdArrowDropDown /></span>
+                        </div>
+                        <ul>
+                            <li>
+                                <Link href={"/about"} className='navLink'>
+                                    আমাদের সম্পর্কে
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href={"/committe-list"} className='navLink'>
+                                    কমিটি
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href={"/donar-list"} className='navLink'>
+                                    ডোনার
+                                </Link>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <div className='navLink'>
+                            <span><MdList /></span>
+                            তালিকা
+                            <span><MdArrowDropDown /></span>
+                        </div>
+                        <ul>
+                            <li>
+                                <Link href={"/teacher-list"} className='navLink'>
+                                    শিক্ষক
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href={"/student-list"} className='navLink'>
+                                    ছাত্রছাত্রী
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link href={"/staff-list"} className='navLink'>
+                                    কর্মী
+                                </Link>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <div className='navLink'>
+                            <span><HiAcademicCap /></span>
+                            একাডেমিক তথা
+                            <span><MdArrowDropDown /></span>
+                        </div>
+                        <ul>
+                            <li>
+                                <Link href={"/book-list"} className='navLink'>
+                                    বইয়ের তালিকা
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href={"/class-routine"} className='navLink'>
+                                    ক্লাস রুটিন
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href={"/exam-routine"} className='navLink'>
+                                    পরীক্ষার রুটিন
+                                </Link>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <Link href={"/notice-board"} className='navLink'>
+                            <span><AiOutlineNotification /></span>  নোটিশ বোর্ড
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href={"/gallary"} className='navLink'>
+                            <span><GrGallery /></span> গ্যালারি
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href={"/contact-us"} className='navLink'>
+                            <span><MdOutlineAddIcCall /></span> যোগাযোগ
+                        </Link>
+                    </li>
+
+                    <li>
+                        <div className='navLink'>
+                            <span><MdLogin /></span>
+                            লগইন
+                            <span><MdArrowDropDown /></span>
+                        </div>
+                        <ul>
+                            <li>
+                                <Link href={"/teacher-login"} className='navLink'>
+                                    শিক্ষক
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href={"/student-login"} className='navLink'>
+                                    শিক্ষার্থী
+                                </Link>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+
+            </nav>
+            {/* menu icon */}
+            {
+                openMenu ?
+                    (
+                        <div onClick={handleOpenMenu} className='text-4xl nav_menu_icon text-red-700 cursor-pointer'>
+                            <MdClose />
+                        </div>
+                    )
+                    : (
+                        <div onClick={handleOpenMenu} className='text-4xl nav_menu_icon text-blue-700 cursor-pointer'>
+                            <MdMenu />
+                        </div>
+                    )
+            }
         </div>
     )
 }
