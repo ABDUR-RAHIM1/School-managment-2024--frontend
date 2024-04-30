@@ -32,9 +32,9 @@ export default function Navbar() {
                                 </span>
                                 <li className='cursor-pointer'>
                                     <div className='flex items-center'>
-                                        <a href={item.link} onClick={() => handleItemClick(index)}>
-                                            {item.item}
-                                        </a>
+                                <a href={item.link} onClick={() => handleItemClick(index)}>
+                                    {item.item}
+                                </a>
                                         {
                                             item.subItem && <span className='text-2xl'><MdArrowDropDown /></span>
                                         }

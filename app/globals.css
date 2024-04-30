@@ -185,6 +185,13 @@
 
  /*  basic utils start here */
 
+ .navLink{
+  @apply flex items-center gap-1  duration-200
+ }
+ .navLink span{
+  @apply text-2xl
+ }
+
  .bgColor{
    @apply bg-green-800
  }
@@ -201,6 +208,9 @@
 .myBtn{
   @apply py-2 px-4 bgColor text-white font-medium rounded-md my-2 text-sm
 }
+
+
+
      .modalHeader{
       @apply  flex items-center justify-center bg-black bg-opacity-80 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50  w-full md:inset-0 h-[calc(100%-1rem)] max-h-full
      }
@@ -234,6 +244,50 @@
  }
  
  @layer base{
+  /* flex items-center justify-between px-5 z-[9999] */
+.navbarWrapper{
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 0px 15px;
+     z-index: 999;
+     border-bottom: 1px solid gainsboro;
+}
+  .menu li {
+    position: relative;
+    cursor: pointer;
+    padding: 10px 10px;
+    border-right: 1px solid gainsboro; 
+    transition: .5s all ease;
+}
+.menu li:last-child { 
+  border-right: 0; 
+}
+.menu li:hover {
+  color: white;
+  background-color: rgb(74, 74, 236);
+}
+.menu li ul {
+  width: 150px;
+    padding: 5px 10px;
+    background-color: whitesmoke;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    z-index: 999;
+    display: none;
+}
+
+
+.menu li:hover > ul {
+    display: block;
+}
+.menu li > ul li {
+   border-right: 0;
+}
+
+
+
    *{
       margin: 0;
       padding: 0;

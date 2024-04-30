@@ -21,8 +21,8 @@ export default function TourSlider() {
 
 
     return (
-        <div className="slide-container w-full overflow-hidden">
-            <Zoom scale={0.4}>
+        <div className="slide-container w-full ">
+            <Zoom scale={0.4} >
                 {data.map((item) => (
                     <div className='relative' key={item._id}>
                         <img className='w-full h-[300px]' src={item.photo} />
