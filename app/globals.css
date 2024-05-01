@@ -40,17 +40,17 @@
     @apply flex-1 px-4 py-10 h-screen overflow-y-auto
    }
 
-   .adminLoginPage{
-    @apply bg-gray-100 w-full h-screen flex items-center justify-center
+   .loginPage{
+    @apply bg-gray-50 w-full h-screen flex items-center justify-center
    }
-   .adminLogin{
-    @apply w-[90%] py-20 bg-white shadow-md shadow-gray-200 flex items-center justify-between flex-wrap
+   .loginArea{
+    @apply w-[90%] py-20 px-2 bg-white shadow-md shadow-gray-200 flex items-center justify-between flex-wrap rounded-md
    }
-    .adminLogin div{
+    .loginArea div{
       @apply w-[48%]
     }
-    .adminLogin form{
-      @apply px-10
+    .loginArea form{
+      @apply px-10 py-5 border rounded-md
     }
 .input{
   @apply w-full rounded-md py-2 px-3 my-3 focus:outline-0 bg-white border border-gray-300

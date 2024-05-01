@@ -13,7 +13,7 @@ export default function Menu() {
     const handleOpenMenu = () => {
         setOpenMenu(!openMenu)
     }
- 
+
 
     return (
         <div className='navbarWrapper'>
@@ -132,12 +132,22 @@ export default function Menu() {
                         </div>
                         <ul>
                             <li>
-                                <Link href={"/teacher-login"} className='navLink'>
+                                <Link
+                                    href={{
+                                        pathname: '/auth',
+                                        query: { author: 'teacher' },
+                                    }}
+                                    className='navLink'>
                                     শিক্ষক
                                 </Link>
                             </li>
                             <li>
-                                <Link href={"/student-login"} className='navLink'>
+                                <Link
+                                    href={{
+                                        pathname: '/auth',
+                                        query: { author: 'student' },
+                                    }}
+                                    className='navLink'>
                                     শিক্ষার্থী
                                 </Link>
                             </li>

@@ -1,15 +1,16 @@
 "use client"
+import "../../globals.css"
 import Image from "next/image"
 import thumb from "@/public/images/adminlogin.jpg"
-import {useLayoutEffect, useState } from "react"
+import { useLayoutEffect, useState } from "react"
 import { validateEmail } from "@/Helpers/validateAuth";
-import { adminLoginHandler, handleAdminPostMethod } from "@/fetchApi/admin/api";
+import {   handleAdminPostMethod } from "@/fetchApi/admin/api";
 import { toast } from "react-toastify";
-import {  useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function AdminAuth() {
   const router = useRouter()
-  const [authInfo, setAuthInfo] = useState({email :"", password :""});
+  const [authInfo, setAuthInfo] = useState({ email: "", password: "" });
   const [isLoading, setIsLoading] = useState(false)
 
   const handleChange = (e) => {
@@ -40,35 +41,36 @@ export default function AdminAuth() {
 
     try {
       const route = "/admin/auth/login"
-      const result = await handleAdminPostMethod( route ,authInfo);
-      if (result.isLogin) {
-        
-        localStorage.setItem("isAdmin", JSON.stringify(result.token))
+      const result = await handleAdminPostMethod(route, authInfo);
+      
+      if (result.ok) {
+
         toast.success(result.message)
-         setTimeout(() => {
+        localStorage.setItem("isAdmin", JSON.stringify(result.token))
+        setTimeout(() => {
           router.push("/dashboard")
-         }, 500);
-     }else{
+        }, 500);
+      } else {
         toast.error(result.message)
-     } 
+      }
     } catch (error) {
       toast.error("Error: " + error);
     } finally {
       setIsLoading(false);
     }
   };
- 
+
   // admin already login redirected to dashboard
   useLayoutEffect(() => {
     const isAdmin = localStorage.getItem("isAdmin");
     if (isAdmin) {
-        router.push("/dashboard");
+      router.push("/dashboard");
     }
   }, []);
 
   return (
-    <div className="adminLoginPage">
-      <div className="adminLogin">
+    <div className="loginPage">
+      <div className="loginArea">
         <div>
           <Image
             src={thumb}
