@@ -58,6 +58,7 @@ export default function DashboardLayout({ children }) {
 
     return (
         <html lang="en">
+            <title>Admin Dashboard</title>
             <body className={inter.className}>
                 <ToastContainer />
                 <MyState>

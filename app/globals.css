@@ -179,6 +179,21 @@
      .page{
       @apply my-5 
      }
+     .listCardWrapper{
+      @apply flex justify-between flex-wrap
+     }
+     .listCard{
+      @apply w-full md:w-[31%] my-3 border rounded-md  hover:shadow-md duration-200
+     }
+     .listCard .text{
+      @apply px-2 py-3 capitalize
+     }
+     .listCard small{
+      @apply bg-blue-100 py-1 px-3 text-black block
+     }
+     .listCard .text span{
+      @apply lowercase
+     }
 
  /*  1 client side  mainAsideWrapper end here */
 
