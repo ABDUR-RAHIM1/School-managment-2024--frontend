@@ -1,4 +1,3 @@
-import Sidebar from '@/components/Client/Aside/HomeSidebar'
 import About from '@/components/Client/Main/About'
 import AcademicInfo from '@/components/Client/Main/AcademicInfo'
 import Committe from '@/components/Client/Main/Committe'
@@ -9,12 +8,12 @@ import TourSlider from '@/components/Client/Main/TourSlider'
 export default function HomePage() {
   return (
     <div>
-          <TourSlider />
-          <About />
-          <NoticeBoard />
-          <Facilities />
-          <AcademicInfo />
-          <Committe />
+      <TourSlider />
+      <About />
+      <NoticeBoard />
+      <Facilities />
+      <AcademicInfo />
+      <Committe />
     </div>
   )
 }

@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { AiOutlineNotification } from 'react-icons/ai'
-import { FaBookOpen } from 'react-icons/fa'
+import { FaBlog, FaBookOpen } from 'react-icons/fa'
 import { GrGallery } from 'react-icons/gr'
 import { HiAcademicCap } from 'react-icons/hi'
 import { MdArrowDropDown, MdClose, MdHome, MdInfo, MdList, MdLogin, MdMenu, MdOutlineAddIcCall } from 'react-icons/md'
@@ -27,6 +27,11 @@ export default function Menu() {
                     <li>
                         <Link href={"/"} className='navLink'>
                             <span><MdHome /></span>  হোম
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href={"/blogs"} className='navLink'>
+                            <span><FaBlog /></span>  ব্লগ সমূহ
                         </Link>
                     </li>
 
@@ -114,7 +119,7 @@ export default function Menu() {
                         </Link>
                     </li>
                     <li>
-                        <Link href={"/gallary"} className='navLink'>
+                        <Link href={"/gallary-items"} className='navLink'>
                             <span><GrGallery /></span> গ্যালারি
                         </Link>
                     </li>

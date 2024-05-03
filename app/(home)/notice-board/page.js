@@ -1,22 +1,18 @@
-
+import NoticeBoardItems from '@/components/Client/Main/NoticeBoardItems'
 import Title from '@/components/Utils/Title'
-import React from 'react'
-import NoticeBoardItems from './NoticeBoardItems'
 import { handleAllGetMethod } from '@/fetchApi/GetMethod/handleAllGetMethod'
-import Link from 'next/link'
+import React from 'react'
 
-export default async function NoticeBoard() {
+export default async function NoticeBoardPage() {
     const notice = await handleAllGetMethod("/notice/all")
 
-
     return (
-        <div className='card'>
-            <Title text={"নোটিশ  বোর্ড "} />
+        <div className='py-3'>
+            <Title text={"All Notice"} />
 
-
-            <div className='overflow-auto h-[300px]'>
+            <div className='overflow-auto h-[100vh] my-4'>
                 <table table="true" className='table'>
-                    <thead className='bg-green-100 px-2'>
+                    <thead className='bg-green-100 px-2 sticky top-0'>
                         <tr>
                             <th>নং</th>
                             <th>তারিখ</th>
@@ -26,7 +22,7 @@ export default async function NoticeBoard() {
                     </thead>
                     <tbody>
                         {
-                            notice && notice.slice(-5).reverse().map((noticeItem, i) => (
+                            notice && notice.slice().reverse().map((noticeItem, i) => (
                                 <NoticeBoardItems
                                     key={i}
                                     data={noticeItem}
@@ -40,11 +36,6 @@ export default async function NoticeBoard() {
                     </tfoot>
                 </table>
             </div>
-
-            <div className='btn_wrap'>
-                <Link href={"/notice-board"} className="myBtn">আরো দেখুন</Link>
-            </div>
-
         </div>
     )
 }

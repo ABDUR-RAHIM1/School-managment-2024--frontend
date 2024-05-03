@@ -22,19 +22,15 @@ export default async function TeacherList() {
                                     width={1000}
                                     height={1000}
                                     alt='teachers photo'
-                                    className='w-full h-[50vh] md:h-[250px] rounded-md'
+                                    className='listCardPhoto'
                                 />
                                 <small >Profile Created - {new Date(teacher.createdAt).toLocaleDateString("en-US")} </small>
                             </div>
 
                             <div className='text'>
-                                <p>Name :
-                                    <Link className='link' href={`/profile/;d;d;d`}>
-                                        {teacher.name}
-                                    </Link>
-                                </p>
+                                <p className='link'>Name :{teacher.name}   </p>
                                 <p>Email : <span> {teacher.email}</span> </p>
-                                <p>Email : {teacher.qualification}</p>
+                                <p>Qualification : {teacher.qualification}</p>
                             </div>
                         </div>
                     ))

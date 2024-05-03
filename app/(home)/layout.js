@@ -1,11 +1,13 @@
 import { Inter } from "next/font/google";
-import "../globals.css"; 
+import "../globals.css";
 import { MyState } from "@/ContextApi/ContextApi";
 import MainSlider from "@/components/Client/MainSlider";
 import Headline from "@/components/Client/Headline";
 import Navbar from "@/components/Client/Navbar";
 import HomeSidebar from "@/components/Client/Aside/HomeSidebar";
 import Footer from "@/components/Client/Footer";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-      
+        <ToastContainer />
         <MyState>
 
 
@@ -37,7 +39,7 @@ export default function RootLayout({ children }) {
             </aside>
           </div>
 
-          
+
           <Footer />
 
         </MyState>

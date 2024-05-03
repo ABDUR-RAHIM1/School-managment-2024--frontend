@@ -194,6 +194,9 @@
      .listCard .text span{
       @apply lowercase
      }
+     .listCardPhoto{
+       @apply w-full h-[50vh] md:h-[250px] rounded-md
+     }
 
  /*  1 client side  mainAsideWrapper end here */
 
@@ -218,7 +221,7 @@
   @apply my-4  
  }
  .btn_wrap{
-  @apply flex justify-end
+  @apply flex justify-end  border-t border-gray-100
  }
 .myBtn{
   @apply py-2 px-4 bgColor text-white font-medium rounded-md my-2 text-sm

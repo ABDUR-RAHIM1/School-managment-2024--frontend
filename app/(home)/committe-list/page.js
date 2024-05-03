@@ -24,7 +24,7 @@ export default async function CommitteList() {
                                     width={500}
                                     height={500}
                                     alt='committe photo'
-                                    className='w-full h-[50vh] md:h-[200px] rounded-md'
+                                    className='listCardPhoto'
                                 />
                                 <small >Joined - {new Date(committe.createdAt).toLocaleDateString("en-US")} </small>
                             </div>
