@@ -6,7 +6,7 @@ export default function SubjectTable(props) {
     return (
         <div className=' overflow-x-auto'>
             <h2 className='text-3xl text-center'>Class {classCode}</h2>
-            <table className='table' table={"true"}>
+            <table className='table' >
                 <thead className='bg-gray-300 text-center'>
                     <tr>
                         <th>Group</th>

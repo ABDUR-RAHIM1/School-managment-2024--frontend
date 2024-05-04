@@ -198,7 +198,13 @@
        @apply w-full h-[50vh] md:h-[250px] rounded-md
      }
      .tableCard{
-      @apply my-5 bg-gray-100 rounded-md px-3 py-10
+      @apply my-5 bg-blue-50 rounded-md px-3 py-10 min-w-[700px] overflow-x-auto
+     }
+     .tableCard thead{
+      @apply  bg-purple-50 
+     }
+     .tableCard tbody{
+      @apply  bg-gray-50
      }
 
  /*  1 client side  mainAsideWrapper end here */

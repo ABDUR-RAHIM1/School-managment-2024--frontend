@@ -15,6 +15,7 @@ export default function AddExamRoutine() {
     subject: "",
     examDate: "",
     examTime: "",
+    examDuration: "",
 
   });
   const handleChange = (e) => {
@@ -79,6 +80,7 @@ export default function AddExamRoutine() {
 
         <div className='form_group'>
           <input value={info.subject} onChange={handleChange} type="text" className='input' placeholder='Subject' name='subject' required />
+          <input value={info.examDuration} onChange={handleChange} type="number" className='input' placeholder='Exam Duration (hour)' name='examDuration' required />
         </div>
         <div className='form_group'>
           <input value={info.examDate} onChange={handleChange} type="date" className='input' placeholder='exam Date' name='examDate' required />

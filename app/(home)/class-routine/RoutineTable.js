@@ -12,7 +12,7 @@ export default function RoutineTable(props) {
                 </span>
                 <h2 className='text-3xl italic text-center'>Class {classCode}</h2>
             </div>
-            <table className='table' table={"true"}>
+            <table className='table'>
                 {
                     data.length > 0 ?
                         (<thead>
