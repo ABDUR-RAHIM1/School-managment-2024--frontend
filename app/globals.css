@@ -163,10 +163,10 @@
       @apply flex justify-between flex-wrap
      }
      .mainAsideWrapper main{
-      @apply w-full md:w-[74%] md:border-r border-gray-500 px-5
+      @apply w-full md:w-[74%]  h-[120vh] overflow-auto md:border-r border-gray-500 px-5
      }
      .mainAsideWrapper aside{
-      @apply w-full md:w-[25%] px-2
+      @apply w-full md:w-[25%] px-2  h-[120vh] overflow-auto
      }
 
      .sidebarCard{
@@ -196,6 +196,9 @@
      }
      .listCardPhoto{
        @apply w-full h-[50vh] md:h-[250px] rounded-md
+     }
+     .tableCard{
+      @apply my-5 bg-gray-100 rounded-md px-3 py-10
      }
 
  /*  1 client side  mainAsideWrapper end here */
