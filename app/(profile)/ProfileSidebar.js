@@ -52,7 +52,7 @@ export default function ProfileSidebar() {
                     alt='profile photo'
                     className='w-12 h-12 rounded-full '
                 />
-                <p>asadul islam c</p>
+                <p>asadul islam</p>
             </div>
             <hr />
 
@@ -72,7 +72,7 @@ export default function ProfileSidebar() {
             </div>
 
 
-            <div style={{ height: "1000vh" }}>ggg</div>
+            <div style={{ height: "1000vh" }}></div>
         </div>
     )
 }

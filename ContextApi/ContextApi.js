@@ -4,7 +4,7 @@ import { handleDeleteMany } from "@/fetchApi/DeleteMethod/handleDeleteMany";
 import { handleAllGetMethod } from "@/fetchApi/GetMethod/handleAllGetMethod";
 import { handleUpdate } from "@/fetchApi/UpdateMethod/handleAllUpdateMethod";
 import { handlePostMethod } from "@/fetchApi/handlePostMethod/handlePostMethod";
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { toast } from "react-toastify";
 
 export const GlobalState = createContext();
@@ -22,7 +22,21 @@ export const MyState = ({ children }) => {
   const [imgUrl, setImgUrl] = useState("")
 
 
+  //  student and teacher profile start
+  const studentToken = JSON.parse(localStorage.getItem("STUDENT_IS_LOGGED_IN"));
+  const teacherToken = JSON.parse(localStorage.getItem("TEACHER_IS_LOGGED_IN"));
 
+  const [loginStudent, setLoginStudent] = useState([])
+
+
+
+
+  //  student and teacher profile end
+
+
+  // const teacherToken = localStorage.getItem("TEAHCER_IS_LOGGED_IN")
+
+  // console.log(studentToken, teacherToken)
 
 
   // select multple or single items for delete (ID)
@@ -138,6 +152,33 @@ export const MyState = ({ children }) => {
   };
 
 
+  // student and teacher profile start
+
+
+  const getLoginStudentAllData = async () => {
+    try {
+
+      const response = await fetch("http://localhost:9000/api/student/auth/user", {
+        headers: {
+          "Authorization": `Bearer ${studentToken}`
+        }
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+       console.log(data)
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+
+  getLoginStudentAllData();
+
+  // student and teacher profile end
+
+
+
   const value = {
     reload, setReload,
     editValue, setEditValue,
@@ -152,6 +193,12 @@ export const MyState = ({ children }) => {
     multipleDeleteFunc,
     UploadFIle, imgUrl,
     imgLoading, setImgLoading,
+
+
+    //  student and teacher start
+    // getLoginStudentAllData
+    //  student and teacher end
+
   };
 
   return (
