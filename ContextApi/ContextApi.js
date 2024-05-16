@@ -1,4 +1,5 @@
 "use client"
+import { API } from "@/fetchApi/API";
 import { handleAllDeleteMethod } from "@/fetchApi/DeleteMethod/handleAllDeleteMethod";
 import { handleDeleteMany } from "@/fetchApi/DeleteMethod/handleDeleteMany";
 import { handleAllGetMethod } from "@/fetchApi/GetMethod/handleAllGetMethod";
@@ -23,20 +24,10 @@ export const MyState = ({ children }) => {
 
 
   //  student and teacher profile start
-  const studentToken = JSON.parse(localStorage.getItem("STUDENT_IS_LOGGED_IN"));
-  const teacherToken = JSON.parse(localStorage.getItem("TEACHER_IS_LOGGED_IN"));
-
-  const [loginStudent, setLoginStudent] = useState([])
-
-
-
+  
+  const [profileData, setProfileData] = useState({})
 
   //  student and teacher profile end
-
-
-  // const teacherToken = localStorage.getItem("TEAHCER_IS_LOGGED_IN")
-
-  // console.log(studentToken, teacherToken)
 
 
   // select multple or single items for delete (ID)
@@ -90,6 +81,7 @@ export const MyState = ({ children }) => {
     setEditLoding(true)
     try {
       const result = await handleUpdate(route, info);
+      console.log(result)
       result.ok ? toast.success(result.message) : toast.warning(result.message)
     } catch (error) {
       console.log(error)
@@ -154,27 +146,9 @@ export const MyState = ({ children }) => {
 
   // student and teacher profile start
 
+  const [sidebarItems, setSidebarItems] = useState([])
 
-  const getLoginStudentAllData = async () => {
-    try {
-
-      const response = await fetch("http://localhost:9000/api/student/auth/user", {
-        headers: {
-          "Authorization": `Bearer ${studentToken}`
-        }
-      });
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-       console.log(data)
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  }
-
-  getLoginStudentAllData();
-
+ 
   // student and teacher profile end
 
 
@@ -196,7 +170,8 @@ export const MyState = ({ children }) => {
 
 
     //  student and teacher start
-    // getLoginStudentAllData
+    sidebarItems, setSidebarItems,
+     profileData,setProfileData,
     //  student and teacher end
 
   };
