@@ -2,9 +2,11 @@
 import { API } from "@/fetchApi/API";
 import { handleAllDeleteMethod } from "@/fetchApi/DeleteMethod/handleAllDeleteMethod";
 import { handleDeleteMany } from "@/fetchApi/DeleteMethod/handleDeleteMany";
+import { getProfileDataWithToken } from "@/fetchApi/GetMethod/getDataWithToken";
 import { handleAllGetMethod } from "@/fetchApi/GetMethod/handleAllGetMethod";
 import { handleUpdate } from "@/fetchApi/UpdateMethod/handleAllUpdateMethod";
 import { handlePostMethod } from "@/fetchApi/handlePostMethod/handlePostMethod";
+import { postWithToken } from "@/fetchApi/handlePostMethod/postWithToken";
 import React, { useState, createContext, useEffect } from "react";
 import { toast } from "react-toastify";
 
@@ -24,8 +26,23 @@ export const MyState = ({ children }) => {
 
 
   //  student and teacher profile start
-  
-  const [profileData, setProfileData] = useState({})
+
+  // const [token, setToken] = useState(null)
+
+  // const getToken = async (tokenKey) => {
+  //   console.log(tokenKey)
+  //   const token = window.localStorage.getItem(tokenKey);
+  //   if (token) {
+  //     const parseToken = await JSON.parse(token);
+  //     console.log(parseToken)
+  //     setToken(parseToken)
+  //   } else {
+  //     console.log("Token not found")
+  //   }
+  // }
+
+  const [studentProfileData, setStundentProfileData] = useState({})
+  const [tokenData, setTokenData] = useState([]);
 
   //  student and teacher profile end
 
@@ -145,10 +162,48 @@ export const MyState = ({ children }) => {
 
 
   // student and teacher profile start
-
-  const [sidebarItems, setSidebarItems] = useState([])
-
  
+  const getStudentAllDataWithToken = async () => {
+    try {
+      const route = "/student/auth/user"
+      const token = JSON.parse(window.localStorage.getItem("STUDENT_IS_LOGGED_IN"))
+      const data = await getProfileDataWithToken(route, token)
+      setStundentProfileData(data)
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const getMethodWithToken = async (route , token) => {
+    try {
+      const res = await fetch(API + route, {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        },
+      });
+
+      const data = await res.json()
+      setTokenData(data)
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const postDataWithToken = async (route, token, formData) => {
+    setIsLoding(true)
+    try {
+      const result = await postWithToken(route, token, formData);
+      result.ok ? toast.success(result.message) : toast.error(result.message)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoding(false)
+    }
+  }
+
   // student and teacher profile end
 
 
@@ -170,8 +225,11 @@ export const MyState = ({ children }) => {
 
 
     //  student and teacher start
-    sidebarItems, setSidebarItems,
-     profileData,setProfileData,
+   
+    // profileData, setProfileData,
+    postDataWithToken,
+    getMethodWithToken, tokenData,
+    getStudentAllDataWithToken, studentProfileData,
     //  student and teacher end
 
   };

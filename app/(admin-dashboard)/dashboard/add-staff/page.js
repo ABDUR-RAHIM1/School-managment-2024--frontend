@@ -36,7 +36,7 @@ export default function AddStaff() {
       setImgLoading(false)
     }
   }
-  console.log(info)
+ 
   const handleAddAndEditStaff = async (e) => {
     e.preventDefault();
     setIsLoading(true)

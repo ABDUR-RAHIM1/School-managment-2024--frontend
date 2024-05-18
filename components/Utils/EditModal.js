@@ -1,10 +1,7 @@
 "use client"
 import { GlobalState } from '@/ContextApi/ContextApi';
-import { handleUpdate } from '@/fetchApi/UpdateMethod/handleAllUpdateMethod';
-import { handleEditAdminMethod } from '@/fetchApi/admin/api';
 import React, { useContext, useEffect, useState } from 'react'
 import { IoClose } from "react-icons/io5";
-import { toast } from 'react-toastify';
 import Spinner from './Spinner';
 
 export default function EditModal(props) {
@@ -13,11 +10,9 @@ export default function EditModal(props) {
 
     const { editValue, editDataFunc, editLoading, UploadFIle, imgUrl, imgLoading } = useContext(GlobalState)
 
-    console.log(imgLoading)
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name === "photo") {
-            console.log("photo")
             const file = e.target.files[0]
             UploadFIle(file)
         }
@@ -28,12 +23,11 @@ export default function EditModal(props) {
         if (editValue !== null) {
             setInfo(editValue)
         }
+        if (imgUrl) {
+            setInfo((prevInfo) => ({ ...prevInfo, photo: imgUrl }));
+        }
+    }, [editValue, imgUrl]);
 
-        setInfo({ ...info, photo: imgUrl })
-
-    }, [imgUrl]);
-
-    console.log(imgUrl, info)
 
     //  update admin handler
     const handleEditAdmin = (e) => {
@@ -42,6 +36,8 @@ export default function EditModal(props) {
         editDataFunc(route, info);
 
     }
+
+
 
     return (
         <>
@@ -65,7 +61,7 @@ export default function EditModal(props) {
                             <form onSubmit={handleEditAdmin} className="space-y-4" action="#">
                                 <div>
                                     <label htmlFor="username" className="modalLabel"> username</label>
-                                    <input onChange={handleChange} value={info.username} type="text" name="username" className="input" placeholder="username" />
+                                    <input onChange={handleChange} value={info.username} type="text" name="username" id='username' className="input" placeholder="username" />
                                 </div>
                                 <div>
                                     <label htmlFor="email" className="modalLabel"> email</label>

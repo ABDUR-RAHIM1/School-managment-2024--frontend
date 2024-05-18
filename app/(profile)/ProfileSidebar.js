@@ -3,15 +3,32 @@ import Image from 'next/image'
 
 import avatar from "@/public/images/sd.png"
 import Link from 'next/link'
-import { MdAddToDrive, MdDashboard, MdPostAdd, MdPresentToAll, MdTroubleshoot, MdViewList, MdWatch } from 'react-icons/md'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { GlobalState } from '@/ContextApi/ContextApi'
+import { usePathname } from 'next/navigation'
+import studentSidebarItems from '@/Data/StudentSidebar'
+import teacherSidebarItems from '@/Data/TeacherSidebar'
 
 export default function ProfileSidebar() {
-  
-    const { sidebarItems, profileData } = useContext(GlobalState)
- 
-    const { photo, username } = profileData
+
+    const { getStudentAllDataWithToken, studentProfileData } = useContext(GlobalState)
+
+    const [sidebarItems, setSidebarItems] = useState([])
+
+    const { photo, username } = studentProfileData
+
+    const path = usePathname();
+
+
+    useEffect(() => {
+        getStudentAllDataWithToken()
+
+        if (path.startsWith("/student")) {
+            setSidebarItems(studentSidebarItems)
+        } else {
+            setSidebarItems(teacherSidebarItems)
+        }
+    }, [])
 
     return (
         <div className='px-5'>

@@ -1,4 +1,4 @@
-const teacherSidebarData = [
+const teacherSidebarItems = [
     {
         item: "teacher 1",
         path: "/teacher-profile"
@@ -26,4 +26,4 @@ const teacherSidebarData = [
 ]
 
 
-export default teacherSidebarData;
+export default teacherSidebarItems;

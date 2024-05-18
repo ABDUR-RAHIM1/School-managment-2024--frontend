@@ -1,18 +1,22 @@
 "use client"
 import { GlobalState } from '@/ContextApi/ContextApi'
 import Image from 'next/image';
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import avatar from "@/public/images/sd.png"
 import { MdDelete, MdEdit, MdEmail, MdPerson } from 'react-icons/md';
-import Model from '@/components/Utils/Model';
 import EditModal from '@/components/Utils/EditModal';
 
 export default function ProfileEdit() {
-    const { profileData, editValue, setEditValue } = useContext(GlobalState);
+    const { setEditValue, getStudentAllDataWithToken, studentProfileData } = useContext(GlobalState);
 
     const [showModal, setShowModal] = useState(false)
 
-    const { username, photo, email } = profileData;
+    const { username, photo, email } = studentProfileData;
+
+    useEffect(() => {
+        getStudentAllDataWithToken()
+    }, [])
+
 
     const handleEditProfile = (editInfo) => {
         setShowModal(true)
@@ -22,6 +26,15 @@ export default function ProfileEdit() {
     const closeModal = () => {
         setShowModal(false)
     }
+
+
+    const handleDeleteAccount = (id) => {
+        const confirmed = window.confirm("Are you sure you want to permanently delete this account?");
+        if (confirmed) {
+            const route = `/student/auth/delete/${id}`;
+            singleDeleteFunc(route);
+        }
+    };
 
     return (
         <div className=' bg-gray-100  py-10 px-3'>
@@ -38,12 +51,12 @@ export default function ProfileEdit() {
             <div className='my-5 px-5'>
                 <div className='flex items-center justify-between my-5 border py-3 px-4'>
                     <div className='text-center font-medium italic'>
-                        <span onClick={() => handleEditProfile(profileData)} className='editBtn'>
+                        <span onClick={() => handleEditProfile(studentProfileData)} className='editBtn'>
                             <MdEdit />
                         </span>
                         <p>Edit</p>
                     </div>
-                    <div className='text-center font-medium italic'>
+                    <div onClick={() => handleDeleteAccount(studentProfileData._id)} className='text-center font-medium italic'>
                         <span className='deleteBtn'>
                             <MdDelete />
                         </span>
@@ -70,7 +83,7 @@ export default function ProfileEdit() {
 
             {
                 showModal && <EditModal
-                closeModal={closeModal}
+                    closeModal={closeModal}
                 />
             }
 

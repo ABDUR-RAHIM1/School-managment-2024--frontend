@@ -1,9 +1,9 @@
 "use client"
 import Image from 'next/image'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Avatar from "@/public/images/sd.png"
 import { FaFacebookMessenger } from 'react-icons/fa'
-import { MdArrowDropDown, MdMenu } from 'react-icons/md'
+import { MdAccountBox, MdArrowDropDown, MdLogout, MdMenu, MdSettings } from 'react-icons/md'
 import { GlobalState } from '@/ContextApi/ContextApi'
 import Link from 'next/link'
 
@@ -11,9 +11,14 @@ import Link from 'next/link'
 export default function ProfileNavbar(props) {
     const { handleShowSidebar } = props;
     const [show, setShow] = useState(false)
-    const { profileData } = useContext(GlobalState)
+    const { getStudentAllDataWithToken, studentProfileData } = useContext(GlobalState)
 
-    const { photo, username } = profileData;
+    const { photo, username } = studentProfileData;
+
+
+    useEffect(() => {
+        getStudentAllDataWithToken()
+    }, [])
 
     const handleShowMenu = () => {
         setShow(!show)
@@ -53,9 +58,18 @@ export default function ProfileNavbar(props) {
                     </div>
                     <div className={` ${show ? " scale-y-1" : " scale-y-0"} origin-top duration-200 flex flex-col gap-3 w-[150px] absolute top-[55px] left-0 bg-slate-100 p-2 z-[999]`}>
 
-                        <Link href={"/profile-edit"}>Account</Link>
-                        <Link href={"/student-profile"}>Settings</Link>
-                        <Link href={"/student-profile"}>Log-out</Link>
+                        <Link className='flex items-center gap-1' href={"/profile-edit"}>
+                            <MdAccountBox className='text-2xl' />
+                            <p>Account</p>
+                        </Link>
+                        <Link className='flex items-center gap-1' href={"/profile-settings"}>
+                            <MdSettings className='text-2xl' />
+                            <p>Settings</p>
+                        </Link>
+                        <Link className='flex items-center gap-1 text-red-600' href={"/profile-settings"}>
+                            <MdLogout className='text-2xl' />
+                            <p>Log-out</p>
+                        </Link>
 
                     </div>
                 </div>
