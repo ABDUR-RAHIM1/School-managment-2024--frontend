@@ -1,9 +1,9 @@
 import { GlobalState } from '@/ContextApi/ContextApi'
 import React, { useContext } from 'react'
 
-export default function MessageModal(props) {
-    const { editValue } = useContext(GlobalState);
-   
+export default function ViewModel(props) {
+    const { detailsData } = useContext(GlobalState);
+
     return (
 
 
@@ -17,15 +17,18 @@ export default function MessageModal(props) {
 
 
                         <div className="p-4 md:p-5 max-h-[250px] min-h-[300px] overflow-y-scroll text-base leading-relaxed">
-                            <p>Name : {editValue.name}</p>
-                            <p>Email : {editValue.email}</p>
-                            <small>Date : {new Date(editValue.createdAt).toLocaleDateString("en-US")} </small>
-                            {
-                                props.component === "contact" ? <p className='my-5 '> <span className='text-black font-medium'>Message :</span> {editValue.message}</p>
-                                    :
-                                    <p className='my-5 '> <span className='text-black font-medium'>Review :</span> {editValue.review}</p>
-                            }
+                            <p>Added : {new Date(detailsData.createdAt).toLocaleDateString()}</p>
+
+                            <p>Updated : {new Date(detailsData.updatedAt).toLocaleDateString()}</p>
+                            {/*  contents */}
+                            <div className='my-5'>
+                                <p> <span className=' font-medium text-purple-600'>Description : </span> {detailsData.desc}</p>
+                            </div>
+                            {/*  contents */}
                         </div>
+
+
+
 
                         <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
 

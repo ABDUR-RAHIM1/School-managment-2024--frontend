@@ -1,6 +1,7 @@
 import { GlobalState } from '@/ContextApi/ContextApi';
 import React, { useContext, useEffect, useState } from 'react'
 import { MdClose } from 'react-icons/md'
+import Spinner from './Spinner';
 
 export default function FeeModal(props) {
     const { closeModel } = props;
@@ -43,7 +44,7 @@ export default function FeeModal(props) {
                     <input defaultValue={info.feeAmount} onChange={handleChange} name='feeAmount' type="number" className='input' placeholder='Fee Amount' />
                     <button onClick={handleUpdateFee} type='submit' className='formBtn'>
                         {
-                            editLoading ? "Posting . ." : "Update"
+                            editLoading ? <Spinner /> : "Update"
                         }
                     </button>
                 </div>

@@ -20,6 +20,7 @@ export const MyState = ({ children }) => {
   const [reload, setReload] = useState(false);
   const [imgLoading, setImgLoading] = useState(false)
   const [editValue, setEditValue] = useState({})
+  const [detailsData, setDetailsData] = useState({})
   const [showModal, setShowModal] = useState(false)
   const [checkIds, setCheckIds] = useState([])
   const [imgUrl, setImgUrl] = useState("")
@@ -27,19 +28,6 @@ export const MyState = ({ children }) => {
 
   //  student and teacher profile start
 
-  // const [token, setToken] = useState(null)
-
-  // const getToken = async (tokenKey) => {
-  //   console.log(tokenKey)
-  //   const token = window.localStorage.getItem(tokenKey);
-  //   if (token) {
-  //     const parseToken = await JSON.parse(token);
-  //     console.log(parseToken)
-  //     setToken(parseToken)
-  //   } else {
-  //     console.log("Token not found")
-  //   }
-  // }
 
   const [studentProfileData, setStundentProfileData] = useState({})
   const [tokenData, setTokenData] = useState([]);
@@ -162,7 +150,7 @@ export const MyState = ({ children }) => {
 
 
   // student and teacher profile start
- 
+
   const getStudentAllDataWithToken = async () => {
     try {
       const route = "/student/auth/user"
@@ -175,7 +163,7 @@ export const MyState = ({ children }) => {
     }
   }
 
-  const getMethodWithToken = async (route , token) => {
+  const getMethodWithToken = async (route, token) => {
     try {
       const res = await fetch(API + route, {
         method: "GET",
@@ -204,6 +192,27 @@ export const MyState = ({ children }) => {
     }
   }
 
+  const deleteMethodWithToken = async (route, token) => {
+    try {
+      const res = await fetch(API + route, {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      })
+      const result = await res.json();
+
+      if (result.ok) {
+        toast.success(result.message)
+        setReload(!reload)
+      } else {
+        toast.error(result.message)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   // student and teacher profile end
 
 
@@ -211,6 +220,7 @@ export const MyState = ({ children }) => {
   const value = {
     reload, setReload,
     editValue, setEditValue,
+    detailsData, setDetailsData,
     editLoading, setEditLoding,
     postAllDataFunc,
     getAllDataFunc, isLoading, data,
@@ -225,10 +235,11 @@ export const MyState = ({ children }) => {
 
 
     //  student and teacher start
-   
+
     // profileData, setProfileData,
     postDataWithToken,
     getMethodWithToken, tokenData,
+    deleteMethodWithToken,
     getStudentAllDataWithToken, studentProfileData,
     //  student and teacher end
 
