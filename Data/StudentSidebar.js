@@ -13,19 +13,19 @@ const studentSidebarItems = [
     },
     {
         item: "Add Todo",
-        path: "/student-profile/add-todo"
+        path: "/student-profile/todo/add"
     },
     {
         item: "View Todo",
-        path: "/student-profile/view-todo"
+        path: "/student-profile/todo/view"
     },
     {
         item: "Send Complain",
-        path: "/student-profile"
+        path: "/student-profile/complain/add"
     },
     {
         item: "View Complain",
-        path: "/student-profile"
+        path: "/student-profile/complain/view"
     },
 ]
 

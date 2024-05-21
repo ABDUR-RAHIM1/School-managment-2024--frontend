@@ -173,8 +173,10 @@ export const MyState = ({ children }) => {
       });
 
       const data = await res.json()
-      setTokenData(data)
-      console.log(data)
+      if (data.length > 0) {
+        const reverseData = data.slice().reverse()
+        setTokenData(reverseData)
+      } 
     } catch (error) {
       console.log(error)
     }

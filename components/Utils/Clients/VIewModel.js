@@ -1,8 +1,12 @@
 import { GlobalState } from '@/ContextApi/ContextApi'
 import React, { useContext } from 'react'
 
+// todo details 
 export default function ViewModel(props) {
     const { detailsData } = useContext(GlobalState);
+
+    const { componentName, closeModal } = props;
+    console.log(closeModal)
 
     return (
 
@@ -21,9 +25,24 @@ export default function ViewModel(props) {
 
                             <p>Updated : {new Date(detailsData.updatedAt).toLocaleDateString()}</p>
                             {/*  contents */}
-                            <div className='my-5'>
-                                <p> <span className=' font-medium text-purple-600'>Description : </span> {detailsData.desc}</p>
-                            </div>
+
+
+                            {
+                                componentName === "complain" ?
+                                    <div className='my-5'>
+                                        <small className=' font-medium uppercase text-purple-600'>Compalain Details</small>
+                                        <p> <span className=' font-medium text-purple-600'>Description : </span> {detailsData.details}</p>
+                                    </div>
+                                    :
+                                    <div className='my-5'>
+                                           <small className=' font-medium uppercase text-purple-600'>Todo Details</small>
+                                        <p className=' font-medium my-2 text-2xl'>Title : {detailsData.title}</p>
+                                        <p> <span className=' font-medium text-purple-600'>Description : </span> {detailsData.desc}</p>
+                                    </div>
+
+                            }
+
+
                             {/*  contents */}
                         </div>
 
@@ -32,7 +51,7 @@ export default function ViewModel(props) {
 
                         <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
 
-                            <button onClick={props.closeModel} type="button" className="py-2.5 px-5 text-sm font-medium text-gray-900  bg-white rounded-md border border-gray-400 hover:bg-gray-100 hover:text-blue-700 capitalize">close</button>
+                            <button onClick={closeModal} type="button" className="py-2.5 px-5 text-sm font-medium text-gray-900  bg-white rounded-md border border-gray-400 hover:bg-gray-100 hover:text-blue-700 capitalize">close</button>
                         </div>
                     </div>
                 </div>

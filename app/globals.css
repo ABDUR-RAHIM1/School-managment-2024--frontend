@@ -264,7 +264,7 @@
       @apply my-4 flex items-center justify-between gap-4
      }
      .link{
-      @apply text-blue-600  capitalize hover:underline
+      @apply text-blue-600  cursor-pointer capitalize hover:underline
      }
  }
  

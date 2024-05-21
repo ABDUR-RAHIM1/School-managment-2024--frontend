@@ -110,7 +110,10 @@ const Todos = (props) => {
             </div>
 
             {
-                showModel && <ViewModel closeModel={handleCloseModel} />
+                showModel && <ViewModel
+                    component="todo"
+                    closeModal={handleCloseModel}
+                />
             }
         </div>
     )
