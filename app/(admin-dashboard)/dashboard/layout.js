@@ -24,12 +24,12 @@ export default function DashboardLayout({ children }) {
     const [search, setSearch] = useState("")
     const [items, setItems] = useState([])
 
-    useLayoutEffect(() => {
-        const isAdmin = localStorage.getItem("isAdmin");
-        if (!isAdmin) {
-            router.push("/admin-auth")
-        }
-    }, [])
+    // useLayoutEffect(() => {
+    //     const isAdmin = localStorage.getItem("isAdmin");
+    //     if (!isAdmin) {
+    //         router.push("/admin-auth")
+    //     }
+    // }, [])
     const handleMenuCLick = () => {
         setMenuClick(!menuClick)
     };

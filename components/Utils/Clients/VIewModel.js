@@ -6,17 +6,17 @@ export default function ViewModel(props) {
     const { detailsData } = useContext(GlobalState);
 
     const { componentName, closeModal } = props;
-    console.log(closeModal)
+
 
     return (
 
 
         <>
 
-            <div id="static-modal" className="modalContainer">
+            <div id="static-modal" className="modalContainer bg-opacity-50">
                 <div className="relative p-4 w-full max-w-2xl max-h-full">
 
-                    <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                    <div className="relative bg-white rounded-lg shadow dark:bg-slate-950">
 
 
 
@@ -35,7 +35,7 @@ export default function ViewModel(props) {
                                     </div>
                                     :
                                     <div className='my-5'>
-                                           <small className=' font-medium uppercase text-purple-600'>Todo Details</small>
+                                        <small className=' font-medium uppercase text-purple-600'>Todo Details</small>
                                         <p className=' font-medium my-2 text-2xl'>Title : {detailsData.title}</p>
                                         <p> <span className=' font-medium text-purple-600'>Description : </span> {detailsData.desc}</p>
                                     </div>

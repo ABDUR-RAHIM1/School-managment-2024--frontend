@@ -1,20 +1,22 @@
-"use client"
-import { GlobalState } from '@/ContextApi/ContextApi' 
-import React, { useContext, useEffect } from 'react'
+ 
+import StudentToken from '@/app/actions/student/StudentToken';
+import { getProfileDataWithToken } from '@/fetchApi/GetMethod/getDataWithToken';
 
-export default function StudentProfilePage() {
+export default async function StudentProfilePage() {
 
-    const {  getStudentAllDataWithToken } = useContext(GlobalState)
+    const token = StudentToken();
+    const route = "/student/auth/user";
+    const data = await getProfileDataWithToken(route, token)
 
-    useEffect(() => {
-       
-        getStudentAllDataWithToken()
-    }, [])
 
-    
     return (
         <div>
-            Student profile
-        </div>
+            Student profile dashboard
+            <br /><br />
+
+
+        </div >
     )
 }
+
+

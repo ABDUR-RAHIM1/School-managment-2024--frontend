@@ -1,22 +1,17 @@
 "use client"
 import { GlobalState } from '@/ContextApi/ContextApi'
 import Image from 'next/image';
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import avatar from "@/public/images/sd.png"
 import { MdDelete, MdEdit, MdEmail, MdPerson } from 'react-icons/md';
 import EditModal from '@/components/Utils/EditModal';
 
-export default function ProfileEdit() {
-    const { setEditValue, getStudentAllDataWithToken, studentProfileData } = useContext(GlobalState);
+export default function ProfileCard(props) {
+    const { username, email, photo } = props.profile;
+    const { setEditValue } = useContext(GlobalState);
 
     const [showModal, setShowModal] = useState(false)
-
-    const { username, photo, email } = studentProfileData;
-
-    useEffect(() => {
-        getStudentAllDataWithToken()
-    }, [])
-
+    const studentProfileData = true;
 
     const handleEditProfile = (editInfo) => {
         setShowModal(true)
@@ -37,8 +32,8 @@ export default function ProfileEdit() {
     };
 
     return (
-        <div className=' bg-gray-100  py-10 px-3'>
-            <div className='w-full bg-gray-50 py-3'>
+        <div className=' adminPage w-full md:w-[48%] py-10 px-3'>
+            <div className='w-full bg-gray-50 dark:bg-slate-900 py-3'>
                 <Image
                     src={photo || avatar}
                     width={500}

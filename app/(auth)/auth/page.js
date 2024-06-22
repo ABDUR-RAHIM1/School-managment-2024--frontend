@@ -9,6 +9,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { GlobalState } from "@/ContextApi/ContextApi"
 import Spinner from "@/components/Utils/Spinner"
 import { handlePostMethod } from "@/fetchApi/handlePostMethod/handlePostMethod"
+import Cookies from "js-cookie";
 
 
 
@@ -24,6 +25,7 @@ export default function AuthPage() {
 
     const [openRegister, setOpenRegister] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -87,18 +89,23 @@ export default function AuthPage() {
             if (results.ok) {
                 toast.success(results.message)
 
+
                 if (authAuthor === "author=teacher") {
                     const teacherToken = results.token
                     localStorage.setItem("TEAHCER_IS_LOGGED_IN", JSON.stringify(teacherToken))
 
                     router.push("/teacher-profile");
                 } else {
-                    const studentToken = results.token
-                    localStorage.setItem("STUDENT_IS_LOGGED_IN", JSON.stringify(studentToken))
+                    const studentToken = results.token;
+                    const authInfo = results.info; 
+
+                    Cookies.set("student_token", studentToken, { expires: 7, path: "/" });
+
+                    localStorage.setItem("auth_Info", JSON.stringify(authInfo))
 
                     router.push("/student-profile");
                 }
-
+                console.log(results)
             } else {
                 toast.error(results.message)
             }
@@ -112,7 +119,6 @@ export default function AuthPage() {
 
 
     };
-
 
 
 

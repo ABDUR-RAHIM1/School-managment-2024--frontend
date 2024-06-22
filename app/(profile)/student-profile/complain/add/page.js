@@ -1,5 +1,5 @@
 "use client"
-import { GlobalState } from '@/ContextApi/ContextApi'
+import { GlobalState } from '@/ContextApi/ContextApi' 
 import Heading from '@/components/Utils/Heading'
 import Inputs from '@/components/Utils/Inputs'
 import Spinner from '@/components/Utils/Spinner'
@@ -9,7 +9,9 @@ import { toast } from 'react-toastify'
 
 export default function AddComplain() {
 
-    const { UploadFIle, imgUrl, postDataWithToken, imgLoading, isLoading } = useContext(GlobalState)
+    const { UploadFIle, imgUrl, postDataWithToken, imgLoading, isLoading, editValue, editLoading, updateMethodWithToken } = useContext(GlobalState)
+
+    const condition = Object.keys(editValue).length !== 0
 
     const [formData, setFormData] = useState({
         subject: "",
@@ -33,7 +35,11 @@ export default function AddComplain() {
         if (imgUrl) {
             setFormData({ ...formData, "photo": imgUrl })
         }
-    }, [imgUrl])
+        //  set edited data in form  state
+        if (condition) {
+            setFormData(editValue)
+        }
+    }, [imgUrl, editValue])
 
 
     const handleSubmit = (e) => {
@@ -46,29 +52,31 @@ export default function AddComplain() {
             return;
         }
 
-        const tokenString = window.localStorage.getItem("STUDENT_IS_LOGGED_IN")
-        if (!tokenString) {
-            toast.error("Unauthorize User")
-        }
+        const token = window.localStorage.getItem("STUDENT_IS_LOGGED_IN")
+        const postRoute = "/complain/add"
+        const putRoute = `/complain/edit/${editValue._id}`
+        condition ?
+            updateMethodWithToken(putRoute, token, formData) 
+            :
 
-        const route = "/complain/add"
-        const token = JSON.parse(tokenString)
-        postDataWithToken(route, token, formData)
+            postDataWithToken(postRoute, token, formData)
     }
 
     return (
         <div className='adminPage'>
-            <Heading text={"Send Complain"} />
+            <Heading text={condition ? "Update Complain" : "Send Complain"} />
             <form onSubmit={handleSubmit} className='form'>
                 <Inputs
                     type="text"
                     name="subject"
+                    value={formData.subject}
                     placeholder="Enter Subject"
                     onChange={handleChange}
                 />
                 <textarea
                     rows={10}
                     name='details'
+                    value={formData.details}
                     placeholder='Write Your Complain'
                     onChange={handleChange}
                     className='input'
@@ -84,7 +92,7 @@ export default function AddComplain() {
                 <div className="form_btn_wrap">
                     <button disabled={imgLoading} className='formBtn'>
                         {
-                            isLoading ? <Spinner /> : " Send"
+                            isLoading || editLoading ? <Spinner /> : condition ? "Update" : " Send"
                         }
                         <MdAdd className='text-2xl' />
                     </button>

@@ -24,12 +24,14 @@
     @apply w-full h-auto py-5 max-h-[400px] overflow-y-auto bg-gray-50 rounded-b-md shadow-md absolute top-12 left-0 text-gray-700 z-[999]
   }
    .dashboard{
-    @apply flex flex-wrap  bg-gray-200
+    @apply flex flex-wrap  bg-[#eeeff6] dark:bg-slate-950
    }
    .dashboardSidebar{
-     @apply h-screen overflow-y-auto duration-300 bg-[#4d44b5] text-white 
+     @apply h-screen overflow-y-auto duration-200 bg-gray-50 dark:bg-slate-950  dark:text-white 
    }
-
+.profileSidebarItems{
+  @apply  duration-200 bg-gray-200 text-black dark:bg-slate-900 dark:text-white hover:bg-gray-300 dark:hover:bg-slate-800  rounded-md flex items-center gap-2 w-full py-2 px-3 my-5 cursor-pointer
+}
    .sidebarItem{
      @apply capitalize tracking-widest my-3 py-3 px-3 font-bold cursor-pointer  hover:bg-[#6459df] hover:text-white duration-300
    }
@@ -53,10 +55,10 @@
       @apply px-10 py-5 border rounded-md
     }
 .input{
-  @apply w-full rounded-md py-2 px-3 my-3 focus:outline-0 bg-white border border-gray-300
+  @apply w-full rounded-md py-2 px-3 my-3 focus:outline-0 bg-white dark:bg-slate-900 dark:text-white border-b border-gray-300 dark:border-slate-800
 }
 .formBtn{
-  @apply py-3 px-4 flex items-center justify-center gap-2 text-center font-medium w-full capitalize my-5 bg-blue-500 hover:bg-blue-600 text-white rounded-3xl duration-200
+  @apply py-3 px-4 flex items-center justify-center gap-2 text-center font-medium w-full capitalize my-5 bg-blue-500 dark:bg-slate-900 dark:hover:bg-slate-800 hover:bg-blue-600 text-white rounded-3xl duration-200
 }
 
 .addAdminPage{
@@ -134,7 +136,7 @@
   @apply w-full md:w-[48%]  
  }
  .adminPage{
-  @apply bg-white px-2 py-10 rounded-md
+  @apply bg-white dark:bg-slate-950 dark:text-white px-2 py-10 rounded-md
  }
  /*  add staff page end */
 
@@ -183,7 +185,7 @@
       @apply flex justify-between flex-wrap
      }
      .listCard{
-      @apply w-full md:w-[31%] my-3 border rounded-md  hover:shadow-md duration-200
+      @apply w-full md:w-[31%] my-3 border border-gray-100 dark:border-slate-800 rounded-md  hover:shadow-md dark:shadow-md dark:hover:shadow-slate-800 duration-200
      }
      .listCard .text{
       @apply px-2 py-3 capitalize
@@ -239,10 +241,10 @@
 
 
      .modalHeader{
-      @apply  flex items-center justify-center bg-black bg-opacity-80 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50  w-full md:inset-0 h-[calc(100%-1rem)] max-h-full
+      @apply  flex items-center justify-center bg-black  bg-opacity-80 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50  w-full md:inset-0 h-[calc(100%-1rem)] max-h-full
      }
      .modalContainer{
-      @apply  flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50  w-full md:inset-0 h-[calc(100%-1rem)] max-h-full
+      @apply  flex items-center justify-center bg-black dark:bg-slate-800  bg-opacity-80 dark:bg-opacity-80 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50  w-full md:inset-0 h-[calc(100%-1rem)] max-h-full
      }
      .modalLabel{
       @apply block mb-2 text-sm font-medium text-gray-900 dark:text-white capitalize
@@ -252,7 +254,7 @@
       @apply w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
      }
      .form{
-      @apply py-10 px-4 bg-gray-50
+      @apply py-10 px-4 bg-gray-50 dark:bg-slate-950 dark:text-white
      }
      .form_group{
       @apply w-full flex gap-2
@@ -379,16 +381,14 @@ transition: 2s ease all ease;
   }
    ::-webkit-scrollbar {
     width: 5px;  
-    height: 8px;             
+    height: 5px;             
   }
   
-   ::-webkit-scrollbar-thumb {
-    /* background-color: rgb(119, 152, 248);    */
+   ::-webkit-scrollbar-thumb { 
     background-color: rgb(193, 195, 197);
     border-radius: 10px;       
   }
-  ::-webkit-scrollbar-track-piece{
-    /* background-color: rgb(41, 89, 230); ; */
+  ::-webkit-scrollbar-track-piece{ 
     background-color: white;
     height: 5px;
   }

@@ -1,57 +1,49 @@
 "use client"
 import Image from 'next/image'
-
 import avatar from "@/public/images/sd.png"
 import Link from 'next/link'
 import { useContext, useEffect, useState } from 'react'
 import { GlobalState } from '@/ContextApi/ContextApi'
-import { usePathname } from 'next/navigation'
 import studentSidebarItems from '@/Data/StudentSidebar'
 import teacherSidebarItems from '@/Data/TeacherSidebar'
 
 export default function ProfileSidebar() {
 
-    const { getStudentAllDataWithToken, studentProfileData } = useContext(GlobalState)
+    const { authInfo } = useContext(GlobalState)
 
     const [sidebarItems, setSidebarItems] = useState([])
 
-    const { photo, username } = studentProfileData
-
-    const path = usePathname();
-
-
     useEffect(() => {
-        getStudentAllDataWithToken()
 
-        if (path.startsWith("/student")) {
+        if (authInfo.role === "student") {
             setSidebarItems(studentSidebarItems)
         } else {
             setSidebarItems(teacherSidebarItems)
         }
-    }, [])
+    }, [authInfo])
 
     return (
         <div className='px-5'>
             <div className='flex items-center gap-3 my-10'>
                 <Image
-                    src={photo || avatar}
+                    src={authInfo.photo || avatar}
                     width={500}
                     height={500}
                     alt='profile photo'
                     className='w-12 h-12 rounded-full '
                 />
-                <p>{username}</p>
+                <p>{authInfo.username}</p>
             </div>
             <hr />
 
             <div className='my-10'>
                 {
                     sidebarItems && sidebarItems.map((item, i) => (
-                        <div key={i} className=' flex items-center gap-2 w-full py-2 px-3 my-2  text-white'>
+                        <div key={i} className=' profileSidebarItems flex items-center gap-2 w-full  '>
                             <span className='text-3xl'>
                                 {item?.icon}
                             </span>
-                            <Link className='text-[18px] uppercase font-medium' href={item.path}>
+                            <Link className='text-[16px] uppercase font-medium' href={item.path}>
                                 {item.item}
                             </Link>
                         </div>

@@ -3,14 +3,16 @@ import { GlobalState } from '@/ContextApi/ContextApi'
 import Heading from '@/components/Utils/Heading'
 import Inputs from '@/components/Utils/Inputs'
 import Spinner from '@/components/Utils/Spinner'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { MdAdd } from 'react-icons/md'
-import { toast } from 'react-toastify'
 
 //  student profile 
 export default function AddTodoPage() {
-    const { isLoading, postDataWithToken } = useContext(GlobalState)
+    const { studentToken, isLoading, postDataWithToken, editValue, updateMethodWithToken, editLoading } = useContext(GlobalState)
+
     const [formData, setFormData] = useState({ title: "", desc: "" })
+
+    const condition = Object.keys(editValue).length !== 0
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -23,20 +25,29 @@ export default function AddTodoPage() {
     const handleSubmitTodo = (e) => {
         e.preventDefault()
 
-        const tokenString = window.localStorage.getItem("STUDENT_IS_LOGGED_IN");
-        if (!tokenString) {
-            toast.error("unAuthenciation user!")
-        }
-        const route = "/todos/add"
-        const token = JSON.parse(tokenString)
-        postDataWithToken(route, token, formData)
-        
+
+        const postRoute = "/todos/add"
+        const putRoute = `/todos/edit/${editValue._id}`
+        condition ?
+            updateMethodWithToken(putRoute, studentToken, formData)
+            :
+            postDataWithToken(postRoute, studentToken, formData)
+
     }
- 
+
+
+    useEffect(() => {
+
+        if (condition) {
+            setFormData(editValue)
+        }
+    }, [editValue])
+
+
 
     return (
         <div className='adminPage'>
-            <Heading text={"Add Todo"} />
+            <Heading text={condition ? "Update Todo" : "Add Todo"} />
 
             <form onSubmit={handleSubmitTodo} className='form'>
                 <Inputs
@@ -60,7 +71,7 @@ export default function AddTodoPage() {
                 <div className="form_btn_wrap">
                     <button className='formBtn'>
                         {
-                            isLoading ? <Spinner /> : " Add Todo"
+                            isLoading || editLoading ? <Spinner /> : condition ? "Update Now" : " Add Now"
                         }
                         <MdAdd className=' text-2xl' />
                     </button>

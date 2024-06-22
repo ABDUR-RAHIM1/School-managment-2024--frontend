@@ -14,7 +14,7 @@ export const GlobalState = createContext();
 
 export const MyState = ({ children }) => {
   const [isLoading, setIsLoding] = useState(false)
-  const [editLoading, setEditLoding] = useState(false)
+  const [editLoading, setEditLoading] = useState(false)
   const [data, setData] = useState([])
   const [search, setSearch] = useState("")
   const [reload, setReload] = useState(false);
@@ -27,10 +27,7 @@ export const MyState = ({ children }) => {
 
 
   //  student and teacher profile start
-
-
-  const [studentProfileData, setStundentProfileData] = useState({})
-  const [tokenData, setTokenData] = useState([]);
+  const [authInfo, setAuthInfo] = useState({})
 
   //  student and teacher profile end
 
@@ -83,15 +80,14 @@ export const MyState = ({ children }) => {
 
   //  handle all Update data (put method (reusable) )
   const editDataFunc = async (route, info) => {
-    setEditLoding(true)
+    setEditLoading(true)
     try {
       const result = await handleUpdate(route, info);
-      console.log(result)
       result.ok ? toast.success(result.message) : toast.warning(result.message)
     } catch (error) {
       console.log(error)
     } finally {
-      setEditLoding(false)
+      setEditLoading(false)
     }
   }
 
@@ -151,41 +147,45 @@ export const MyState = ({ children }) => {
 
   // student and teacher profile start
 
-  const getStudentAllDataWithToken = async () => {
+  useEffect(() => {
+
+    let value;
+    if (typeof window !== "undefined") {
+      const getValue = localStorage.getItem("auth_Info") || "";
+      if (getValue) {
+        value = JSON.parse(getValue)
+      }
+    }
+
+    setAuthInfo(value)
+
+  }, [])
+
+  const getStudentAllDataWithToken = async (token) => {
     try {
       const route = "/student/auth/user"
-      const token = JSON.parse(window.localStorage.getItem("STUDENT_IS_LOGGED_IN"))
+
       const data = await getProfileDataWithToken(route, token)
       setStundentProfileData(data)
 
+      console.log(data)
+
     } catch (error) {
       console.log(error)
     }
   }
 
-  const getMethodWithToken = async (route, token) => {
-    try {
-      const res = await fetch(API + route, {
-        method: "GET",
-        headers: {
-          "Authorization": `Bearer ${token}`
-        },
-      });
 
-      const data = await res.json()
-      if (data.length > 0) {
-        const reverseData = data.slice().reverse()
-        setTokenData(reverseData)
-      } 
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   const postDataWithToken = async (route, token, formData) => {
     setIsLoding(true)
+    let parseToken = "";
     try {
-      const result = await postWithToken(route, token, formData);
+      if (token) {
+        parseToken = JSON.parse(token)
+      }
+      const result = await postWithToken(route, parseToken, formData);
+      console.log("data", result)
       result.ok ? toast.success(result.message) : toast.error(result.message)
     } catch (error) {
       console.log(error)
@@ -194,12 +194,58 @@ export const MyState = ({ children }) => {
     }
   }
 
-  const deleteMethodWithToken = async (route, token) => {
+  const updateMethodWithToken = async (route, token, formData) => {
+    let parsedToken = "";
+    setEditLoading(true);
+
     try {
+      // Token Parsing
+      if (token) {
+        try {
+          parsedToken = JSON.parse(token);
+        } catch (parseError) {
+          throw new Error("Failed to parse token.");
+        }
+      }
+
+      // Fetch Request
+      const response = await fetch(`${API}${route}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json", // Ensure the content type is specified
+          "Authorization": `Bearer ${parsedToken}`
+        },
+        body: JSON.stringify(formData)
+      });
+
+      // Response Handling
+      const result = await response.json();
+
+      if (response.ok) {
+        toast.success(result.message);
+        setReload(prev => !prev); // Ensures state toggling is based on the previous state
+      } else {
+        toast.error(result.message || "Failed to update.");
+      }
+    } catch (error) {
+      console.error("Error in updateMethodWithToken:", error);
+      toast.error("An error occurred while updating.");
+    } finally {
+      setEditLoading(false); // Ensure loading state is reset
+    }
+  };
+
+
+  const deleteMethodWithToken = async (route, token) => {
+    let parseToken = "";
+    try {
+      if (token) {
+        parseToken = JSON.parse(token)
+      }
       const res = await fetch(API + route, {
         method: "DELETE",
         headers: {
-          "Authorization": `Bearer ${token}`
+          "Authorization": `Bearer ${parseToken}`
         }
       })
       const result = await res.json();
@@ -218,12 +264,11 @@ export const MyState = ({ children }) => {
   // student and teacher profile end
 
 
-
   const value = {
     reload, setReload,
     editValue, setEditValue,
     detailsData, setDetailsData,
-    editLoading, setEditLoding,
+    editLoading, setEditLoading,
     postAllDataFunc,
     getAllDataFunc, isLoading, data,
     search, setSearch,
@@ -238,11 +283,10 @@ export const MyState = ({ children }) => {
 
     //  student and teacher start
 
-    // profileData, setProfileData,
-    postDataWithToken,
-    getMethodWithToken, tokenData,
+    authInfo,  // login data > name , email , photo
+    postDataWithToken, updateMethodWithToken,
     deleteMethodWithToken,
-    getStudentAllDataWithToken, studentProfileData,
+    getStudentAllDataWithToken,
     //  student and teacher end
 
   };
